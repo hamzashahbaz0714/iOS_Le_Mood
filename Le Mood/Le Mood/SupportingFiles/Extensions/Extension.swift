@@ -169,13 +169,21 @@ extension UIImageView{
     }
 }
 extension UIView {
-   func roundCorners(corners: UIRectCorner, radius: CGFloat) {
-        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
-        let mask = CAShapeLayer()
-        mask.path = path.cgPath
-        layer.mask = mask
+
+    func roundCorners(corners:UIRectCorner, radius: CGFloat) {
+
+        DispatchQueue.main.async {
+            let path = UIBezierPath(roundedRect: self.bounds,
+                                    byRoundingCorners: corners,
+                                    cornerRadii: CGSize(width: radius, height: radius))
+            let maskLayer = CAShapeLayer()
+            maskLayer.frame = self.bounds
+            maskLayer.path = path.cgPath
+            self.layer.mask = maskLayer
+        }
     }
 }
+
 
 extension String {
     func trimWhiteSpace() -> String {
