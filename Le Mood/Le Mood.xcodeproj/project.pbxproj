@@ -20,6 +20,8 @@
 		FA1B1564263FD6E0008CD9A3 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B155D263FD6E0008CD9A3 /* Alert.swift */; };
 		FA1B1565263FD6E0008CD9A3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B155E263FD6E0008CD9A3 /* Constants.swift */; };
 		FA1B1568263FD6EC008CD9A3 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B1567263FD6EC008CD9A3 /* Extension.swift */; };
+		FA6E32E226578F8E008C5013 /* PopUpMood.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E32E026578F8E008C5013 /* PopUpMood.swift */; };
+		FA6E32E326578F8E008C5013 /* PopUpMood.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6E32E126578F8E008C5013 /* PopUpMood.xib */; };
 		FA9C913F26564BD0003CCBAD /* Onboard1VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9C913E26564BD0003CCBAD /* Onboard1VC.swift */; };
 		FA9C914226564CC4003CCBAD /* Onboard2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9C914126564CC4003CCBAD /* Onboard2VC.swift */; };
 		FA9C914526564D7A003CCBAD /* Onboard3VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9C914426564D7A003CCBAD /* Onboard3VC.swift */; };
@@ -69,6 +71,8 @@
 		FA1B155D263FD6E0008CD9A3 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		FA1B155E263FD6E0008CD9A3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FA1B1567263FD6EC008CD9A3 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		FA6E32E026578F8E008C5013 /* PopUpMood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpMood.swift; sourceTree = "<group>"; };
+		FA6E32E126578F8E008C5013 /* PopUpMood.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpMood.xib; sourceTree = "<group>"; };
 		FA9C913E26564BD0003CCBAD /* Onboard1VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboard1VC.swift; sourceTree = "<group>"; };
 		FA9C914126564CC4003CCBAD /* Onboard2VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboard2VC.swift; sourceTree = "<group>"; };
 		FA9C914426564D7A003CCBAD /* Onboard3VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboard3VC.swift; sourceTree = "<group>"; };
@@ -198,6 +202,8 @@
 		FA1B154A263FD145008CD9A3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FA6E32E026578F8E008C5013 /* PopUpMood.swift */,
+				FA6E32E126578F8E008C5013 /* PopUpMood.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -433,6 +439,7 @@
 				FA9C916D26564FDB003CCBAD /* Poppins-ExtraBoldItalic.ttf in Resources */,
 				FA9C916526564FDB003CCBAD /* Poppins-BoldItalic.ttf in Resources */,
 				FA1B153E263FD027008CD9A3 /* LaunchScreen.storyboard in Resources */,
+				FA6E32E326578F8E008C5013 /* PopUpMood.xib in Resources */,
 				FA9C916B26564FDB003CCBAD /* Poppins-SemiBold.ttf in Resources */,
 				FA9C91772656504E003CCBAD /* Acumin-RPro.otf in Resources */,
 				FA9C91782656504E003CCBAD /* Acumin-ItPro.otf in Resources */,
@@ -516,6 +523,7 @@
 				FA9C914526564D7A003CCBAD /* Onboard3VC.swift in Sources */,
 				FA9C918026568AB6003CCBAD /* SignupViewController.swift in Sources */,
 				FA1B1563263FD6E0008CD9A3 /* Rechability.swift in Sources */,
+				FA6E32E226578F8E008C5013 /* PopUpMood.swift in Sources */,
 				FA1B1562263FD6E0008CD9A3 /* UtilityManager.swift in Sources */,
 				FA1B1534263FD027008CD9A3 /* SceneDelegate.swift in Sources */,
 				FA9C917D26567D4E003CCBAD /* LoginViewController.swift in Sources */,

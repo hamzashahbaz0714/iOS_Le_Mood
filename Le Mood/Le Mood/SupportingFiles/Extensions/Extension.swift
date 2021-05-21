@@ -169,9 +169,7 @@ extension UIImageView{
     }
 }
 extension UIView {
-
     func roundCorners(corners:UIRectCorner, radius: CGFloat) {
-
         DispatchQueue.main.async {
             let path = UIBezierPath(roundedRect: self.bounds,
                                     byRoundingCorners: corners,
