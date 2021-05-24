@@ -32,6 +32,7 @@ class Onboard1VC: UIViewController {
     //MARK:- Actions
     
     @IBAction func btnSkipTapped(_ sender: Any){
+        UserDefaults.standard.setValue(true, forKey: "WatchWalkThrough")
         let controller: LoginViewController = LoginViewController.initiateFrom(Storybaord: .Main)
         self.pushController(contorller: controller, animated: true)
     }

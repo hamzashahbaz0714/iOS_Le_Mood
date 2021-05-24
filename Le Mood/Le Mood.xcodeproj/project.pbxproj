@@ -20,8 +20,18 @@
 		FA1B1564263FD6E0008CD9A3 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B155D263FD6E0008CD9A3 /* Alert.swift */; };
 		FA1B1565263FD6E0008CD9A3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B155E263FD6E0008CD9A3 /* Constants.swift */; };
 		FA1B1568263FD6EC008CD9A3 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B1567263FD6EC008CD9A3 /* Extension.swift */; };
+		FA43C93E265B7CEA00A57EA6 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43C93C265B7CE900A57EA6 /* AuthService.swift */; };
+		FA43C93F265B7CEA00A57EA6 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43C93D265B7CE900A57EA6 /* DataService.swift */; };
+		FA43C95A265B7E1400A57EA6 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43C959265B7E1400A57EA6 /* UserModel.swift */; };
+		FA43C976265BC04F00A57EA6 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43C975265BC04F00A57EA6 /* EditProfileViewController.swift */; };
 		FA6E32E226578F8E008C5013 /* PopUpMood.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E32E026578F8E008C5013 /* PopUpMood.swift */; };
 		FA6E32E326578F8E008C5013 /* PopUpMood.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6E32E126578F8E008C5013 /* PopUpMood.xib */; };
+		FA6E32E92657BBF9008C5013 /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E32E82657BBF9008C5013 /* ChatListViewController.swift */; };
+		FA6E32EE2657BEEA008C5013 /* ChatListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6E32EC2657BEEA008C5013 /* ChatListCell.xib */; };
+		FA6E32EF2657BEEA008C5013 /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E32ED2657BEEA008C5013 /* ChatListCell.swift */; };
+		FA6E32F42657C983008C5013 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E32F32657C983008C5013 /* SettingViewController.swift */; };
+		FA6E331C2657E3D7008C5013 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E331B2657E3D7008C5013 /* ProfileViewController.swift */; };
+		FA6E33202657FA82008C5013 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA6E331F2657FA82008C5013 /* GoogleService-Info.plist */; };
 		FA9C913F26564BD0003CCBAD /* Onboard1VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9C913E26564BD0003CCBAD /* Onboard1VC.swift */; };
 		FA9C914226564CC4003CCBAD /* Onboard2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9C914126564CC4003CCBAD /* Onboard2VC.swift */; };
 		FA9C914526564D7A003CCBAD /* Onboard3VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9C914426564D7A003CCBAD /* Onboard3VC.swift */; };
@@ -71,8 +81,18 @@
 		FA1B155D263FD6E0008CD9A3 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		FA1B155E263FD6E0008CD9A3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FA1B1567263FD6EC008CD9A3 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		FA43C93C265B7CE900A57EA6 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		FA43C93D265B7CE900A57EA6 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		FA43C959265B7E1400A57EA6 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		FA43C975265BC04F00A57EA6 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		FA6E32E026578F8E008C5013 /* PopUpMood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpMood.swift; sourceTree = "<group>"; };
 		FA6E32E126578F8E008C5013 /* PopUpMood.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpMood.xib; sourceTree = "<group>"; };
+		FA6E32E82657BBF9008C5013 /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
+		FA6E32EC2657BEEA008C5013 /* ChatListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatListCell.xib; sourceTree = "<group>"; };
+		FA6E32ED2657BEEA008C5013 /* ChatListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
+		FA6E32F32657C983008C5013 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		FA6E331B2657E3D7008C5013 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		FA6E331F2657FA82008C5013 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FA9C913E26564BD0003CCBAD /* Onboard1VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboard1VC.swift; sourceTree = "<group>"; };
 		FA9C914126564CC4003CCBAD /* Onboard2VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboard2VC.swift; sourceTree = "<group>"; };
 		FA9C914426564D7A003CCBAD /* Onboard3VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboard3VC.swift; sourceTree = "<group>"; };
@@ -173,6 +193,7 @@
 		FA1B1547263FD13C008CD9A3 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				FA6E331F2657FA82008C5013 /* GoogleService-Info.plist */,
 				FA1B153A263FD027008CD9A3 /* Assets.xcassets */,
 				FA1B153F263FD027008CD9A3 /* Info.plist */,
 			);
@@ -211,6 +232,7 @@
 		FA1B154B263FD148008CD9A3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FA43C959265B7E1400A57EA6 /* UserModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -218,6 +240,8 @@
 		FA1B154C263FD14B008CD9A3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				FA43C93C265B7CE900A57EA6 /* AuthService.swift */,
+				FA43C93D265B7CE900A57EA6 /* DataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -234,6 +258,8 @@
 		FA1B154E263FD151008CD9A3 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
+				FA6E32ED2657BEEA008C5013 /* ChatListCell.swift */,
+				FA6E32EC2657BEEA008C5013 /* ChatListCell.xib */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -310,6 +336,32 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		FA6E32E72657BBDC008C5013 /* Chats */ = {
+			isa = PBXGroup;
+			children = (
+				FA6E32E82657BBF9008C5013 /* ChatListViewController.swift */,
+			);
+			path = Chats;
+			sourceTree = "<group>";
+		};
+		FA6E32F22657C95D008C5013 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				FA6E32F32657C983008C5013 /* SettingViewController.swift */,
+				FA6E331A2657E3C2008C5013 /* Profile */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		FA6E331A2657E3C2008C5013 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				FA6E331B2657E3D7008C5013 /* ProfileViewController.swift */,
+				FA43C975265BC04F00A57EA6 /* EditProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		FA9C914726564F8E003CCBAD /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -361,6 +413,8 @@
 			children = (
 				FA9C91882656A0B4003CCBAD /* TabbarViewController.swift */,
 				FA9C918B2656A0BA003CCBAD /* Home */,
+				FA6E32E72657BBDC008C5013 /* Chats */,
+				FA6E32F22657C95D008C5013 /* Setting */,
 			);
 			path = Tabbar;
 			sourceTree = "<group>";
@@ -449,9 +503,11 @@
 				FA9C916E26564FDB003CCBAD /* Poppins-BlackItalic.ttf in Resources */,
 				FA9C91752656504E003CCBAD /* Acumin-BdItPro.otf in Resources */,
 				FA9C916C26564FDB003CCBAD /* Poppins-Thin.ttf in Resources */,
+				FA6E32EE2657BEEA008C5013 /* ChatListCell.xib in Resources */,
 				FA1B153B263FD027008CD9A3 /* Assets.xcassets in Resources */,
 				FA9C916426564FDB003CCBAD /* Poppins-Italic.ttf in Resources */,
 				FA9C916A26564FDB003CCBAD /* Poppins-ExtraBold.ttf in Resources */,
+				FA6E33202657FA82008C5013 /* GoogleService-Info.plist in Resources */,
 				FA1B1539263FD027008CD9A3 /* Main.storyboard in Resources */,
 				FA9C916926564FDB003CCBAD /* Poppins-MediumItalic.ttf in Resources */,
 				FA9C916626564FDB003CCBAD /* Poppins-Bold.ttf in Resources */,
@@ -516,7 +572,12 @@
 				FA1B155F263FD6E0008CD9A3 /* Storyboard.swift in Sources */,
 				FA1B1560263FD6E0008CD9A3 /* Defaults.swift in Sources */,
 				FA1B1568263FD6EC008CD9A3 /* Extension.swift in Sources */,
+				FA43C93F265B7CEA00A57EA6 /* DataService.swift in Sources */,
+				FA43C93E265B7CEA00A57EA6 /* AuthService.swift in Sources */,
 				FA1B1532263FD027008CD9A3 /* AppDelegate.swift in Sources */,
+				FA6E32EF2657BEEA008C5013 /* ChatListCell.swift in Sources */,
+				FA6E32E92657BBF9008C5013 /* ChatListViewController.swift in Sources */,
+				FA43C95A265B7E1400A57EA6 /* UserModel.swift in Sources */,
 				FA9C9185265692A5003CCBAD /* HomeViewController.swift in Sources */,
 				FA1B1565263FD6E0008CD9A3 /* Constants.swift in Sources */,
 				FA9C914226564CC4003CCBAD /* Onboard2VC.swift in Sources */,
@@ -524,9 +585,12 @@
 				FA9C918026568AB6003CCBAD /* SignupViewController.swift in Sources */,
 				FA1B1563263FD6E0008CD9A3 /* Rechability.swift in Sources */,
 				FA6E32E226578F8E008C5013 /* PopUpMood.swift in Sources */,
+				FA6E32F42657C983008C5013 /* SettingViewController.swift in Sources */,
 				FA1B1562263FD6E0008CD9A3 /* UtilityManager.swift in Sources */,
 				FA1B1534263FD027008CD9A3 /* SceneDelegate.swift in Sources */,
+				FA6E331C2657E3D7008C5013 /* ProfileViewController.swift in Sources */,
 				FA9C917D26567D4E003CCBAD /* LoginViewController.swift in Sources */,
+				FA43C976265BC04F00A57EA6 /* EditProfileViewController.swift in Sources */,
 				FA9C913F26564BD0003CCBAD /* Onboard1VC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

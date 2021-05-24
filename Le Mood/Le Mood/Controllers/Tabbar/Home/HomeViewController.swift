@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class HomeViewController: UIViewController {
 
@@ -13,6 +14,10 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var mainView: UIView!
     @IBOutlet var dashboardViews: [UIView]!
+    @IBOutlet weak var profileImgView: UIImageView!
+    @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var lblEmail: UILabel!
+    
     
     //MARK:- Controller Life Cycle
     
@@ -24,8 +29,14 @@ class HomeViewController: UIViewController {
             view.addGestureRecognizer(tapgesture)
             view.roundCorners(corners: [.topRight, .bottomLeft], radius: 18)
         }
-
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let user = DataService.instance.currentUser
+        profileImgView.sd_setImage(with: URL(string: user?.image ?? "" ), placeholderImage: placeHolderImage, options: .forceTransition)
+        lblName.text = user?.name
+        lblEmail.text = user?.email
     }
     
     //MARK:- Supporting Functions

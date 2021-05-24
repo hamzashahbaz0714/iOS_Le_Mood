@@ -13,6 +13,10 @@ let placeHolderArtistImage = UIImage(named: "2")
 let menuArr = [["image": UIImage(named: "icon_user_profile")!,"name":"Profile"],["image": UIImage(named: "icon_transactions")!,"name":"Transactions"],["image": UIImage(named: "icon_settings")!,"name":"Settings"]]
 let sportArray = [["name": "NBA-Basketball", "image": UIImage(named: "icon_basketball")!],["name": "MLB-Baseball", "image": UIImage(named: "icon_baseball")!],["name": "NFL-Football", "image": UIImage(named: "icon_football")!],["name": "FIFA-Soccer", "image": UIImage(named: "icon_football")!],["name": "NHL-Ice Hockey", "image": UIImage(named: "icon_hockey")!]]
 
+typealias CompletionHandlerWithError = (_ success: Bool, _ error: Error?) -> ()
+typealias CompletionHandler = (_ success: Bool) -> ()
+
+var placeHolderImage = UIImage(named: "user_placeholder")
 
 enum albumType: String {
     case newAlbum = "get-new-albums"

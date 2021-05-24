@@ -2,12 +2,18 @@
 # platform :ios, '9.0'
 
 target 'Le Mood' do
-pod 'Alamofire'
-pod 'SDWebImage'
-pod 'IQKeyboardManager'
+  pod 'Alamofire'
+  pod 'SDWebImage'
+  pod 'IQKeyboardManager'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+  pod 'Firebase/Storage'
+  pod 'Firebase/Firestore'
+  pod 'ProgressHUD'
+  pod 'iOSDropDown'
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-
+  
   # Pods for Le Mood
-
+  
 end

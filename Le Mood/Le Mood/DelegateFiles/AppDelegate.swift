@@ -6,14 +6,18 @@
 //
 
 import UIKit
-
+import Firebase
+import ProgressHUD
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        ProgressHUD.colorAnimation = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
+        ProgressHUD.animationType = .lineScaling
+        FirebaseApp.configure()
+        
         return true
     }
 
