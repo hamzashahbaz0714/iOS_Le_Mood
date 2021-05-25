@@ -11,6 +11,9 @@ target 'Le Mood' do
   pod 'Firebase/Firestore'
   pod 'ProgressHUD'
   pod 'iOSDropDown'
+  pod 'SwiftyJSON'
+  
+
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   

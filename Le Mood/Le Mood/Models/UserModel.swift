@@ -7,7 +7,7 @@
 
 import UIKit
 
-class User {
+class UserModel {
     
     var id: String
     var name: String

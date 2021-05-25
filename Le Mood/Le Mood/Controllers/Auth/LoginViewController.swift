@@ -9,7 +9,7 @@ import UIKit
 import ProgressHUD
 import Firebase
 class LoginViewController: UIViewController {
-
+    
     //MARK:- Properties
     
     @IBOutlet weak var txtEmail: UITextField!
@@ -21,7 +21,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         autoLoginMethod()
     }
-
+    
     
     //MARK:- Supporting Functions
     
@@ -76,8 +76,34 @@ class LoginViewController: UIViewController {
         self.pushController(contorller: controller, animated: true)
     }
     
+    @IBAction func btnForgotTapped(_ sender: Any){
+        Alert.alertWithTextField(title: "Reset Password \n", message: "We will send a password reset link to your email", placeholder: "Enter your register email") { result in
+            print(result)
+            if result == "" {
+                Alert.showMsg(title: "Error", msg: "Please enter your email", btnActionTitle: "OK")
+                
+            }
+            else
+            {
+                ProgressHUD.show()
+                Auth.auth().sendPasswordReset(withEmail: result) { (error) in
+                    ProgressHUD.dismiss()
+                    if error == nil {
+                        Alert.showMsg(title: "Done \n", msg: "Your password reset link was sent your email address!", btnActionTitle: "OK")
+                        
+                    }
+                    else
+                    {
+                        Alert.showMsg(title: "Error \n", msg: error?.localizedDescription ?? "", btnActionTitle: "OK")
+                        
+                    }
+                }
+            }
+        }
+    }
+    
     @IBAction func btnSignInTapped(_ sender: Any){
-      
+        
         handleSigIn()
     }
 }

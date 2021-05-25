@@ -44,6 +44,29 @@ public class Alert {
     }
     
     
+    public static func alertWithTextField(title: String? = nil, message: String? = nil, placeholder: String? = nil, completion: @escaping ((String) -> Void) = { _ in }) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addTextField() { newTextField in
+            newTextField.placeholder = placeholder
+            newTextField.textAlignment = .center
+            newTextField.layer.cornerRadius = 5
+        }
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { action in
+            
+        })
+        alert.addAction(UIAlertAction(title: "Confirm", style: .default) { action in
+            if
+                let textFields = alert.textFields,
+                let tf = textFields.first,
+                let result = tf.text
+            { completion(result) }
+        })
+        Alert.showOnWindow(alert)
+    }
+    
+    
+    
     
     public static func showWithCompletion(title : String = "Notification", msg : String , btnActionTitle : String? = "Okay" , completionAction: @escaping () -> Void) -> Void{
         

@@ -31,12 +31,29 @@ func getCurrentYear() -> String{
     return (formatter.string(from: Date()))
 }
 
+func getTime() -> String {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "h:mm a"
+    return (formatter.string(from: Date()))
+}
+
 func getCurrentDate() -> String{
     let currentDateTime = Date()
     let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy-MM-dd"
+    formatter.dateFormat = "dd/MM/yyyy"
     return (formatter.string(from: currentDateTime))
 }
+func getUniqueId(length: Int = 20) -> String {
+   let base = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+   var randomString: String = ""
+
+   for _ in 0..<length {
+       let randomValue = arc4random_uniform(UInt32(base.count))
+       randomString += "\(base[base.index(base.startIndex, offsetBy: Int(randomValue))])"
+   }
+   return randomString
+}
+
 func currentdateToaddOnday() -> String{
     let currentDate = Date()
     var dateComponent = DateComponents()

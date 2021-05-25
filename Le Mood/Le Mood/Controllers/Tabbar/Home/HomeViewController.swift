@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ProgressHUD
 import SDWebImage
 
 class HomeViewController: UIViewController {
@@ -17,7 +18,9 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var profileImgView: UIImageView!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblEmail: UILabel!
-    
+    @IBOutlet weak var lblMoodValue: UILabel!
+    @IBOutlet weak var moodImage: UIImageView!
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     //MARK:- Controller Life Cycle
     
@@ -28,6 +31,39 @@ class HomeViewController: UIViewController {
             let tapgesture = UITapGestureRecognizer(target: self, action: #selector(handleDashobardView(sender:)))
             view.addGestureRecognizer(tapgesture)
             view.roundCorners(corners: [.topRight, .bottomLeft], radius: 18)
+        }
+        getTodayMood()
+    }
+    
+    func getTodayMood(){
+        ProgressHUD.show()
+        DataService.instance.getMoodByDate { [weak self] (success, mood) in
+            if success {
+                ProgressHUD.dismiss()
+                self?.appDelegate.isMoodFetched = true
+                self?.appDelegate.mood = mood
+                self?.lblMoodValue.text = "\(mood?.moodValue ?? 0)"
+                self?.lblMoodValue.font = UIFont(name: "Poppins-Medium", size: 32)
+                switch mood?.moodType {
+                case "Angry":
+                    self?.moodImage.image = #imageLiteral(resourceName: "emoji1")
+                case "Sad":
+                    self?.moodImage.image = #imageLiteral(resourceName: "emoji2")
+                case "Happy":
+                    self?.moodImage.image = #imageLiteral(resourceName: "emoji4")
+                case "Blush":
+                    self?.moodImage.image = #imageLiteral(resourceName: "emoji3")
+                default:
+                    self?.moodImage.image = #imageLiteral(resourceName: "emoji_think")
+                }
+            }
+            else
+            {
+                self?.appDelegate.isMoodFetched = false
+                self?.moodImage.image = UIImage(named: "icon_submit_mood")
+                self?.lblMoodValue.font = UIFont(name: "Poppins-Medium", size: 18)
+                self?.lblMoodValue.text = "Submit your mood"
+            }
         }
     }
     
@@ -52,16 +88,37 @@ class HomeViewController: UIViewController {
         case 4:
             print("4")
         default:
-            print("5")
-            let popUp = PopUpMood()
-            popUp.modalPresentationStyle = .overFullScreen
-            popUp.modalTransitionStyle = .crossDissolve
-            self.present(popUp, animated: true, completion: nil)
+            ProgressHUD.show()
+            DataService.instance.getMoodByDate { (success, mood) in
+                if success {
+                    ProgressHUD.dismiss()
+                    Alert.showMsg(title: "Oops", msg: "Today mood is already submitted.", btnActionTitle: "OK")
+                }
+                else
+                {
+                    ProgressHUD.dismiss()
+                    let popUp = PopUpMood()
+                    popUp.modalPresentationStyle = .overFullScreen
+                    popUp.modalTransitionStyle = .crossDissolve
+                    popUp.delegateRefresh = self
+                    self.present(popUp, animated: true, completion: nil)
+                }
+            }
         }
     }
     
     
     //MARK:- Actions
+    
+    
+}
+
+extension HomeViewController: refresh {
+    func moodRefresh(success: Bool) {
+        if true {
+            getTodayMood()
+        }
+    }
     
     
 }

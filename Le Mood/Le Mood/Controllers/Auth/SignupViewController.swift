@@ -98,7 +98,7 @@ class SignupViewController: UIViewController {
                         if success {
                             AuthService.instance.loginUserWithEmail(email: txtEmail.text!, password: txtCPassword.text!) { (succes, error) in
                                 if success {
-                                    let user = User(id: Auth.auth().currentUser?.uid ?? "" , name: txtName.text!, email: txtEmail.text!, image: "", gender: "male", country: txtCountry.text!, region: txtReigion.text!)
+                                    let user = UserModel(id: Auth.auth().currentUser?.uid ?? "" , name: txtName.text!, email: txtEmail.text!, image: "", gender: "male", country: txtCountry.text!, region: txtReigion.text!)
                                     DataService.instance.updateUser(user: user)
                                     ProgressHUD.dismiss()
                                     let controller: TabbarViewController = TabbarViewController.initiateFrom(Storybaord: .Main)

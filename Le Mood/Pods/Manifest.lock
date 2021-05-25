@@ -322,6 +322,7 @@ PODS:
   - SDWebImage (5.10.4):
     - SDWebImage/Core (= 5.10.4)
   - SDWebImage/Core (5.10.4)
+  - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -333,6 +334,7 @@ DEPENDENCIES:
   - IQKeyboardManager
   - ProgressHUD
   - SDWebImage
+  - SwiftyJSON
 
 SPEC REPOS:
   trunk:
@@ -358,6 +360,7 @@ SPEC REPOS:
     - ProgressHUD
     - PromisesObjC
     - SDWebImage
+    - SwiftyJSON
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -382,7 +385,8 @@ SPEC CHECKSUMS:
   ProgressHUD: 028e3828c7b582022c34a74604fc6073f8628d99
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   SDWebImage: c666b97e1fa9c64b4909816a903322018f0a9c84
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: b3489f67bcb9fa8eda77db86ff410652ba69682f
+PODFILE CHECKSUM: 9c43b7362bca2b5696d6ec36dad3a7108378d798
 
 COCOAPODS: 1.10.1

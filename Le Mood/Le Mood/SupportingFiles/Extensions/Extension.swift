@@ -188,7 +188,9 @@ extension String {
         let string = self.trimmingCharacters(in: .whitespacesAndNewlines)
         return string
     }
+    
 }
+
 
 extension UIViewController: UINavigationControllerDelegate,UIImagePickerControllerDelegate {
     func showImagePicker() {

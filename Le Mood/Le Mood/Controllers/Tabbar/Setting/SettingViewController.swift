@@ -71,7 +71,7 @@ class SettingViewController: UIViewController {
                         print((error as NSError).code)
                     }
                 }
-            }, cancelBtnTitle: "Cance") {
+            }, cancelBtnTitle: "Cancel") {
                 
             }
         }
