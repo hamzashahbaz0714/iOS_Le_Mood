@@ -31,6 +31,7 @@ class DataService{
             "id":user.id,
             "name":user.name,
             "email":user.email,
+            "phoneNumber": user.phoneNumber,
             "image": user.image,
             "gender": user.gender,
             "country":user.country,
@@ -57,9 +58,10 @@ class DataService{
                 let country = data["country"] as? String ?? "Not Found"
                 let region = data["region"] as? String ?? "Not Found"
                 let image = data["image"] as? String ?? "Not Found"
+                let phoneNumber = data["phoneNumber"] as? String ?? "Not Found"
                 
                 
-                let user = UserModel(id: id, name: name, email: email, image: image, gender: gender, country: country, region: region)
+                let user = UserModel(id: id, name: name, email: email, phoneNumber: phoneNumber, image: image, gender: gender, country: country, region: region)
                 
                 handler(true,user)
                 
@@ -83,6 +85,26 @@ class DataService{
                 debugPrint("Error adding document: \(err)")
             } else {
             }
+        }
+    }
+    
+    func getAllFriends(handler: @escaping(_ success:Bool,_ allUser:[UserModel]?)->()){
+        var userArray  = [UserModel]()
+        userReference.getDocuments { (snapshot, error) in
+            for document in snapshot!.documents {
+                let data = document.data()
+                let id = data["id"] as? String ?? "Not Found"
+                let name = data["name"] as? String ?? "Not Found"
+                let email = data["email"] as? String ?? "Not Found"
+                let gender = data["gender"] as? String ?? "Not Found"
+                let country = data["country"] as? String ?? "Not Found"
+                let region = data["region"] as? String ?? "Not Found"
+                let image = data["image"] as? String ?? "Not Found"
+                let phoneNumber = data["phoneNumber"] as? String ?? "Not Found"
+                let user = UserModel(id: id, name: name, email: email, phoneNumber: phoneNumber, image: image, gender: gender, country: country, region: region)
+                userArray.append(user)
+            }
+            handler(true,userArray)
         }
     }
     

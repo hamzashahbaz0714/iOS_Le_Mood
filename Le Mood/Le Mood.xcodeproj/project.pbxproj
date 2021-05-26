@@ -66,6 +66,12 @@
 		FA9C918026568AB6003CCBAD /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9C917F26568AB6003CCBAD /* SignupViewController.swift */; };
 		FA9C9185265692A5003CCBAD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9C9184265692A5003CCBAD /* HomeViewController.swift */; };
 		FA9C91892656A0B4003CCBAD /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9C91882656A0B4003CCBAD /* TabbarViewController.swift */; };
+		FAC0932D265E1F71004B53F7 /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC0932C265E1F71004B53F7 /* VerificationViewController.swift */; };
+		FAC09332265E34F0004B53F7 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC09331265E34F0004B53F7 /* FriendsViewController.swift */; };
+		FAC09336265E3504004B53F7 /* MoodFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC09335265E3504004B53F7 /* MoodFriendsViewController.swift */; };
+		FAC09339265E3515004B53F7 /* AllFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC09338265E3515004B53F7 /* AllFriendsViewController.swift */; };
+		FAC0935E265E3BE7004B53F7 /* ContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC0935C265E3BE7004B53F7 /* ContactCell.xib */; };
+		FAC0935F265E3BE7004B53F7 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC0935D265E3BE7004B53F7 /* ContactCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -131,6 +137,12 @@
 		FA9C917F26568AB6003CCBAD /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		FA9C9184265692A5003CCBAD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		FA9C91882656A0B4003CCBAD /* TabbarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
+		FAC0932C265E1F71004B53F7 /* VerificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
+		FAC09331265E34F0004B53F7 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		FAC09335265E3504004B53F7 /* MoodFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodFriendsViewController.swift; sourceTree = "<group>"; };
+		FAC09338265E3515004B53F7 /* AllFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFriendsViewController.swift; sourceTree = "<group>"; };
+		FAC0935C265E3BE7004B53F7 /* ContactCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactCell.xib; sourceTree = "<group>"; };
+		FAC0935D265E3BE7004B53F7 /* ContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
 		FCF09B5E5C9A7471C522B93C /* Pods_Le_Mood.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Le_Mood.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -278,6 +290,8 @@
 			children = (
 				FA6E32ED2657BEEA008C5013 /* ChatListCell.swift */,
 				FA6E32EC2657BEEA008C5013 /* ChatListCell.xib */,
+				FAC0935D265E3BE7004B53F7 /* ContactCell.swift */,
+				FAC0935C265E3BE7004B53F7 /* ContactCell.xib */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -330,6 +344,7 @@
 				FA9C917C26567D4E003CCBAD /* LoginViewController.swift */,
 				FA9C917F26568AB6003CCBAD /* SignupViewController.swift */,
 				FA0AA2C0265D36A0004545A3 /* NumberViewController.swift */,
+				FAC0932C265E1F71004B53F7 /* VerificationViewController.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -443,8 +458,19 @@
 			isa = PBXGroup;
 			children = (
 				FA9C9184265692A5003CCBAD /* HomeViewController.swift */,
+				FAC09330265E34D3004B53F7 /* Friends */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		FAC09330265E34D3004B53F7 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				FAC09331265E34F0004B53F7 /* FriendsViewController.swift */,
+				FAC09335265E3504004B53F7 /* MoodFriendsViewController.swift */,
+				FAC09338265E3515004B53F7 /* AllFriendsViewController.swift */,
+			);
+			path = Friends;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -524,6 +550,7 @@
 				FA9C91752656504E003CCBAD /* Acumin-BdItPro.otf in Resources */,
 				FA9C916C26564FDB003CCBAD /* Poppins-Thin.ttf in Resources */,
 				FA6E32EE2657BEEA008C5013 /* ChatListCell.xib in Resources */,
+				FAC0935E265E3BE7004B53F7 /* ContactCell.xib in Resources */,
 				FA1B153B263FD027008CD9A3 /* Assets.xcassets in Resources */,
 				FA9C916426564FDB003CCBAD /* Poppins-Italic.ttf in Resources */,
 				FA9C916A26564FDB003CCBAD /* Poppins-ExtraBold.ttf in Resources */,
@@ -599,18 +626,23 @@
 				FA6E32E92657BBF9008C5013 /* ChatListViewController.swift in Sources */,
 				FA43C95A265B7E1400A57EA6 /* UserModel.swift in Sources */,
 				FA9C9185265692A5003CCBAD /* HomeViewController.swift in Sources */,
+				FAC0932D265E1F71004B53F7 /* VerificationViewController.swift in Sources */,
 				FA1B1565263FD6E0008CD9A3 /* Constants.swift in Sources */,
 				FA9C914226564CC4003CCBAD /* Onboard2VC.swift in Sources */,
 				FA9C914526564D7A003CCBAD /* Onboard3VC.swift in Sources */,
 				FA0AA2AE265D2014004545A3 /* StatisticsViewController.swift in Sources */,
 				FA9C918026568AB6003CCBAD /* SignupViewController.swift in Sources */,
+				FAC0935F265E3BE7004B53F7 /* ContactCell.swift in Sources */,
 				FA0AA2C1265D36A0004545A3 /* NumberViewController.swift in Sources */,
+				FAC09336265E3504004B53F7 /* MoodFriendsViewController.swift in Sources */,
 				FA1B1563263FD6E0008CD9A3 /* Rechability.swift in Sources */,
 				FA6E32E226578F8E008C5013 /* PopUpMood.swift in Sources */,
 				FA6E32F42657C983008C5013 /* SettingViewController.swift in Sources */,
+				FAC09339265E3515004B53F7 /* AllFriendsViewController.swift in Sources */,
 				FA1B1562263FD6E0008CD9A3 /* UtilityManager.swift in Sources */,
 				FA3AA6F5265CDFC900D48BC2 /* MoodModel.swift in Sources */,
 				FA0AA2BE265D365F004545A3 /* CornerRadius.swift in Sources */,
+				FAC09332265E34F0004B53F7 /* FriendsViewController.swift in Sources */,
 				FA1B1534263FD027008CD9A3 /* SceneDelegate.swift in Sources */,
 				FA6E331C2657E3D7008C5013 /* ProfileViewController.swift in Sources */,
 				FA9C917D26567D4E003CCBAD /* LoginViewController.swift in Sources */,

@@ -93,31 +93,11 @@ class SignupViewController: UIViewController {
         if txtName.text != ""  && txtEmail.text != "" && txtCountry.text != "" && txtReigion.text != ""{
             if gender != nil {
                 if txtPassword.text!.count >= 6 && txtCPassword.text!.count >= 6 && txtPassword.text == txtCPassword.text {
-                    ProgressHUD.show()
-                    AuthService.instance.registerUserWithEmail(withEmail: txtEmail.text!, andPassword: txtPassword.text!) { [self] (success, error) in
-                        if success {
-                            AuthService.instance.loginUserWithEmail(email: txtEmail.text!, password: txtCPassword.text!) { (succes, error) in
-                                if success {
-                                    let user = UserModel(id: Auth.auth().currentUser?.uid ?? "" , name: txtName.text!, email: txtEmail.text!, image: "", gender: "male", country: txtCountry.text!, region: txtReigion.text!)
-                                    DataService.instance.updateUser(user: user)
-                                    ProgressHUD.dismiss()
-                                    let controller: TabbarViewController = TabbarViewController.initiateFrom(Storybaord: .Main)
-                                    self.pushController(contorller: controller, animated: true)
-                                }
-                                else
-                                {
-                                    ProgressHUD.dismiss()
-                                    Alert.showMsg(title: "Error!", msg: error!.localizedDescription, btnActionTitle: "OK")
-                                }
-                            }
-                            
-                        }
-                        else
-                        {
-                            ProgressHUD.dismiss()
-                            Alert.showMsg(title: "Error!", msg: "Please try again!...", btnActionTitle: "OK")
-                        }
-                    }
+                    let controller: NumberViewController = NumberViewController.initiateFrom(Storybaord: .Main)
+                    let user = UserModel(id: Auth.auth().currentUser?.uid ?? "" , name: txtName.text!, email: txtEmail.text!, phoneNumber: "", image: "", gender: gender ?? "male", country: txtCountry.text!, region: txtReigion.text!)
+                    controller.passUser = user
+                    controller.password = txtPassword.text!
+                    self.pushController(contorller: controller, animated: true)
                 }
                 else if txtPassword.text != txtCPassword.text
                 {
@@ -152,13 +132,3 @@ class SignupViewController: UIViewController {
     }
     
 }
-//
-//extension SignupViewController: UITextFieldDelegate {
-//
-//    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-//        if textField == txtCountry || textField == txtReigion {
-//            self.view.endEditing(true)
-//        }
-//        return true
-//    }
-//}

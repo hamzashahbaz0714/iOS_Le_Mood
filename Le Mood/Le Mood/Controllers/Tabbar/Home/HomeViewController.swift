@@ -59,6 +59,7 @@ class HomeViewController: UIViewController {
             }
             else
             {
+                ProgressHUD.dismiss()
                 self?.appDelegate.isMoodFetched = false
                 self?.moodImage.image = UIImage(named: "icon_submit_mood")
                 self?.lblMoodValue.font = UIFont(name: "Poppins-Medium", size: 18)
@@ -82,7 +83,8 @@ class HomeViewController: UIViewController {
         case 1:
             print("1")
         case 2:
-            print("2")
+            let controller: FriendsViewController = FriendsViewController.initiateFrom(Storybaord: .Main)
+            self.pushController(contorller: controller, animated: true)
         case 3:
             print("3")
         case 4:

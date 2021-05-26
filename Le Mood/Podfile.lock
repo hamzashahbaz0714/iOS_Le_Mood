@@ -312,6 +312,8 @@ PODS:
   - iOSDropDown (0.3.4)
   - IQKeyboardManager (6.5.6)
   - leveldb-library (1.22.1)
+  - LZViewPager (1.2.5):
+    - SnapKit (~> 5.0.0)
   - nanopb (2.30907.0):
     - nanopb/decode (= 2.30907.0)
     - nanopb/encode (= 2.30907.0)
@@ -322,6 +324,8 @@ PODS:
   - SDWebImage (5.10.4):
     - SDWebImage/Core (= 5.10.4)
   - SDWebImage/Core (5.10.4)
+  - SnapKit (5.0.1)
+  - SVPinView (1.0.11)
   - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
@@ -332,8 +336,10 @@ DEPENDENCIES:
   - Firebase/Storage
   - iOSDropDown
   - IQKeyboardManager
+  - LZViewPager (~> 1.2.5)
   - ProgressHUD
   - SDWebImage
+  - SVPinView (~> 1.0)
   - SwiftyJSON
 
 SPEC REPOS:
@@ -356,10 +362,13 @@ SPEC REPOS:
     - iOSDropDown
     - IQKeyboardManager
     - leveldb-library
+    - LZViewPager
     - nanopb
     - ProgressHUD
     - PromisesObjC
     - SDWebImage
+    - SnapKit
+    - SVPinView
     - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -381,12 +390,15 @@ SPEC CHECKSUMS:
   iOSDropDown: c10a761f9a00c3f1cc9d3bce43ae504628e2f692
   IQKeyboardManager: 2a6e97afdafc7becf0cb17a9a8d795e3a980717f
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
+  LZViewPager: 89ddd98246d54b52bde14c8d91702f946d6f8893
   nanopb: 59221d7f958fb711001e6a449489542d92ae113e
   ProgressHUD: 028e3828c7b582022c34a74604fc6073f8628d99
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   SDWebImage: c666b97e1fa9c64b4909816a903322018f0a9c84
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SVPinView: 9b538d0ba68cdb092afe4f0f67ec84cbed079466
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 9c43b7362bca2b5696d6ec36dad3a7108378d798
+PODFILE CHECKSUM: ec0dc6d7458196d8a56baf29a6dbceab85a3863e
 
 COCOAPODS: 1.10.1
