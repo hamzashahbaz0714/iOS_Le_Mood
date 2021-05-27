@@ -9,7 +9,7 @@ import UIKit
 import Contacts
 import ProgressHUD
 import SDWebImage
-
+import Firebase
 class AllFriendsViewController: UIViewController {
     
     //MARK:- Properties
@@ -81,7 +81,18 @@ extension AllFriendsViewController: UITableViewDelegate,UITableViewDataSource{
         return 80
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let data = allFriendsArr[indexPath.row]
+        let controller: MessagesVC = MessagesVC.initiateFrom(Storybaord: .Main)
+        let uid1 = Auth.auth().currentUser!.uid
+        let uid2 = data.id
+        if(uid1 > uid2){
+            controller.chatID = uid1+uid2;
+        }
+        else{
+            controller.chatID = uid2+uid1
+        }
+        rID = data.id
+        self.pushController(contorller: controller, animated: true)
     }
     
     

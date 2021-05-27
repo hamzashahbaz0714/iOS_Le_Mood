@@ -8,15 +8,18 @@
 import UIKit
 import Contacts
 import ProgressHUD
-
+import Firebase
+import PhoneNumberKit
 class MoodFriendsViewController: UIViewController {
     
     //MARK:- Properties
     
     var contactArr = [ContactsModel]()
     var moodFriends = [UserModel]()
-
+    var user:UserModel!
     @IBOutlet weak var tableView: UITableView!
+    
+    let phoneNumberKit = PhoneNumberKit()
     
     //MARK:- Controller Life Cycle
     
@@ -24,7 +27,6 @@ class MoodFriendsViewController: UIViewController {
         super.viewDidLoad()
         setTableViewLayout()
         fetchContact()
-        getAllFriends()
     }
     
     //MARK:- Supporting Functions
@@ -51,10 +53,10 @@ class MoodFriendsViewController: UIViewController {
                         
                         let contact = ContactsModel(name: "\(contact.givenName + " " + contact.familyName)", phoneNumber: contact.phoneNumbers.first?.value.stringValue ?? "")
                         self?.contactArr.append(contact)
-                        print(contact.phoneNumber)
                     }
                     DispatchQueue.main.async {
-                        ProgressHUD.dismiss()
+                        self?.getAllFriends()
+//                        ProgressHUD.dismiss()
                     }
                     
                     
@@ -73,18 +75,24 @@ class MoodFriendsViewController: UIViewController {
     }
     
     func getAllFriends(){
-        ProgressHUD.show()
         DataService.instance.getAllFriends { [weak self] (success, friends) in
             if success {
-                ProgressHUD.dismiss()
                 for i in 0..<(self?.contactArr.count ?? 0){
                     for j in 0..<(friends?.count ?? 0) {
-                        if friends?[j].phoneNumber == self?.contactArr[i].phoneNumber {
+
+                        let mobileContact = self?.contactArr[i].phoneNumber
+                        let phoneNumbers =  try? self?.phoneNumberKit.parse(mobileContact ?? "")
+                        let firebaseContact = friends?[j].phoneNumber
+                        let phoneNumbers1 =  try? self?.phoneNumberKit.parse(firebaseContact ?? "")
+                        if phoneNumbers?.nationalNumber == phoneNumbers1?.nationalNumber {
                             self?.moodFriends.append((friends?[j])!)
+                            break
                         }
+                        
                     }
                 }
                 self?.tableView.reloadData()
+                ProgressHUD.dismiss()
             }
             else
             {
@@ -123,7 +131,18 @@ extension MoodFriendsViewController: UITableViewDelegate,UITableViewDataSource{
         return 80
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let data = moodFriends[indexPath.row]
+        let controller: MessagesVC = MessagesVC.initiateFrom(Storybaord: .Main)
+        let uid1 = Auth.auth().currentUser!.uid
+        let uid2 = data.id
+        if(uid1 > uid2){
+            controller.chatID = uid1+uid2;
+        }
+        else{
+            controller.chatID = uid2+uid1
+        }
+        rID = data.id
+        self.pushController(contorller: controller, animated: true)
     }
     
     

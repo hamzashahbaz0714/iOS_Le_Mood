@@ -72,6 +72,14 @@
 		FAC09339265E3515004B53F7 /* AllFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC09338265E3515004B53F7 /* AllFriendsViewController.swift */; };
 		FAC0935E265E3BE7004B53F7 /* ContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC0935C265E3BE7004B53F7 /* ContactCell.xib */; };
 		FAC0935F265E3BE7004B53F7 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC0935D265E3BE7004B53F7 /* ContactCell.swift */; };
+		FADF51A4265F9EC10051F6FB /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF51A3265F9EC10051F6FB /* InboxViewController.swift */; };
+		FADF51CD265FC4920051F6FB /* ChatsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF51CB265FC4920051F6FB /* ChatsCell.swift */; };
+		FADF51CE265FC4920051F6FB /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF51CC265FC4920051F6FB /* ChatMessageCell.swift */; };
+		FADF51D1265FC4DB0051F6FB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF51D0265FC4DB0051F6FB /* Message.swift */; };
+		FADF51D4265FC4F50051F6FB /* MessagesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF51D3265FC4F50051F6FB /* MessagesVC.swift */; };
+		FADF51D8265FC53F0051F6FB /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF51D7265FC53F0051F6FB /* Chat.swift */; };
+		FADF51DB265FC6FA0051F6FB /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF51DA265FC6FA0051F6FB /* CircleImage.swift */; };
+		FADF5204265FCD1E0051F6FB /* ChatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF5203265FCD1E0051F6FB /* ChatsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -143,6 +151,14 @@
 		FAC09338265E3515004B53F7 /* AllFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFriendsViewController.swift; sourceTree = "<group>"; };
 		FAC0935C265E3BE7004B53F7 /* ContactCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactCell.xib; sourceTree = "<group>"; };
 		FAC0935D265E3BE7004B53F7 /* ContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
+		FADF51A3265F9EC10051F6FB /* InboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
+		FADF51CB265FC4920051F6FB /* ChatsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsCell.swift; sourceTree = "<group>"; };
+		FADF51CC265FC4920051F6FB /* ChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
+		FADF51D0265FC4DB0051F6FB /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		FADF51D3265FC4F50051F6FB /* MessagesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesVC.swift; sourceTree = "<group>"; };
+		FADF51D7265FC53F0051F6FB /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		FADF51DA265FC6FA0051F6FB /* CircleImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
+		FADF5203265FCD1E0051F6FB /* ChatsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsVC.swift; sourceTree = "<group>"; };
 		FCF09B5E5C9A7471C522B93C /* Pods_Le_Mood.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Le_Mood.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -251,6 +267,7 @@
 		FA1B154A263FD145008CD9A3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FADF51DA265FC6FA0051F6FB /* CircleImage.swift */,
 				FA0AA2BD265D365F004545A3 /* CornerRadius.swift */,
 				FA6E32E026578F8E008C5013 /* PopUpMood.swift */,
 				FA6E32E126578F8E008C5013 /* PopUpMood.xib */,
@@ -261,8 +278,10 @@
 		FA1B154B263FD148008CD9A3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FADF51D0265FC4DB0051F6FB /* Message.swift */,
 				FA43C959265B7E1400A57EA6 /* UserModel.swift */,
 				FA3AA6F4265CDFC900D48BC2 /* MoodModel.swift */,
+				FADF51D7265FC53F0051F6FB /* Chat.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -374,6 +393,11 @@
 			isa = PBXGroup;
 			children = (
 				FA6E32E82657BBF9008C5013 /* ChatListViewController.swift */,
+				FADF51A3265F9EC10051F6FB /* InboxViewController.swift */,
+				FADF5203265FCD1E0051F6FB /* ChatsVC.swift */,
+				FADF51D3265FC4F50051F6FB /* MessagesVC.swift */,
+				FADF51CC265FC4920051F6FB /* ChatMessageCell.swift */,
+				FADF51CB265FC4920051F6FB /* ChatsCell.swift */,
 			);
 			path = Chats;
 			sourceTree = "<group>";
@@ -614,21 +638,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FADF51A4265F9EC10051F6FB /* InboxViewController.swift in Sources */,
 				FA9C91892656A0B4003CCBAD /* TabbarViewController.swift in Sources */,
 				FA1B1564263FD6E0008CD9A3 /* Alert.swift in Sources */,
 				FA1B155F263FD6E0008CD9A3 /* Storyboard.swift in Sources */,
 				FA1B1560263FD6E0008CD9A3 /* Defaults.swift in Sources */,
 				FA1B1568263FD6EC008CD9A3 /* Extension.swift in Sources */,
 				FA43C93F265B7CEA00A57EA6 /* DataService.swift in Sources */,
+				FADF51D1265FC4DB0051F6FB /* Message.swift in Sources */,
 				FA43C93E265B7CEA00A57EA6 /* AuthService.swift in Sources */,
 				FA1B1532263FD027008CD9A3 /* AppDelegate.swift in Sources */,
 				FA6E32EF2657BEEA008C5013 /* ChatListCell.swift in Sources */,
 				FA6E32E92657BBF9008C5013 /* ChatListViewController.swift in Sources */,
 				FA43C95A265B7E1400A57EA6 /* UserModel.swift in Sources */,
+				FADF51D8265FC53F0051F6FB /* Chat.swift in Sources */,
 				FA9C9185265692A5003CCBAD /* HomeViewController.swift in Sources */,
 				FAC0932D265E1F71004B53F7 /* VerificationViewController.swift in Sources */,
 				FA1B1565263FD6E0008CD9A3 /* Constants.swift in Sources */,
 				FA9C914226564CC4003CCBAD /* Onboard2VC.swift in Sources */,
+				FADF5204265FCD1E0051F6FB /* ChatsVC.swift in Sources */,
 				FA9C914526564D7A003CCBAD /* Onboard3VC.swift in Sources */,
 				FA0AA2AE265D2014004545A3 /* StatisticsViewController.swift in Sources */,
 				FA9C918026568AB6003CCBAD /* SignupViewController.swift in Sources */,
@@ -642,10 +670,14 @@
 				FA1B1562263FD6E0008CD9A3 /* UtilityManager.swift in Sources */,
 				FA3AA6F5265CDFC900D48BC2 /* MoodModel.swift in Sources */,
 				FA0AA2BE265D365F004545A3 /* CornerRadius.swift in Sources */,
+				FADF51CD265FC4920051F6FB /* ChatsCell.swift in Sources */,
 				FAC09332265E34F0004B53F7 /* FriendsViewController.swift in Sources */,
 				FA1B1534263FD027008CD9A3 /* SceneDelegate.swift in Sources */,
+				FADF51CE265FC4920051F6FB /* ChatMessageCell.swift in Sources */,
 				FA6E331C2657E3D7008C5013 /* ProfileViewController.swift in Sources */,
 				FA9C917D26567D4E003CCBAD /* LoginViewController.swift in Sources */,
+				FADF51DB265FC6FA0051F6FB /* CircleImage.swift in Sources */,
+				FADF51D4265FC4F50051F6FB /* MessagesVC.swift in Sources */,
 				FA43C976265BC04F00A57EA6 /* EditProfileViewController.swift in Sources */,
 				FA9C913F26564BD0003CCBAD /* Onboard1VC.swift in Sources */,
 			);

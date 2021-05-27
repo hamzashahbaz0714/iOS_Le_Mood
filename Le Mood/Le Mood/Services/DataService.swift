@@ -15,6 +15,7 @@ class DataService{
     
     let userReference = Firestore.firestore().collection("users")
     let patientReference = Firestore.firestore().collection("Patients")
+    let chatReference = Firestore.firestore().collection("chats")
     
     var currentUser : UserModel!
     
@@ -101,8 +102,11 @@ class DataService{
                 let region = data["region"] as? String ?? "Not Found"
                 let image = data["image"] as? String ?? "Not Found"
                 let phoneNumber = data["phoneNumber"] as? String ?? "Not Found"
-                let user = UserModel(id: id, name: name, email: email, phoneNumber: phoneNumber, image: image, gender: gender, country: country, region: region)
-                userArray.append(user)
+                if id != Auth.auth().currentUser?.uid {
+                    let user = UserModel(id: id, name: name, email: email, phoneNumber: phoneNumber, image: image, gender: gender, country: country, region: region)
+                    userArray.append(user)
+                }
+               
             }
             handler(true,userArray)
         }
@@ -163,6 +167,141 @@ class DataService{
             })
         }
     }
+    
+    func getAllChats(handler:@escaping(_ chats:[Chat])->()){
+        var chatsArray = [Chat]()
+        chatReference.order(by: "lastMessageDate", descending: true).getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                handler(chatsArray)
+            } else {
+                for document in querySnapshot!.documents {
+                    let data = document.data()
+                    let chatId = data["chatID"] as? String ?? "Not Found"
+                    let lastMessage = data["lastMessage"] as? String ?? "Not Found"
+                    let lastMessageDate = data["lastMessageDate"] as? String ?? "Not Found"
+                    let lastMessageTime = data["lastMessageTime"] as? Int ?? 0
+                    let sender = data["sender"] as? String ?? "Not Found"
+                    let receiver = data["receiver"] as? String ?? ""
+                    let notReadBy = data["notReadBy"] as? [String] ?? [String]()
+                    
+                    let chat = Chat(chatId: chatId, lastMessage: lastMessage, lastMessageDate: lastMessageDate, lastMessageTime: lastMessageTime, sender: sender, receiver: receiver,notReadBy: notReadBy)
+
+                    if chat.chatId.contains(Auth.auth().currentUser!.uid){
+                        print("coming here")
+                        let rID = chat.chatId.replacingOccurrences(of: Auth.auth().currentUser!.uid, with: "")
+                        chat.otherUser = rID
+                        chatsArray.append(chat)
+                    }
+                   
+                    
+                }
+                handler(chatsArray)
+            }
+        }
+    }
+    
+    func getChatOfID(chatID:String,handler:@escaping(_ success:Bool,_ chat:Chat?) -> ()){
+        let chatRef = chatReference.document(chatID)
+        
+        chatRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let data = document.data()!
+                let chatId = data["chatID"] as? String ?? "Not Found"
+                let lastMessage = data["lastMessage"] as? String ?? "Not Found"
+                let lastMessageDate = data["lastMessageDate"] as? String ?? "Not Found"
+                let lastMessageTime = data["lastMessageTime"] as? Int ?? 0
+                let sender = data["sender"] as? String ?? "Not Found"
+                let receiver = data["receiver"] as? String ?? ""
+                let notReadBy = data["notReadBy"] as? [String] ?? [String]()
+                
+                let chat = Chat(chatId: chatId, lastMessage: lastMessage, lastMessageDate: lastMessageDate, lastMessageTime: lastMessageTime, sender: sender, receiver: receiver,notReadBy: notReadBy)
+                handler(true,chat)
+                
+            } else {
+                handler(false,nil)
+                print("Document does not exist")
+            }
+        }
+    }
+    func updateChatNotRead(chatID:String,notReadBy:[String]){
+        self.chatReference.document(chatID).setData([
+            "notReadBy":notReadBy,
+        ], merge: true) { (err) in
+            if let err = err {
+                debugPrint("Error adding document: \(err)")
+            } else {
+            }
+        }
+    }
+    
+    func addChatMessage(chatID:String,message:Message,notReadBy:[String]){
+        chatReference.document(chatID).collection("messages").document(message.messageId).setData([
+            "isIncoming":message.isIncoming,
+            "message":message.messageBody,
+            "messageDate":message.messageDate,
+            "messageId":message.messageId,
+            "messageTime":message.messageTime,
+            "messageType":message.messageType,
+            "receiverId":message.reciverId,
+            "senderId":message.senderId,
+            "createdAt": FieldValue.serverTimestamp(),
+            "createdAt":FieldValue.serverTimestamp()
+        ], merge: true) { (err) in
+            if let err = err {
+                debugPrint("Error adding document: \(err)")
+            } else {
+                self.chatReference.document(chatID).setData([
+                    "chatID":chatID,
+                    "sender":message.senderId,
+                    "receiver":message.reciverId,
+                    "lastMessage":message.messageBody,
+                    "lastMessageDate":message.messageDate,
+                    "lastMessageTime":message.messageTime,
+                    "createdAt":FieldValue.serverTimestamp(),
+                    "notReadBy":notReadBy,
+                ], merge: true) { (err) in
+                    if let err = err {
+                        debugPrint("Error adding document: \(err)")
+                    } else {
+                    }
+                }
+            }
+        }
+    }
+    
+    func getAllChatMessages(chatID:String,handler:@escaping(_ success:Bool,_ messages:[Message])->()){
+        var messageArray = [Message]()
+        chatReference.document(chatID).collection("messages").order(by: "createdAt", descending: false).getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                //handler(messageArray)
+            } else {
+                for document in querySnapshot!.documents {
+                    let data = document.data()
+                    let messageId = data["messageId"] as? String ?? "Not Found"
+                    let reciverId = data["receiverId"] as? String ?? "Not Found"
+                    let senderId = data["senderId"] as? String ?? "Not Found"
+                    let messageBody = data["message"] as? String ?? "Not Found"
+                    let messageType = data["messageType"] as? String ?? "Not Found"
+                    let messageTime = data["messageTime"] as? Int ?? 0
+                    let messageDate = data["messageDate"] as? String ?? ""
+                    
+                    let message = Message(messageId: messageId, reciverId: reciverId, senderId: senderId, messageBody: messageBody, messageType: messageType, messageTime: messageTime, messageDate: messageDate, isIncoming: false)
+                    if senderId != Auth.auth().currentUser?.uid{
+                        message.isIncoming = true
+                        messageArray.append(message)
+                    }else{
+                        message.isIncoming = false
+                        messageArray.append(message)
+                    }
+                    
+                }
+                handler(true,messageArray)
+            }
+        }
+    }
+    
     //    func saveRecord(patient: Patient,pid: String){
     //
     //        patientReference.document(pid).setData([

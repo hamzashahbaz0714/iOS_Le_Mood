@@ -8,12 +8,14 @@
 import UIKit
 import ProgressHUD
 import Firebase
+import PhoneNumberKit
 
 class NumberViewController: UIViewController {
     
     //MARK:- Properties
     
-    @IBOutlet weak var txtNumber: UITextField!
+    @IBOutlet weak var txtNumber: PhoneNumberTextField!
+    @IBOutlet weak var nextView: UIView!
     
     var passUser: UserModel?
     var password: String?
@@ -22,31 +24,33 @@ class NumberViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
-        
+        nextView.roundCorners(corners: [.topLeft, .bottomRight], radius: 18)
+        txtNumber.withFlag = true
+        txtNumber.withExamplePlaceholder = true
     }
     
     //MARK:- Suppoting Functions
     
     func sendOtpTONumber(){
         if txtNumber.text != "" {
-            ProgressHUD.show()
-            PhoneAuthProvider.provider().verifyPhoneNumber("\("+92")\(txtNumber.text!)", uiDelegate: nil) { [self] (verificationID, error) in
-                if error == nil {
-                    ProgressHUD.dismiss()
-                    UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
-                    let user = UserModel(id: Auth.auth().currentUser?.uid ?? "", name: passUser?.name ?? "", email: passUser?.email ?? "", phoneNumber: "\("+92")\(txtNumber.text!)", image: passUser?.image ?? "", gender: passUser?.gender ?? "", country: passUser?.country ?? "", region: passUser?.region ?? "")
-                    let controller:VerificationViewController = VerificationViewController.initiateFrom(Storybaord: .Main)
-                    controller.passUser = user
-                    controller.password = password
-                    self.pushController(contorller: controller, animated: true)
-                }
-                else
-                {
-                    ProgressHUD.dismiss()
-                    Alert.showMsg(msg: error?.localizedDescription ?? "")
-                }
-            }
+            print(txtNumber.text!)
+//            ProgressHUD.show()
+//            PhoneAuthProvider.provider().verifyPhoneNumber("\(txtNumber.text!)", uiDelegate: nil) { [self] (verificationID, error) in
+//                if error == nil {
+//                    ProgressHUD.dismiss()
+//                    UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
+//                    let user = UserModel(id: Auth.auth().currentUser?.uid ?? "", name: passUser?.name ?? "", email: passUser?.email ?? "", phoneNumber: "\("+92")\(txtNumber.text!)", image: passUser?.image ?? "", gender: passUser?.gender ?? "", country: passUser?.country ?? "", region: passUser?.region ?? "")
+//                    let controller:VerificationViewController = VerificationViewController.initiateFrom(Storybaord: .Main)
+//                    controller.passUser = user
+//                    controller.password = password
+//                    self.pushController(contorller: controller, animated: true)
+//                }
+//                else
+//                {
+//                    ProgressHUD.dismiss()
+//                    Alert.showMsg(msg: error?.localizedDescription ?? "")
+//                }
+//            }
         }
         else
         {

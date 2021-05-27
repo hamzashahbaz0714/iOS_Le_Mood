@@ -64,6 +64,18 @@ func currentdateToaddOnday() -> String{
    return ((formatter.string(from: futureDate!)))
 }
 
+func getCurrentDateWithTime() -> String{
+    let formatter = DateFormatter()
+    formatter.dateStyle = .medium
+    formatter.timeStyle = .short
+    return (formatter.string(from: Date()))
+}
+func getCurrentTime() -> Int{
+    let time = Date().timeIntervalSince1970
+    print(Int(time))
+    return Int(time)
+}
+
 struct Currency {
 
     private static let formatter: NumberFormatter = {

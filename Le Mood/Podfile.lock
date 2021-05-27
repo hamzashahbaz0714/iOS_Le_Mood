@@ -319,6 +319,12 @@ PODS:
     - nanopb/encode (= 2.30907.0)
   - nanopb/decode (2.30907.0)
   - nanopb/encode (2.30907.0)
+  - PhoneNumberKit (3.3.3):
+    - PhoneNumberKit/PhoneNumberKitCore (= 3.3.3)
+    - PhoneNumberKit/UIKit (= 3.3.3)
+  - PhoneNumberKit/PhoneNumberKitCore (3.3.3)
+  - PhoneNumberKit/UIKit (3.3.3):
+    - PhoneNumberKit/PhoneNumberKitCore
   - ProgressHUD (13.5)
   - PromisesObjC (1.2.12)
   - SDWebImage (5.10.4):
@@ -337,6 +343,7 @@ DEPENDENCIES:
   - iOSDropDown
   - IQKeyboardManager
   - LZViewPager (~> 1.2.5)
+  - PhoneNumberKit (~> 3.3)
   - ProgressHUD
   - SDWebImage
   - SVPinView (~> 1.0)
@@ -364,6 +371,7 @@ SPEC REPOS:
     - leveldb-library
     - LZViewPager
     - nanopb
+    - PhoneNumberKit
     - ProgressHUD
     - PromisesObjC
     - SDWebImage
@@ -392,6 +400,7 @@ SPEC CHECKSUMS:
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   LZViewPager: 89ddd98246d54b52bde14c8d91702f946d6f8893
   nanopb: 59221d7f958fb711001e6a449489542d92ae113e
+  PhoneNumberKit: 4ce83273551c4d2ae10b7361162f4283dd02835f
   ProgressHUD: 028e3828c7b582022c34a74604fc6073f8628d99
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   SDWebImage: c666b97e1fa9c64b4909816a903322018f0a9c84
@@ -399,6 +408,6 @@ SPEC CHECKSUMS:
   SVPinView: 9b538d0ba68cdb092afe4f0f67ec84cbed079466
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: ec0dc6d7458196d8a56baf29a6dbceab85a3863e
+PODFILE CHECKSUM: 68eee2fcc34488cf08b9c7e6badda15e214a5f4c
 
 COCOAPODS: 1.10.1
