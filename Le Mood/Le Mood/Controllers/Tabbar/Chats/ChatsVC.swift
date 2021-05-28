@@ -19,7 +19,7 @@ class ChatsVC: UIViewController {
     
     @IBOutlet weak var tableView:UITableView!
     var chats = [Chat]()
-    
+    var user = [UserModel]()
     
     //MARK:- Controller Life Cycle
     
@@ -88,6 +88,18 @@ extension ChatsVC:UITableViewDataSource,UITableViewDelegate,ChatsCellDelegate{
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChatsCell", for: indexPath) as! ChatsCell
         cell.chat = chats[indexPath.row]
         cell.initCell()
+        DataService.instance.getUserOfID(userID: chats[indexPath.row].otherUser) { (success, returnedUser) in
+            if success{
+                self.user.append(returnedUser!)
+                cell.nameLbl.text = returnedUser!.name
+                cell.profileImg.sd_setImage(with: URL(string: returnedUser!.image), placeholderImage: UIImage(systemName: "person.crop.circle.fill"))
+            }
+        }
+        if cell.chat.notReadBy.contains(DataService.instance.currentUser!.id){
+            cell.dotImg.isHidden = false
+        }else{
+            cell.dotImg.isHidden = true
+        }
         cell.delegate = self
         return cell
     }
@@ -97,6 +109,7 @@ extension ChatsVC:UITableViewDataSource,UITableViewDelegate,ChatsCellDelegate{
         vc.chatID = chats[indexPath.row].chatId
         rID = chats[indexPath.row].otherUser
         vc.notReadBy = self.chats[indexPath.row].notReadBy
+        vc.passRecieverName = user[indexPath.row].name
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

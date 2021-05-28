@@ -27,20 +27,20 @@ class ChatsCell: UITableViewCell {
     var returnedUser:UserModel!
     
     func initCell(){
-        DataService.instance.getUserOfID(userID: chat.otherUser) { (success, returnedUser) in
-            if success{
-                self.returnedUser = returnedUser
-                self.nameLbl.text = returnedUser!.name
-                self.delegate?.openProfile(uid: returnedUser!)
-                self.profileImg.sd_setImage(with: URL(string: returnedUser!.image), placeholderImage: UIImage(systemName: "person.crop.circle.fill"))
-            }
-        }
-        if chat.notReadBy.contains(DataService.instance.currentUser!.id){
-            self.dotImg.isHidden = false
-        }else{
-            self.dotImg.isHidden = true
-        }
-        
+//        DataService.instance.getUserOfID(userID: chat.otherUser) { (success, returnedUser) in
+//            if success{
+//                self.returnedUser = returnedUser
+//                self.nameLbl.text = returnedUser!.name
+//                self.delegate?.openProfile(uid: returnedUser!)
+//                self.profileImg.sd_setImage(with: URL(string: returnedUser!.image), placeholderImage: UIImage(systemName: "person.crop.circle.fill"))
+//            }
+//        }
+//        if chat.notReadBy.contains(DataService.instance.currentUser!.id){
+//            self.dotImg.isHidden = false
+//        }else{
+//            self.dotImg.isHidden = true
+//        }
+//        
         getTimeDifference()
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction))
         nameLbl.addGestureRecognizer(tap)

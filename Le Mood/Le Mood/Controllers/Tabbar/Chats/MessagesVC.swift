@@ -86,7 +86,7 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         
         super.viewDidLoad()
         
-        //        lblChatRecieverName.text = passRecieverName
+        lblChatRecieverName.text = passRecieverName
         //view.bindKeyboard()
         let tapGester = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapGester)

@@ -3152,8 +3152,8 @@ You Agree to our </string>
                                     <action selector="btnBackTapped:" destination="2UP-tg-yDx" eventType="touchUpInside" id="eHo-Z3-4cc"/>
                                 </connections>
                             </button>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer Care" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPh-OW-x9U">
-                                <rect key="frame" x="147.5" y="54" width="139" height="25.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ali2" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPh-OW-x9U">
+                                <rect key="frame" x="201" y="54" width="32.5" height="25.5"/>
                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -3177,6 +3177,7 @@ You Agree to our </string>
                     </view>
                     <navigationItem key="navigationItem" id="Ozq-iZ-Myz"/>
                     <connections>
+                        <outlet property="lblChatRecieverName" destination="MPh-OW-x9U" id="pWH-eV-bJ7"/>
                         <outlet property="messageTxtView" destination="pKM-To-x6C" id="KHZ-Yd-lHj"/>
                         <outlet property="tableView" destination="Afg-Op-EeT" id="vty-Mg-YLY"/>
                     </connections>

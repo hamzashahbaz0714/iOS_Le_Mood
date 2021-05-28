@@ -8,8 +8,8 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Poppins-Regular.ttf">
-            <string>Poppins-Regular</string>
+        <array key="Poppins-Medium.ttf">
+            <string>Poppins-Medium</string>
         </array>
     </customFonts>
     <objects>
@@ -55,24 +55,31 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YR6-By-U2n">
-                                <rect key="frame" x="210" y="24" width="80" height="30"/>
+                                <rect key="frame" x="260" y="13" width="30" height="52"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Acg-dB-dWw">
-                                        <rect key="frame" x="0.0" y="0.0" width="80" height="30"/>
-                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
-                                        <state key="normal" title="Message">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                    </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emoji4" translatesAutoresizingMaskIntoConstraints="NO" id="Kgh-m8-qHf">
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="Amw-98-uja"/>
+                                            <constraint firstAttribute="width" constant="30" id="aNM-vO-u2g"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="70" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nld-lL-gQu">
+                                        <rect key="frame" x="0.0" y="35" width="30" height="17"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.072167657319999995" green="0.36573177579999999" blue="0.50982558730000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="JgE-RY-EWm"/>
-                                    <constraint firstItem="Acg-dB-dWw" firstAttribute="top" secondItem="YR6-By-U2n" secondAttribute="top" id="Jwy-vV-NZH"/>
-                                    <constraint firstAttribute="trailing" secondItem="Acg-dB-dWw" secondAttribute="trailing" id="O2Z-Zr-Xlb"/>
-                                    <constraint firstAttribute="bottom" secondItem="Acg-dB-dWw" secondAttribute="bottom" id="Rqu-j3-jXG"/>
-                                    <constraint firstItem="Acg-dB-dWw" firstAttribute="leading" secondItem="YR6-By-U2n" secondAttribute="leading" id="VI2-VZ-Npd"/>
-                                    <constraint firstAttribute="height" constant="30" id="qDp-ZT-7va"/>
+                                    <constraint firstItem="Kgh-m8-qHf" firstAttribute="leading" secondItem="YR6-By-U2n" secondAttribute="leading" id="7cW-X1-VlA"/>
+                                    <constraint firstItem="Nld-lL-gQu" firstAttribute="leading" secondItem="YR6-By-U2n" secondAttribute="leading" id="FhT-en-1Yx"/>
+                                    <constraint firstAttribute="bottom" secondItem="Nld-lL-gQu" secondAttribute="bottom" id="RMN-b2-VVQ"/>
+                                    <constraint firstItem="Kgh-m8-qHf" firstAttribute="top" secondItem="YR6-By-U2n" secondAttribute="top" id="SuU-wl-l9S"/>
+                                    <constraint firstAttribute="trailing" secondItem="Kgh-m8-qHf" secondAttribute="trailing" id="TKy-Gd-E3d"/>
+                                    <constraint firstAttribute="trailing" secondItem="Nld-lL-gQu" secondAttribute="trailing" id="ZOp-eT-IhR"/>
+                                    <constraint firstItem="Nld-lL-gQu" firstAttribute="top" secondItem="Kgh-m8-qHf" secondAttribute="bottom" constant="5" id="lNc-N9-uPv"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -107,6 +114,7 @@
     </objects>
     <resources>
         <image name="ME" width="50" height="50"/>
+        <image name="emoji4" width="28" height="28"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
