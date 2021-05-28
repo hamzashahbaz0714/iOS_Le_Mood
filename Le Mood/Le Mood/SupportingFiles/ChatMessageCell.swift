@@ -22,7 +22,7 @@ class ChatMessageCell: UITableViewCell {
     }
     var chatMessage: Message! {
         didSet {
-            bubbleBackgroundView.backgroundColor = chatMessage.isIncoming ? .white : #colorLiteral(red: 0.5527641773, green: 0.7810578942, blue: 0.9601557851, alpha: 1)
+            bubbleBackgroundView.backgroundColor = chatMessage.isIncoming ? .white : #colorLiteral(red: 0, green: 0.3716039062, blue: 0.5234339833, alpha: 1)
             bubbleBackgroundView.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.7715111301)
             bubbleBackgroundView.layer.shadowOpacity = 0.2
             bubbleBackgroundView.layer.shadowOffset = .zero

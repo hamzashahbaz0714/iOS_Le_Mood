@@ -170,17 +170,17 @@ class DataService{
     
     func getAllChats(handler:@escaping(_ chats:[Chat])->()){
         var chatsArray = [Chat]()
-        chatReference.order(by: "lastMessageDate", descending: true).getDocuments() { (querySnapshot, err) in
+        chatReference.order(by: "messageDate", descending: true).getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
                 handler(chatsArray)
             } else {
                 for document in querySnapshot!.documents {
                     let data = document.data()
-                    let chatId = data["chatID"] as? String ?? "Not Found"
-                    let lastMessage = data["lastMessage"] as? String ?? "Not Found"
-                    let lastMessageDate = data["lastMessageDate"] as? String ?? "Not Found"
-                    let lastMessageTime = data["lastMessageTime"] as? Int ?? 0
+                    let chatId = data["chatId"] as? String ?? "Not Found"
+                    let lastMessage = data["message"] as? String ?? "Not Found"
+                    let lastMessageDate = data["messageDate"] as? String ?? "Not Found"
+                    let lastMessageTime = data["messageTime"] as? Int ?? 0
                     let sender = data["sender"] as? String ?? "Not Found"
                     let receiver = data["receiver"] as? String ?? ""
                     let notReadBy = data["notReadBy"] as? [String] ?? [String]()
@@ -207,10 +207,10 @@ class DataService{
         chatRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 let data = document.data()!
-                let chatId = data["chatID"] as? String ?? "Not Found"
-                let lastMessage = data["lastMessage"] as? String ?? "Not Found"
-                let lastMessageDate = data["lastMessageDate"] as? String ?? "Not Found"
-                let lastMessageTime = data["lastMessageTime"] as? Int ?? 0
+                let chatId = data["chatId"] as? String ?? "Not Found"
+                let lastMessage = data["message"] as? String ?? "Not Found"
+                let lastMessageDate = data["messageDate"] as? String ?? "Not Found"
+                let lastMessageTime = data["messageTime"] as? Int ?? 0
                 let sender = data["sender"] as? String ?? "Not Found"
                 let receiver = data["receiver"] as? String ?? ""
                 let notReadBy = data["notReadBy"] as? [String] ?? [String]()
@@ -245,20 +245,20 @@ class DataService{
             "messageType":message.messageType,
             "receiverId":message.reciverId,
             "senderId":message.senderId,
-            "createdAt": FieldValue.serverTimestamp(),
-            "createdAt":FieldValue.serverTimestamp()
+            "createdAt": FieldValue.serverTimestamp()
         ], merge: true) { (err) in
             if let err = err {
                 debugPrint("Error adding document: \(err)")
             } else {
                 self.chatReference.document(chatID).setData([
-                    "chatID":chatID,
-                    "sender":message.senderId,
-                    "receiver":message.reciverId,
-                    "lastMessage":message.messageBody,
-                    "lastMessageDate":message.messageDate,
-                    "lastMessageTime":message.messageTime,
+                    "chatId":chatID,
+                    "senderId":message.senderId,
+                    "receiverId":message.reciverId,
+                    "message":message.messageBody,
+                    "messageDate":message.messageDate,
+                    "messageTime":message.messageTime,
                     "createdAt":FieldValue.serverTimestamp(),
+                    "messageType": message.messageType,
                     "notReadBy":notReadBy,
                 ], merge: true) { (err) in
                     if let err = err {
@@ -299,6 +299,59 @@ class DataService{
                 }
                 handler(true,messageArray)
             }
+        }
+    }
+    
+    func uploadPIcture(image:UIImage,handler :@escaping(_ success:Bool,_ picUrl:String)->()){
+        var downloadLink = ""
+        let imageData = image.jpegData(compressionQuality: 0.7)
+        let storageRef = Storage.storage().reference().child("iOS_App_Pics").child(("\(UUID().uuidString).jpg"))
+        _ = storageRef.putData(imageData!, metadata: nil) { (metaData, error) in
+            print("upload task finished")
+            storageRef.downloadURL(completion: { (url, error) in
+                if error != nil
+                {
+                    print(error!)
+                    handler(false, "")
+                }
+                else
+                {
+                    downloadLink = (url?.absoluteString) ?? ""
+                    handler(true,downloadLink)
+                }
+            })
+        }
+    }
+    func uploadVideos(videoURL:URL,handler :@escaping(_ success:Bool,_ picUrl:String)-> Void){
+        var downloadLink = ""
+        let metadata = StorageMetadata()
+        metadata.contentType = "video/quicktime"
+        
+        if let videoData = NSData(contentsOf: videoURL) as Data? {
+            let storageRef = Storage.storage().reference().child("iOS_App_Video").child(("\(UUID().uuidString).mp4"))
+            _ = storageRef.putData(videoData, metadata: nil) { (metaData, err) in
+                print("upload task finished")
+                if let err = err {
+                    print("Failed to upload movie:", err)
+                    handler(false,downloadLink)
+                    return
+                }
+                
+                storageRef.downloadURL(completion: { (url, err) in
+                    if let err = err {
+                        print("Failed to get download url:", err)
+                        handler(false,downloadLink)
+                        return
+                        
+                    }
+                    else
+                    {
+                        downloadLink = (url?.absoluteString) ?? ""
+                        handler(true,downloadLink)
+                    }
+                })
+            }
+            
         }
     }
     

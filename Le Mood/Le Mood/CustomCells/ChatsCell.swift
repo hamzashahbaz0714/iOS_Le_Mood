@@ -31,6 +31,7 @@ class ChatsCell: UITableViewCell {
             if success{
                 self.returnedUser = returnedUser
                 self.nameLbl.text = returnedUser!.name
+                self.delegate?.openProfile(uid: returnedUser!)
                 self.profileImg.sd_setImage(with: URL(string: returnedUser!.image), placeholderImage: UIImage(systemName: "person.crop.circle.fill"))
             }
         }

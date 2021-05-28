@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVKit
 
 enum type {
     case tblView
@@ -191,6 +192,34 @@ extension String {
     
 }
 
+extension AVAsset{
+    var videoThumbnail:UIImage?{
+
+        let assetImageGenerator = AVAssetImageGenerator(asset: self)
+        assetImageGenerator.appliesPreferredTrackTransform = true
+
+        var time = self.duration
+        time.value = min(time.value, 0)
+
+        do {
+            let imageRef = try assetImageGenerator.copyCGImage(at: time, actualTime: nil)
+            let thumbNail = UIImage.init(cgImage: imageRef)
+
+
+            print(debugDescription)
+
+            return thumbNail
+
+        } catch {
+
+            print(debugDescription,error.localizedDescription)
+            return nil
+
+
+        }
+
+    }
+}
 
 extension UIViewController: UINavigationControllerDelegate,UIImagePickerControllerDelegate {
     func showImagePicker() {

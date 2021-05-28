@@ -13,14 +13,42 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class ChatsVC: UIViewController {
-
-    @IBOutlet weak var tableView:UITableView!
     
+    
+    //MARK:- Propeties
+    
+    @IBOutlet weak var tableView:UITableView!
     var chats = [Chat]()
+    
+    
+    //MARK:- Controller Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        loadChatList()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+//        if Auth.auth().currentUser?.uid != nil{
+//            ProgressHUD.show("Loading chats")
+//            let chatReference = Firestore.firestore().collection("chats")
+//            chatReference.addSnapshotListener({ (snapShot, error) in
+//                DataService.instance.getAllChats { (returnedArray) in
+//                    ProgressHUD.dismiss()
+//                    self.chats = returnedArray
+//                    self.tableView.reloadData()
+//                }
+//            })
+//        }else{
+//            print("sdljcnvsa")
+//        }
+    }
+    
+    //MARK:- Supporting Functions
+    
+    func loadChatList(){
+        
         tableView.delegate = self
         tableView.dataSource = self
         if Auth.auth().currentUser?.uid != nil{
@@ -41,36 +69,15 @@ class ChatsVC: UIViewController {
             popUp.addAction(okAction)
             self.present(popUp,animated: true)
         }
-        
-        // Do any additional setup after loading the view.
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if Auth.auth().currentUser?.uid != nil{
-            ProgressHUD.show("Loading chats")
-            let chatReference = Firestore.firestore().collection("chats")
-            chatReference.addSnapshotListener({ (snapShot, error) in
-                DataService.instance.getAllChats { (returnedArray) in
-                    ProgressHUD.dismiss()
-                    self.chats = returnedArray
-                    self.tableView.reloadData()
-                }
-            })
-        }else{
-            print("sdljcnvsa")
-        }
-    }
     
-
 }
 extension ChatsVC:UITableViewDataSource,UITableViewDelegate,ChatsCellDelegate{
     
     func openProfile(uid: UserModel) {
-        print("")
-//        let vc = storyboard?.instantiateViewController(withIdentifier: "MainProfileVC") as! MainProfileVC
-//        vc.user = uid
-//        self.navigationController?.pushViewController(vc, animated: true)
+        
+       
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -91,17 +98,7 @@ extension ChatsVC:UITableViewDataSource,UITableViewDelegate,ChatsCellDelegate{
         rID = chats[indexPath.row].otherUser
         vc.notReadBy = self.chats[indexPath.row].notReadBy
         self.navigationController?.pushViewController(vc, animated: true)
-        //performSegue(withIdentifier: "InboxMessagesVC", sender: chats[indexPath.row].chatId)
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let codeVC = segue.destination as? MessagesVC{
-//            let barBtn = UIBarButtonItem()
-//            barBtn.title = "Back"
-//            navigationItem.backBarButtonItem = barBtn
-//            codeVC.chatID = sender as? String
-//        }
-//    }
     
     
 }

@@ -9,7 +9,11 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import ProgressHUD
+import SDWebImage
 import FirebaseFirestore
+import Lightbox
+import AVKit
 
 var rID = ""
 
@@ -20,9 +24,9 @@ struct ChatMessage {
 }
 
 extension UITableView {
-
+    
     func scrollToBottom(){
-
+        
         DispatchQueue.main.async {
             let indexPath = IndexPath(
                 row: self.numberOfRows(inSection:  self.numberOfSections-1) - 1,
@@ -30,9 +34,9 @@ extension UITableView {
             self.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
     }
-
+    
     func scrollToTop() {
-
+        
         DispatchQueue.main.async {
             let indexPath = IndexPath(row: 0, section: 0)
             self.scrollToRow(at: indexPath, at: .top, animated: false)
@@ -59,22 +63,12 @@ extension Date {
 }
 
 class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("Number of messages \(messagesArray.count)")
-        return messagesArray.count
-    }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
     @IBOutlet weak var tableView:UITableView!
-    @IBOutlet weak var detailLbl:UILabel!
-    @IBOutlet weak var priceLbl:UILabel!
-    @IBOutlet weak var viewDetailsBtn:UIButton!
+    @IBOutlet weak var lblChatRecieverName: UILabel!
     
-//    var booking:Booking!
-    
+    var player = AVPlayer()
+    let playerViewController = AVPlayerViewController()
     var chatID:String?
     var notReadBy = [String]()
     
@@ -83,33 +77,16 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     @IBOutlet weak var messageTxtView:UITextView!
     
-        fileprivate let cellId = "id123"
-        
-
-//    var messagesFromServer = [ChatMessage]()
-//
-//        fileprivate func attemptToAssembleGroupedMessages() {
-//            print("Attempt to group our messages together based on Date property")
-//
-//            let groupedMessages = Dictionary(grouping: messagesFromServer) { (element) -> Date in
-//                return element.date.reduceToMonthDayYear()
-//            }
-//
-//            // provide a sorting for your keys somehow
-//            let sortedKeys = groupedMessages.keys.sorted()
-//            sortedKeys.forEach { (key) in
-//                let values = groupedMessages[key]
-//                chatMessages.append(values ?? [])
-//            }
-//
-//        }
-//
-//        var chatMessages = [[ChatMessage]]()
-
+    var passRecieverName : String?
+    fileprivate let cellId = "id123"
+    
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
-            
+        
+        //        lblChatRecieverName.text = passRecieverName
         //view.bindKeyboard()
         let tapGester = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapGester)
@@ -121,25 +98,6 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         tableView.register(ChatMessageCell.self, forCellReuseIdentifier: cellId)
         tableView.separatorStyle = .none
         tableView.backgroundColor = #colorLiteral(red: 0.9647058824, green: 0.9764705882, blue: 1, alpha: 1)
-            
-//
-//        let othertUserID = chatID?.replacingOccurrences(of: DataService.instance.currentUser!.id, with: "")
-//        let bookingReference = Firestore.firestore().collection("bookings")
-//        bookingReference.addSnapshotListener { (snapShot, error) in
-//            DataService.instance.getAllUsersBookingForMessages(userID: Auth.auth().currentUser!.uid,otherUserID:othertUserID!) { (returnedArray) in
-//                if returnedArray.count > 0{
-//                    self.booking = returnedArray.first!
-//                    self.viewDetailsBtn.isHidden = false
-//                    self.initCell()
-//                }else{
-//                    self.detailLbl.text = "No booking found"
-//                    self.priceLbl.text = ""
-//                    self.viewDetailsBtn.isHidden = true
-//
-//                }
-//
-//            }
-//        }
         DataService.instance.getChatOfID(chatID: self.chatID!) { (success, returnedChat) in
             if success{
                 if returnedChat!.notReadBy.contains(Auth.auth().currentUser!.uid){
@@ -152,11 +110,11 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         }
         
         
-       DispatchQueue.main.async {
-           let chatReference = Firestore.firestore().collection("chats").document(self.chatID!).collection("messages")
-           chatReference.addSnapshotListener({ (snapShot, error) in
-               self.messagesArray.removeAll()
-            DataService.instance.getAllChatMessages(chatID: self.chatID!) { (success,returnedArray) in
+        DispatchQueue.main.async {
+            let chatReference = Firestore.firestore().collection("chats").document(self.chatID!).collection("messages")
+            chatReference.addSnapshotListener({ (snapShot, error) in
+                self.messagesArray.removeAll()
+                DataService.instance.getAllChatMessages(chatID: self.chatID!) { (success,returnedArray) in
                     if success{
                         self.messagesArray = returnedArray
                         self.tableView.reloadData()
@@ -165,59 +123,108 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
                             self.tableView.scrollToBottom()
                         }
                     }
-                   //self.attemptToAssembleGroupedMessages()
-               }
-           })
-       }
+                }
+            })
+        }
         
-            //attemptToAssembleGroupedMessages()
-            
     }
-    
-//    func initCell(){
-//        DataService.instance.getUserOfID(userID: booking.bookedBy) { (success, returnedUser) in
-//            if success{
-//                self.detailLbl.text = "\(self.booking.bookingTime) - \(returnedUser!.name)"
-//                self.priceLbl.text = "$\(self.booking.totalFee)"
-//            }
-//        }
-//    }
     
     func checkTimeStamp(date: String!) -> Bool {
-            let dateFormatter: DateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd-MM-yyyy"
-            dateFormatter.locale = Locale(identifier:"en_US_POSIX")
-            let datecomponents = dateFormatter.date(from: date)
-
-            let now = Date()
-
-            if (datecomponents! >= now) {
-                return true
-            } else {
-                return false
+        let dateFormatter: DateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        dateFormatter.locale = Locale(identifier:"en_US_POSIX")
+        let datecomponents = dateFormatter.date(from: date)
+        
+        let now = Date()
+        
+        if (datecomponents! >= now) {
+            return true
+        } else {
+            return false
+        }
+    }
+    func uploadPictureInFirebase(selectedImage: UIImage) {
+        ProgressHUD.show()
+        DataService.instance.uploadPIcture(image: selectedImage) { [weak self] (success, url) in
+            if success {
+                print(url)
+                let message = Message(messageId: getUniqueId(), reciverId: rID, senderId: Auth.auth().currentUser!.uid, messageBody: url, messageType: "image", messageTime: getCurrentTime(), messageDate: getCurrentDateWithTime(), isIncoming: false)
+                DataService.instance.addChatMessage(chatID: self?.chatID ?? "", message: message,notReadBy: [rID])
             }
+            else
+            {
+                print("Not upload picture")
+            }
+            
+            self?.hideLoader()
+        }
     }
     
-    @IBAction func viewDetailsBtnTapped(_ sender:Any){
-//        if self.booking.status == "Completed" || (checkTimeStamp(date: booking.bookingDate)) == false{
-//            let vc = storyboard?.instantiateViewController(withIdentifier: "ReservationRequestDetailsVC") as! ReservationRequestDetailsVC
-//            vc.booking =  self.booking
-//            vc.isUser = true
-//            self.present(vc, animated: true, completion: nil)
-//        }else{
-//            let vc = storyboard?.instantiateViewController(withIdentifier: "ReservationRequestDetailsVC") as! ReservationRequestDetailsVC
-//            vc.booking = self.booking
-//            vc.isUser = true
-//            self.present(vc, animated: true, completion: nil)
-//        }
-        
+    func uploadVideoInFirebase(selectedVideo: URL){
+        ProgressHUD.show()
+        DataService.instance.uploadVideos(videoURL: selectedVideo) { [weak self] (success, url) in
+            if success {
+                let message = Message(messageId: getUniqueId(), reciverId: rID, senderId: Auth.auth().currentUser!.uid, messageBody: url, messageType: "video", messageTime: getCurrentTime(), messageDate: getCurrentDateWithTime(), isIncoming: false)
+                DataService.instance.addChatMessage(chatID: self?.chatID ?? "", message: message,notReadBy: [rID])
+                ProgressHUD.dismiss()
+                print("Uploaded")
+            }
+            else
+            {
+                ProgressHUD.dismiss()
+                print("Not upload Video")
+            }
+            
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        if let mediaType = info[UIImagePickerController.InfoKey.mediaType] as? String {
+            
+            if mediaType  == "public.image" {
+                print("Image Selected")
+                guard let image = info[.originalImage] as? UIImage else {
+                    fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
+                }
+                uploadPictureInFirebase(selectedImage: image)
+            }
+            
+            if mediaType == "public.movie" {
+                print("Video Selected")
+                if let videoURL = info[UIImagePickerController.InfoKey.mediaURL] as? URL {
+                    //uploadVideoInFirebase(selectedVideo: videoURL as URL)
+                }
+            }
+        }
+    }
+    
+    func zoomImage(at indexpath: Int){
+        if messagesArray[indexpath].messageType == "image"{
+            let images = [
+                LightboxImage(imageURL: URL(string: messagesArray[indexpath].messageBody)!),
+                
+            ]
+            let controller = LightboxController(images: images)
+            controller.pageDelegate = self
+            controller.dynamicBackground = true
+            present(controller, animated: true, completion: nil)
+        }
+        else if messagesArray[indexpath].messageType == "video"{
+            let selectedVideo = messagesArray[indexpath].messageBody
+            player = AVPlayer(url: URL(string: selectedVideo)!)
+            playerViewController.player = player
+            self.present(playerViewController, animated: true, completion: nil)
+            player.play()
+        }
         
     }
+    
     
     @objc func dismissKeyboard(){
         view.endEditing(true)
     }
-        
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let othertUserID = chatID?.replacingOccurrences(of: DataService.instance.currentUser!.id, with: "")
@@ -230,93 +237,148 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         }
         
     }
- 
+    
     @IBAction func btnBackTapped(_ sender: Any){
         self.popViewController()
     }
-        
-//    class DateHeaderLabel: UILabel {
-//
-//            override init(frame: CGRect) {
-//                super.init(frame: frame)
-//
-//                backgroundColor = .clear
-//                textColor = .black
-//                textAlignment = .center
-//                translatesAutoresizingMaskIntoConstraints = false // enables auto layout
-//                font = UIFont.boldSystemFont(ofSize: 14)
-//            }
-//
-//            required init?(coder aDecoder: NSCoder) {
-//                fatalError("init(coder:) has not been implemented")
-//            }
-//
-//            override var intrinsicContentSize: CGSize {
-//                let originalContentSize = super.intrinsicContentSize
-//                let height = originalContentSize.height + 12
-//                layer.cornerRadius = height / 2
-//                layer.masksToBounds = true
-//                return CGSize(width: originalContentSize.width + 20, height: height)
-//            }
-//
-//    }
-//
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        if let firstMessageInSection = messagesArray.first {
-//                let dateFormatter = DateFormatter()
-//            dateFormatter.dateFormat = "MM/dd/yyyy"
-//               let dateString = dateFormatter.string(from: Date.dateFromCustomString(customString: firstMessageInSection.messageDate))
-//
-//                let label = DateHeaderLabel()
-//                label.text = dateString
-//
-//                let containerView = UIView()
-//
-//                containerView.addSubview(label)
-//                label.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
-//                label.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
-//
-//                return containerView
-//
-//        }
-//        return nil
-//    }
-//
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 0
-//    }
-
-
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("Number of messages \(messagesArray.count)")
+        return messagesArray.count
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 1.0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ChatMessageCell
-        if messagesArray.indices.contains(indexPath.row){
-            
-            cell.chatMessage = messagesArray[indexPath.row]
-            return cell
-        }else{
-            return UITableViewCell(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        if messagesArray[indexPath.row].messageType == "image" {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MediaCell", for: indexPath) as! MediaCell
+            if messagesArray[indexPath.row].isIncoming {
+                cell.backGroundView?.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                cell.stackView.alignment = .leading
+                cell.lblTime.textAlignment = .left
+                cell.lblTime.text = messagesArray[indexPath.row].messageDate
+                cell.imgView.tag = indexPath.row
+                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapped(sender:)))
+                cell.imgView.addGestureRecognizer(tapGesture)
+                cell.imgView.sd_setImage(with: URL(string: messagesArray[indexPath.row].messageBody), placeholderImage: UIImage(named: "placeHolder"), options: .forceTransition)
+                return cell
+            }
+            else
+            {
+                cell.backGroundView?.backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
+                cell.lblTime.text = messagesArray[indexPath.row].messageDate
+                cell.lblTime.textAlignment = .right
+                cell.stackView.alignment = .trailing
+                cell.imgView.tag = indexPath.row
+                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapped))
+                cell.imgView.addGestureRecognizer(tapGesture)
+                cell.imgView.sd_setImage(with: URL(string: messagesArray[indexPath.row].messageBody), placeholderImage: UIImage(named: "placeHolder"), options: .forceTransition)
+                return cell
+            }
         }
+        else if messagesArray[indexPath.row].messageType == "video" {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MediaCell", for: indexPath) as! MediaCell
+            if messagesArray[indexPath.row].isIncoming {
+                cell.backGroundView?.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                cell.stackView.alignment = .leading
+                cell.lblTime.textAlignment = .left
+                cell.btnPlay.isHidden = false
+                cell.lblTime.text = messagesArray[indexPath.row].messageDate
+                cell.imgView.tag = indexPath.row
+                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapped(sender:)))
+                cell.imgView.addGestureRecognizer(tapGesture)
+                //                DispatchQueue.global(qos: .background).async {
+                //                    let videoURL = self.messagesArray[indexPath.row].messageBody
+                //                    let ass = AVAsset(url: URL(string: videoURL)!)
+                //                    DispatchQueue.main.async {
+                //                        if let videoThumbnail = ass.videoThumbnail{
+                //                            cell.imgView.image = videoThumbnail
+                //                        }
+                //                    }
+                //                }
+                getThumbnailImageFromVideoUrl(url: URL(string: self.messagesArray[indexPath.row].messageBody)!) { (thumbImage) in
+                    cell.imgView.image = thumbImage
+                }
+                return cell
+            }
+            else
+            {
+                cell.backGroundView?.backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
+                cell.lblTime.text = messagesArray[indexPath.row].messageDate
+                cell.lblTime.textAlignment = .right
+                cell.stackView.alignment = .trailing
+                cell.imgView.tag = indexPath.row
+                cell.btnPlay.isHidden = false
+                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapped))
+                cell.imgView.addGestureRecognizer(tapGesture)
+                //                DispatchQueue.global(qos: .background).async {
+                //                    let videoURL = self.messagesArray[indexPath.row].messageBody
+                //                    let ass = AVAsset(url: URL(string: videoURL)!)
+                //                    DispatchQueue.main.async {
+                //                        if let videoThumbnail = ass.videoThumbnail{
+                //                            cell.imgView.image = videoThumbnail
+                //                        }
+                //                    }
+                //                }
+                getThumbnailImageFromVideoUrl(url: URL(string: self.messagesArray[indexPath.row].messageBody)!) { (thumbImage) in
+                    cell.imgView.image = thumbImage
+                }
+                return cell
+            }
+        }
+        else
+        {
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ChatMessageCell
+            if messagesArray.indices.contains(indexPath.row){
+                cell.chatMessage = messagesArray[indexPath.row]
+                return cell
+            }else{
+                return UITableViewCell(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+            }
+        }
+    }
+    
+    
+    @objc func handleTapped(sender:UITapGestureRecognizer){
+        //        if messagesArray[sender.view?.tag ?? 0].messageType == "image"{
+        zoomImage(at: sender.view?.tag ?? 0)
+        //}
+    }
+    @IBAction func btnCameraTapped(_ sender: Any){
+        self.showImagePicker()
     }
     
     @IBAction func sendBtnTapped(_ sender:Any){
         if messageTxtView.text != "" && isEdited == true{
-            let message = Message(messageId: getUniqueId(), reciverId: rID, senderId: Auth.auth().currentUser!.uid, messageBody: messageTxtView.text, messageType: "Text", messageTime: getCurrentTime(), messageDate: getCurrentDateWithTime(), isIncoming: false)
-            DataService.instance.addChatMessage(chatID: chatID!, message: message,notReadBy: [String]())
+            let message = Message(messageId: getUniqueId(), reciverId: rID, senderId: Auth.auth().currentUser!.uid, messageBody: messageTxtView.text, messageType: "text", messageTime: getCurrentTime(), messageDate: getCurrentDateWithTime(), isIncoming: false)
+            DataService.instance.addChatMessage(chatID: chatID!, message: message,notReadBy: [rID])
             self.messageTxtView.textColor = .lightGray
             self.messageTxtView.text = "Type Something..."
             isEdited = false
             self.messageTxtView.resignFirstResponder()
             
+            //            DataService.instance.getUnreadCountOfUser(string: self.user.userID) { success, unread in
+            //                if success{
+            //                    let sender = PushNotificationSender()
+            //                    sender.sendPushNotification(to: "\(self.user.fcmToken)", title: "New Message from \(DataService.instance.currentUser!.name)", body: m!,unread: unread + 1)
+            //                    let usersRef = Firestore.firestore().collection("users").document(self.user.userID)
+            //                    usersRef.setData(["unread": unread + 1], merge: true)
+            //                }
+            //
+            //            }
+            
         }else{
             
         }
     }
-
-
+    
 }
 
 extension MessagesVC:UITextViewDelegate{
@@ -326,5 +388,11 @@ extension MessagesVC:UITextViewDelegate{
             textView.textColor = .black
             isEdited = true
         }
+    }
+}
+extension MessagesVC: LightboxControllerPageDelegate {
+    
+    func lightboxController(_ controller: LightboxController, didMoveToPage page: Int) {
+        print(page)
     }
 }

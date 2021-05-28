@@ -28,6 +28,9 @@
 		FA43C93F265B7CEA00A57EA6 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43C93D265B7CE900A57EA6 /* DataService.swift */; };
 		FA43C95A265B7E1400A57EA6 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43C959265B7E1400A57EA6 /* UserModel.swift */; };
 		FA43C976265BC04F00A57EA6 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43C975265BC04F00A57EA6 /* EditProfileViewController.swift */; };
+		FA4CEA8F2660CD1D005C9044 /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4CEA8D2660CD1D005C9044 /* PushNotificationManager.swift */; };
+		FA4CEA902660CD1D005C9044 /* PushNotificationSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4CEA8E2660CD1D005C9044 /* PushNotificationSender.swift */; };
+		FA4CEA9F2660F7CB005C9044 /* MediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4CEA9E2660F7CB005C9044 /* MediaCell.swift */; };
 		FA6E32E226578F8E008C5013 /* PopUpMood.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E32E026578F8E008C5013 /* PopUpMood.swift */; };
 		FA6E32E326578F8E008C5013 /* PopUpMood.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6E32E126578F8E008C5013 /* PopUpMood.xib */; };
 		FA6E32E92657BBF9008C5013 /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E32E82657BBF9008C5013 /* ChatListViewController.swift */; };
@@ -107,6 +110,9 @@
 		FA43C93D265B7CE900A57EA6 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		FA43C959265B7E1400A57EA6 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		FA43C975265BC04F00A57EA6 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		FA4CEA8D2660CD1D005C9044 /* PushNotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationManager.swift; sourceTree = "<group>"; };
+		FA4CEA8E2660CD1D005C9044 /* PushNotificationSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationSender.swift; sourceTree = "<group>"; };
+		FA4CEA9E2660F7CB005C9044 /* MediaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCell.swift; sourceTree = "<group>"; };
 		FA6E32E026578F8E008C5013 /* PopUpMood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpMood.swift; sourceTree = "<group>"; };
 		FA6E32E126578F8E008C5013 /* PopUpMood.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpMood.xib; sourceTree = "<group>"; };
 		FA6E32E82657BBF9008C5013 /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
@@ -291,6 +297,8 @@
 			children = (
 				FA43C93C265B7CE900A57EA6 /* AuthService.swift */,
 				FA43C93D265B7CE900A57EA6 /* DataService.swift */,
+				FA4CEA8D2660CD1D005C9044 /* PushNotificationManager.swift */,
+				FA4CEA8E2660CD1D005C9044 /* PushNotificationSender.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -298,6 +306,7 @@
 		FA1B154D263FD14E008CD9A3 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				FADF51CC265FC4920051F6FB /* ChatMessageCell.swift */,
 				FA1B1557263FD6CB008CD9A3 /* Extensions */,
 				FA1B1556263FD6C7008CD9A3 /* Utils */,
 			);
@@ -307,10 +316,12 @@
 		FA1B154E263FD151008CD9A3 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
+				FADF51CB265FC4920051F6FB /* ChatsCell.swift */,
 				FA6E32ED2657BEEA008C5013 /* ChatListCell.swift */,
 				FA6E32EC2657BEEA008C5013 /* ChatListCell.xib */,
 				FAC0935D265E3BE7004B53F7 /* ContactCell.swift */,
 				FAC0935C265E3BE7004B53F7 /* ContactCell.xib */,
+				FA4CEA9E2660F7CB005C9044 /* MediaCell.swift */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -396,8 +407,6 @@
 				FADF51A3265F9EC10051F6FB /* InboxViewController.swift */,
 				FADF5203265FCD1E0051F6FB /* ChatsVC.swift */,
 				FADF51D3265FC4F50051F6FB /* MessagesVC.swift */,
-				FADF51CC265FC4920051F6FB /* ChatMessageCell.swift */,
-				FADF51CB265FC4920051F6FB /* ChatsCell.swift */,
 			);
 			path = Chats;
 			sourceTree = "<group>";
@@ -660,8 +669,10 @@
 				FA9C914526564D7A003CCBAD /* Onboard3VC.swift in Sources */,
 				FA0AA2AE265D2014004545A3 /* StatisticsViewController.swift in Sources */,
 				FA9C918026568AB6003CCBAD /* SignupViewController.swift in Sources */,
+				FA4CEA9F2660F7CB005C9044 /* MediaCell.swift in Sources */,
 				FAC0935F265E3BE7004B53F7 /* ContactCell.swift in Sources */,
 				FA0AA2C1265D36A0004545A3 /* NumberViewController.swift in Sources */,
+				FA4CEA8F2660CD1D005C9044 /* PushNotificationManager.swift in Sources */,
 				FAC09336265E3504004B53F7 /* MoodFriendsViewController.swift in Sources */,
 				FA1B1563263FD6E0008CD9A3 /* Rechability.swift in Sources */,
 				FA6E32E226578F8E008C5013 /* PopUpMood.swift in Sources */,
@@ -672,6 +683,7 @@
 				FA0AA2BE265D365F004545A3 /* CornerRadius.swift in Sources */,
 				FADF51CD265FC4920051F6FB /* ChatsCell.swift in Sources */,
 				FAC09332265E34F0004B53F7 /* FriendsViewController.swift in Sources */,
+				FA4CEA902660CD1D005C9044 /* PushNotificationSender.swift in Sources */,
 				FA1B1534263FD027008CD9A3 /* SceneDelegate.swift in Sources */,
 				FADF51CE265FC4920051F6FB /* ChatMessageCell.swift in Sources */,
 				FA6E331C2657E3D7008C5013 /* ProfileViewController.swift in Sources */,
