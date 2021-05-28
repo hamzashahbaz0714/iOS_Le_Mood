@@ -123,7 +123,7 @@ extension MoodFriendsViewController: UITableViewDelegate,UITableViewDataSource{
         let data = moodFriends[indexPath.row]
         cell.lblContactName.text = data.name
         cell.lblContactNo.text = data.phoneNumber
-        cell.MessageView.isHidden = true
+//        cell.MessageView.isHidden = true
         cell.userImgView.sd_setImage(with: URL(string: data.image), placeholderImage: placeHolderImage, options: .forceTransition)
         return cell
     }

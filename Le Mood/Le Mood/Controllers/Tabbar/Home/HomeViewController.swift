@@ -82,11 +82,13 @@ class HomeViewController: UIViewController {
         switch sender.view?.tag {
         case 1:
             print("1")
+            self.tabBarController?.selectedIndex = 2
         case 2:
             let controller: FriendsViewController = FriendsViewController.initiateFrom(Storybaord: .Main)
             self.pushController(contorller: controller, animated: true)
         case 3:
             print("3")
+            self.tabBarController?.selectedIndex = 1
         case 4:
             print("4")
         default:
