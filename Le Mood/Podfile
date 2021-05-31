@@ -16,6 +16,7 @@ target 'Le Mood' do
   pod 'LZViewPager', '~> 1.2.5'
   pod 'PhoneNumberKit', '~> 3.3'
   pod 'Lightbox'
+  pod 'FirebaseMessaging'
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   

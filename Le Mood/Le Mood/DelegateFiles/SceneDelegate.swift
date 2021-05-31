@@ -26,6 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     self.window?.rootViewController = rootNC
                     self.window?.makeKeyAndVisible()
                 }
+        
         guard let _ = (scene as? UIWindowScene) else { return }
     }
 

@@ -8,6 +8,7 @@
 import UIKit
 import ProgressHUD
 import SDWebImage
+import FirebaseAuth
 
 class HomeViewController: UIViewController {
 
@@ -26,6 +27,9 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let pushManager = PushNotificationManager(userID: Auth.auth().currentUser!.uid)
+        pushManager.registerForPushNotifications()
         mainView.roundCorners(corners: [.topLeft, .topRight], radius: 40)
         dashboardViews.forEach { (view) in
             let tapgesture = UITapGestureRecognizer(target: self, action: #selector(handleDashobardView(sender:)))

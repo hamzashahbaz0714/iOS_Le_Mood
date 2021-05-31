@@ -8,6 +8,10 @@
 import UIKit
 import AVKit
 
+let TO_NOTIF_NTOFICATION_RECIEVED = Notification.Name("utifUserDataChanged")
+let TO_NOTIF_BOOKING_DATA_DID_CHANGE = Notification.Name("utifBookingDataChanged")
+let TO_NOTIF_RATING_DATA_DID_CHANGE = Notification.Name("utifRatingDataChanged")
+
 let placeHolderLeage = UIImage(named: "bet_icon")
 let placeHolderArtistImage = UIImage(named: "2")
 let menuArr = [["image": UIImage(named: "icon_user_profile")!,"name":"Profile"],["image": UIImage(named: "icon_transactions")!,"name":"Transactions"],["image": UIImage(named: "icon_settings")!,"name":"Settings"]]

@@ -76,8 +76,9 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     var messagesArray = [Message]()
     
     @IBOutlet weak var messageTxtView:UITextView!
+    @IBOutlet weak var imgView: UIImageView!
     
-    var passRecieverName : String?
+    var passRecieverUser : UserModel?
     fileprivate let cellId = "id123"
     
     
@@ -86,7 +87,8 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         
         super.viewDidLoad()
         
-        lblChatRecieverName.text = passRecieverName
+        lblChatRecieverName.text = passRecieverUser?.name
+        imgView.sd_setImage(with: URL(string: passRecieverUser?.image ?? ""), placeholderImage: placeHolderImage, options: SDWebImageOptions.forceTransition)
         //view.bindKeyboard()
         let tapGester = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapGester)
@@ -193,7 +195,7 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             if mediaType == "public.movie" {
                 print("Video Selected")
                 if let videoURL = info[UIImagePickerController.InfoKey.mediaURL] as? URL {
-                    //uploadVideoInFirebase(selectedVideo: videoURL as URL)
+                    uploadVideoInFirebase(selectedVideo: videoURL as URL)
                 }
             }
         }
@@ -227,6 +229,7 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        UIApplication.shared.applicationIconBadgeNumber = 0
         let othertUserID = chatID?.replacingOccurrences(of: DataService.instance.currentUser!.id, with: "")
         print("Other userID is: \(othertUserID!)")
         DataService.instance.getUserOfID(userID: othertUserID!) { (success, returnedUser) in
@@ -357,17 +360,20 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     @IBAction func sendBtnTapped(_ sender:Any){
         if messageTxtView.text != "" && isEdited == true{
+            let m = messageTxtView.text
             let message = Message(messageId: getUniqueId(), reciverId: rID, senderId: Auth.auth().currentUser!.uid, messageBody: messageTxtView.text, messageType: "text", messageTime: getCurrentTime(), messageDate: getCurrentDateWithTime(), isIncoming: false)
             DataService.instance.addChatMessage(chatID: chatID!, message: message,notReadBy: [rID])
             self.messageTxtView.textColor = .lightGray
             self.messageTxtView.text = "Type Something..."
             isEdited = false
             self.messageTxtView.resignFirstResponder()
-            
-            //            DataService.instance.getUnreadCountOfUser(string: self.user.userID) { success, unread in
-            //                if success{
-            //                    let sender = PushNotificationSender()
-            //                    sender.sendPushNotification(to: "\(self.user.fcmToken)", title: "New Message from \(DataService.instance.currentUser!.name)", body: m!,unread: unread + 1)
+            let sender = PushNotificationSender()
+            sender.sendPushNotification(to: "\(self.passRecieverUser!.fcmToken)", title: "New Message from \(DataService.instance.currentUser!.name)", body: m!,unread: 1)
+//
+//                        DataService.instance.getUnreadCountOfUser(string: self.user.userID) { success, unread in
+//                            if success{
+//                                let sender = PushNotificationSender()
+//                                sender.sendPushNotification(to: "\(self.user.fcmToken)", title: "New Message from \(DataService.instance.currentUser!.name)", body: m!,unread: unread + 1)
             //                    let usersRef = Firestore.firestore().collection("users").document(self.user.userID)
             //                    usersRef.setData(["unread": unread + 1], merge: true)
             //                }

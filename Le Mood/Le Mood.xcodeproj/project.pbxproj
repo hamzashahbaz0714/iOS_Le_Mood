@@ -23,6 +23,9 @@
 		FA1B1564263FD6E0008CD9A3 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B155D263FD6E0008CD9A3 /* Alert.swift */; };
 		FA1B1565263FD6E0008CD9A3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B155E263FD6E0008CD9A3 /* Constants.swift */; };
 		FA1B1568263FD6EC008CD9A3 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B1567263FD6EC008CD9A3 /* Extension.swift */; };
+		FA37ED692664CBE5007872AA /* CountriesStatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA37ED682664CBE5007872AA /* CountriesStatesModel.swift */; };
+		FA37ED6C2664D7B9007872AA /* CountriesStatesList.json in Resources */ = {isa = PBXBuildFile; fileRef = FA37ED6B2664D7B9007872AA /* CountriesStatesList.json */; };
+		FA37ED7526651F64007872AA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA37ED7426651F64007872AA /* GoogleService-Info.plist */; };
 		FA3AA6F5265CDFC900D48BC2 /* MoodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3AA6F4265CDFC900D48BC2 /* MoodModel.swift */; };
 		FA43C93E265B7CEA00A57EA6 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43C93C265B7CE900A57EA6 /* AuthService.swift */; };
 		FA43C93F265B7CEA00A57EA6 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43C93D265B7CE900A57EA6 /* DataService.swift */; };
@@ -38,7 +41,6 @@
 		FA6E32EF2657BEEA008C5013 /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E32ED2657BEEA008C5013 /* ChatListCell.swift */; };
 		FA6E32F42657C983008C5013 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E32F32657C983008C5013 /* SettingViewController.swift */; };
 		FA6E331C2657E3D7008C5013 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E331B2657E3D7008C5013 /* ProfileViewController.swift */; };
-		FA6E33202657FA82008C5013 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA6E331F2657FA82008C5013 /* GoogleService-Info.plist */; };
 		FA9C913F26564BD0003CCBAD /* Onboard1VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9C913E26564BD0003CCBAD /* Onboard1VC.swift */; };
 		FA9C914226564CC4003CCBAD /* Onboard2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9C914126564CC4003CCBAD /* Onboard2VC.swift */; };
 		FA9C914526564D7A003CCBAD /* Onboard3VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9C914426564D7A003CCBAD /* Onboard3VC.swift */; };
@@ -105,6 +107,10 @@
 		FA1B155D263FD6E0008CD9A3 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		FA1B155E263FD6E0008CD9A3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FA1B1567263FD6EC008CD9A3 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		FA37ED682664CBE5007872AA /* CountriesStatesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesStatesModel.swift; sourceTree = "<group>"; };
+		FA37ED6B2664D7B9007872AA /* CountriesStatesList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CountriesStatesList.json; sourceTree = "<group>"; };
+		FA37ED6F2665145A007872AA /* Le Mood.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Le Mood.entitlements"; sourceTree = "<group>"; };
+		FA37ED7426651F64007872AA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FA3AA6F4265CDFC900D48BC2 /* MoodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodModel.swift; sourceTree = "<group>"; };
 		FA43C93C265B7CE900A57EA6 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		FA43C93D265B7CE900A57EA6 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
@@ -120,7 +126,6 @@
 		FA6E32ED2657BEEA008C5013 /* ChatListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
 		FA6E32F32657C983008C5013 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		FA6E331B2657E3D7008C5013 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		FA6E331F2657FA82008C5013 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FA9C913E26564BD0003CCBAD /* Onboard1VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboard1VC.swift; sourceTree = "<group>"; };
 		FA9C914126564CC4003CCBAD /* Onboard2VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboard2VC.swift; sourceTree = "<group>"; };
 		FA9C914426564D7A003CCBAD /* Onboard3VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboard3VC.swift; sourceTree = "<group>"; };
@@ -226,6 +231,7 @@
 		FA1B1530263FD027008CD9A3 /* Le Mood */ = {
 			isa = PBXGroup;
 			children = (
+				FA37ED6F2665145A007872AA /* Le Mood.entitlements */,
 				FA1B154F263FD155008CD9A3 /* DelegateFiles */,
 				FA1B154E263FD151008CD9A3 /* CustomCells */,
 				FA1B154D263FD14E008CD9A3 /* SupportingFiles */,
@@ -243,9 +249,9 @@
 		FA1B1547263FD13C008CD9A3 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				FA6E331F2657FA82008C5013 /* GoogleService-Info.plist */,
 				FA1B153A263FD027008CD9A3 /* Assets.xcassets */,
 				FA1B153F263FD027008CD9A3 /* Info.plist */,
+				FA37ED7426651F64007872AA /* GoogleService-Info.plist */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -288,6 +294,7 @@
 				FA43C959265B7E1400A57EA6 /* UserModel.swift */,
 				FA3AA6F4265CDFC900D48BC2 /* MoodModel.swift */,
 				FADF51D7265FC53F0051F6FB /* Chat.swift */,
+				FA37ED682664CBE5007872AA /* CountriesStatesModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -306,6 +313,7 @@
 		FA1B154D263FD14E008CD9A3 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				FA37ED6B2664D7B9007872AA /* CountriesStatesList.json */,
 				FADF51CC265FC4920051F6FB /* ChatMessageCell.swift */,
 				FA1B1557263FD6CB008CD9A3 /* Extensions */,
 				FA1B1556263FD6C7008CD9A3 /* Utils */,
@@ -576,6 +584,7 @@
 				FA9C916B26564FDB003CCBAD /* Poppins-SemiBold.ttf in Resources */,
 				FA9C91772656504E003CCBAD /* Acumin-RPro.otf in Resources */,
 				FA9C91782656504E003CCBAD /* Acumin-ItPro.otf in Resources */,
+				FA37ED7526651F64007872AA /* GoogleService-Info.plist in Resources */,
 				FA9C916826564FDB003CCBAD /* Poppins-Medium.ttf in Resources */,
 				FA9C916326564FDB003CCBAD /* Poppins-ThinItalic.ttf in Resources */,
 				FA9C916126564FDB003CCBAD /* Poppins-ExtraLight.ttf in Resources */,
@@ -587,13 +596,13 @@
 				FA1B153B263FD027008CD9A3 /* Assets.xcassets in Resources */,
 				FA9C916426564FDB003CCBAD /* Poppins-Italic.ttf in Resources */,
 				FA9C916A26564FDB003CCBAD /* Poppins-ExtraBold.ttf in Resources */,
-				FA6E33202657FA82008C5013 /* GoogleService-Info.plist in Resources */,
 				FA1B1539263FD027008CD9A3 /* Main.storyboard in Resources */,
 				FA9C916926564FDB003CCBAD /* Poppins-MediumItalic.ttf in Resources */,
 				FA9C916626564FDB003CCBAD /* Poppins-Bold.ttf in Resources */,
 				FA9C915C26564FDB003CCBAD /* Poppins-LightItalic.ttf in Resources */,
 				FA9C915D26564FDB003CCBAD /* Poppins-Black.ttf in Resources */,
 				FA9C915E26564FDB003CCBAD /* Poppins-SemiBoldItalic.ttf in Resources */,
+				FA37ED6C2664D7B9007872AA /* CountriesStatesList.json in Resources */,
 				FA9C916226564FDB003CCBAD /* Poppins-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -665,6 +674,7 @@
 				FAC0932D265E1F71004B53F7 /* VerificationViewController.swift in Sources */,
 				FA1B1565263FD6E0008CD9A3 /* Constants.swift in Sources */,
 				FA9C914226564CC4003CCBAD /* Onboard2VC.swift in Sources */,
+				FA37ED692664CBE5007872AA /* CountriesStatesModel.swift in Sources */,
 				FADF5204265FCD1E0051F6FB /* ChatsVC.swift in Sources */,
 				FA9C914526564D7A003CCBAD /* Onboard3VC.swift in Sources */,
 				FA0AA2AE265D2014004545A3 /* StatisticsViewController.swift in Sources */,
@@ -839,15 +849,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Le Mood/Le Mood.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9GXJC6C5XQ;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = A53Y9FPVYJ;
 				INFOPLIST_FILE = "Le Mood/Assets/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Le-Mood";
+				PRODUCT_BUNDLE_IDENTIFIER = com.moodApp.m;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -860,15 +872,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Le Mood/Le Mood.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9GXJC6C5XQ;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = A53Y9FPVYJ;
 				INFOPLIST_FILE = "Le Mood/Assets/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Le-Mood";
+				PRODUCT_BUNDLE_IDENTIFIER = com.moodApp.m;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

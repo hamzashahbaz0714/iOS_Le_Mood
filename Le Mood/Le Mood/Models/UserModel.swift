@@ -17,7 +17,7 @@ class UserModel {
     var gender: String
     var country: String
     var region: String
-    
+    var fcmToken = ""
     
     init(id:String ,name: String, email: String, phoneNumber: String ,image: String ,gender: String ,country: String, region: String) {
         self.id = id

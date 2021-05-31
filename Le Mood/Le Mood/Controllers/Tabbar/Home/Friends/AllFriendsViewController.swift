@@ -92,6 +92,7 @@ extension AllFriendsViewController: UITableViewDelegate,UITableViewDataSource{
             controller.chatID = uid2+uid1
         }
         rID = data.id
+        controller.passRecieverUser = data
         self.pushController(contorller: controller, animated: true)
     }
     

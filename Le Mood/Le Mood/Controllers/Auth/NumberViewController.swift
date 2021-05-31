@@ -34,23 +34,23 @@ class NumberViewController: UIViewController {
     func sendOtpTONumber(){
         if txtNumber.text != "" {
             print(txtNumber.text!)
-//            ProgressHUD.show()
-//            PhoneAuthProvider.provider().verifyPhoneNumber("\(txtNumber.text!)", uiDelegate: nil) { [self] (verificationID, error) in
-//                if error == nil {
-//                    ProgressHUD.dismiss()
-//                    UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
-//                    let user = UserModel(id: Auth.auth().currentUser?.uid ?? "", name: passUser?.name ?? "", email: passUser?.email ?? "", phoneNumber: "\("+92")\(txtNumber.text!)", image: passUser?.image ?? "", gender: passUser?.gender ?? "", country: passUser?.country ?? "", region: passUser?.region ?? "")
-//                    let controller:VerificationViewController = VerificationViewController.initiateFrom(Storybaord: .Main)
-//                    controller.passUser = user
-//                    controller.password = password
-//                    self.pushController(contorller: controller, animated: true)
-//                }
-//                else
-//                {
-//                    ProgressHUD.dismiss()
-//                    Alert.showMsg(msg: error?.localizedDescription ?? "")
-//                }
-//            }
+            ProgressHUD.show()
+            PhoneAuthProvider.provider().verifyPhoneNumber("\(txtNumber.text!.replacingOccurrences(of: " ", with: ""))", uiDelegate: nil) { [self] (verificationID, error) in
+                if error == nil {
+                    ProgressHUD.dismiss()
+                    UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
+                    let user = UserModel(id: Auth.auth().currentUser?.uid ?? "", name: passUser?.name ?? "", email: passUser?.email ?? "", phoneNumber: "\(txtNumber.text!)", image: passUser?.image ?? "", gender: passUser?.gender ?? "", country: passUser?.country ?? "", region: passUser?.region ?? "")
+                    let controller:VerificationViewController = VerificationViewController.initiateFrom(Storybaord: .Main)
+                    controller.passUser = user
+                    controller.password = password
+                    self.pushController(contorller: controller, animated: true)
+                }
+                else
+                {
+                    ProgressHUD.dismiss()
+                    Alert.showMsg(msg: error?.localizedDescription ?? "")
+                }
+            }
         }
         else
         {

@@ -24,8 +24,10 @@ class SignupViewController: UIViewController {
     @IBOutlet var genderView: [UIView]!
     @IBOutlet var genderImages: [UIButton]!
     
+    var countryArr = [String]()
+    var statesArr = [String]()
     var gender: String?
-    
+    var appdelegate = UIApplication.shared.delegate as! AppDelegate
     
     //MARK:- Controller Life Cycle
     
@@ -48,13 +50,22 @@ class SignupViewController: UIViewController {
     
     
     func configureDropDown(){
-        txtCountry.optionArray = ["Pakistan","India","China","Iran","Iraq","Saudia", "Arabia","United States"]
-        txtCountry.didSelect { (selectedText, row, number) in
+        appdelegate.countries?.countries?.forEach({ (country) in
+            countryArr.append(country.country ?? "")
+        })
+        txtCountry.optionArray = countryArr
+        txtCountry.didSelect { [self](selectedText, row, number) in
+            statesArr.removeAll()
             self.txtCountry.text = selectedText
-        }
-        txtReigion.optionArray = ["Punjab","Sindh","Balochistan","Khyber Pakhtun"]
-        txtReigion.didSelect { (selectedText, row, number) in
-            self.txtReigion.text = selectedText
+            appdelegate.countries?.countries?[row].states?.forEach({ (states) in
+                statesArr.append(states)
+            })
+            txtReigion.optionArray = statesArr
+            txtReigion.didSelect { (selectedText, row, number) in
+                self.txtReigion.text = selectedText
+            }
+            
+            
         }
     }
     

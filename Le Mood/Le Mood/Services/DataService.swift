@@ -60,10 +60,11 @@ class DataService{
                 let region = data["region"] as? String ?? "Not Found"
                 let image = data["image"] as? String ?? "Not Found"
                 let phoneNumber = data["phoneNumber"] as? String ?? "Not Found"
+                let fcmToken = data["fcmToken"] as? String ?? "Not Found"
                 
                 
                 let user = UserModel(id: id, name: name, email: email, phoneNumber: phoneNumber, image: image, gender: gender, country: country, region: region)
-                
+                user.fcmToken = fcmToken
                 handler(true,user)
                 
             } else {
@@ -102,11 +103,14 @@ class DataService{
                 let region = data["region"] as? String ?? "Not Found"
                 let image = data["image"] as? String ?? "Not Found"
                 let phoneNumber = data["phoneNumber"] as? String ?? "Not Found"
+                let fcmToken = data["fcmToken"] as? String ?? "Not Found"
+                
                 if id != Auth.auth().currentUser?.uid {
                     let user = UserModel(id: id, name: name, email: email, phoneNumber: phoneNumber, image: image, gender: gender, country: country, region: region)
+                    user.fcmToken = fcmToken
                     userArray.append(user)
                 }
-               
+                
             }
             handler(true,userArray)
         }
@@ -186,14 +190,14 @@ class DataService{
                     let notReadBy = data["notReadBy"] as? [String] ?? [String]()
                     
                     let chat = Chat(chatId: chatId, lastMessage: lastMessage, lastMessageDate: lastMessageDate, lastMessageTime: lastMessageTime, sender: sender, receiver: receiver,notReadBy: notReadBy)
-
+                    
                     if chat.chatId.contains(Auth.auth().currentUser!.uid){
                         print("coming here")
                         let rID = chat.chatId.replacingOccurrences(of: Auth.auth().currentUser!.uid, with: "")
                         chat.otherUser = rID
                         chatsArray.append(chat)
                     }
-                   
+                    
                     
                 }
                 handler(chatsArray)
@@ -354,6 +358,43 @@ class DataService{
             
         }
     }
+    
+    func getCountries(){
+        let ref = Database.database().reference().child("le-mood-50649-default-rtdb").root
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            if let objects = snapshot.children.allObjects as? [DataSnapshot] {
+                print(objects)
+                if !snapshot.exists() { return }
+                print(snapshot) // Its print all values including Snap (User)
+                print(snapshot.value!)
+                if let tempDic : Dictionary = snapshot.value as? Dictionary<String,Any>
+                {
+                    
+                    if let name = tempDic["name"] as? String {
+                        
+                        print(name)
+                    }
+                }
+            }
+        })
+    }
+    func loadCountriesAndStates(handler:@escaping(_ success:Bool,_ country:CountriesStatesModel?)->()) {
+        let url = Bundle.main.url(forResource: "CountriesStatesList", withExtension: "json")!
+        do {
+            let jsonData = try Data(contentsOf: url)
+            let json = try! JSONSerialization.jsonObject(with: jsonData) as! Dictionary<String,AnyObject>
+            print(json)
+            let decoder = JSONDecoder()
+            let data = try decoder.decode(CountriesStatesModel.self, from: jsonData)
+            handler(true,data)
+        }
+        catch {
+            handler(false,nil)
+            print(error)
+        }
+        
+    }
+    
     
     //    func saveRecord(patient: Patient,pid: String){
     //

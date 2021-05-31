@@ -43,6 +43,7 @@ class ChatsVC: UIViewController {
 //        }else{
 //            print("sdljcnvsa")
 //        }
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
     //MARK:- Supporting Functions
@@ -109,7 +110,7 @@ extension ChatsVC:UITableViewDataSource,UITableViewDelegate,ChatsCellDelegate{
         vc.chatID = chats[indexPath.row].chatId
         rID = chats[indexPath.row].otherUser
         vc.notReadBy = self.chats[indexPath.row].notReadBy
-        vc.passRecieverName = user[indexPath.row].name
+        vc.passRecieverUser = user[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
