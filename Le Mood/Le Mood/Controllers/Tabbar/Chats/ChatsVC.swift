@@ -19,7 +19,6 @@ class ChatsVC: UIViewController {
     
     @IBOutlet weak var tableView:UITableView!
     var chats = [Chat]()
-    var user = [UserModel]()
     
     //MARK:- Controller Life Cycle
     
@@ -30,19 +29,19 @@ class ChatsVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        if Auth.auth().currentUser?.uid != nil{
-//            ProgressHUD.show("Loading chats")
-//            let chatReference = Firestore.firestore().collection("chats")
-//            chatReference.addSnapshotListener({ (snapShot, error) in
-//                DataService.instance.getAllChats { (returnedArray) in
-//                    ProgressHUD.dismiss()
-//                    self.chats = returnedArray
-//                    self.tableView.reloadData()
-//                }
-//            })
-//        }else{
-//            print("sdljcnvsa")
-//        }
+        //        if Auth.auth().currentUser?.uid != nil{
+        //            ProgressHUD.show("Loading chats")
+        //            let chatReference = Firestore.firestore().collection("chats")
+        //            chatReference.addSnapshotListener({ (snapShot, error) in
+        //                DataService.instance.getAllChats { (returnedArray) in
+        //                    ProgressHUD.dismiss()
+        //                    self.chats = returnedArray
+        //                    self.tableView.reloadData()
+        //                }
+        //            })
+        //        }else{
+        //            print("sdljcnvsa")
+        //        }
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
@@ -78,7 +77,7 @@ extension ChatsVC:UITableViewDataSource,UITableViewDelegate,ChatsCellDelegate{
     
     func openProfile(uid: UserModel) {
         
-       
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -91,9 +90,8 @@ extension ChatsVC:UITableViewDataSource,UITableViewDelegate,ChatsCellDelegate{
         cell.initCell()
         DataService.instance.getUserOfID(userID: chats[indexPath.row].otherUser) { (success, returnedUser) in
             if success{
-                self.user.append(returnedUser!)
                 cell.nameLbl.text = returnedUser!.name
-                cell.profileImg.sd_setImage(with: URL(string: returnedUser!.image), placeholderImage: UIImage(systemName: "person.crop.circle.fill"))
+                cell.profileImg.sd_setImage(with: URL(string: returnedUser!.image), placeholderImage: placeHolderImage)
             }
         }
         if cell.chat.notReadBy.contains(DataService.instance.currentUser!.id){
@@ -107,10 +105,13 @@ extension ChatsVC:UITableViewDataSource,UITableViewDelegate,ChatsCellDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "MessagesVC") as! MessagesVC
+        if let cell = tableView.cellForRow(at: indexPath) as? ChatsCell {
+            let name = cell.nameLbl.text
+            vc.passName = name
+        }
         vc.chatID = chats[indexPath.row].chatId
-        rID = chats[indexPath.row].otherUser
         vc.notReadBy = self.chats[indexPath.row].notReadBy
-        vc.passRecieverUser = user[indexPath.row]
+        vc.isComeFromFirendsOrChatList = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

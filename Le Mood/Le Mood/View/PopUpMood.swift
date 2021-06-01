@@ -27,6 +27,7 @@ class PopUpMood: UIViewController {
     @IBOutlet weak var selectMoodImg: UIImageView!
     
     weak var delegateRefresh : refresh?
+    var currnetUser = DataService.instance.currentUser
     
     //MARK:- Controller Life Cycle
     
@@ -79,16 +80,38 @@ class PopUpMood: UIViewController {
     }
     @IBAction func didChangedSliderValue(_ sender: UISlider) {
         selectedMoodValue.text = "\(Int(moodeSlider.value))"
+        
+        if moodeSlider.value <= 100  && moodeSlider.value >= 80{
+            selectMoodImg.image = UIImage(named: "5")
+            selectedMoodName.text = "Excited"
+        }
+        else if moodeSlider.value <= 80  && moodeSlider.value >= 60 {
+            selectMoodImg.image = UIImage(named: "4")
+            selectedMoodName.text = "Blush"
+        }
+        else if moodeSlider.value <= 60  && moodeSlider.value >= 40 {
+            selectMoodImg.image = UIImage(named: "3")
+            selectedMoodName.text = "Happy"
+        }
+        else if moodeSlider.value <= 40  && moodeSlider.value >= 20  {
+            selectMoodImg.image = UIImage(named: "2")
+            selectedMoodName.text = "Sad"
+        }
+        else
+        {
+            selectMoodImg.image = UIImage(named: "1")
+            selectedMoodName.text = "Angry"
+        }
     }
     
     @IBAction func btnSubmitMoodTapped(_ sender: Any){
-        
+        let currnetUser = DataService.instance.currentUser
         Alert.showWithTwoActions(title: "Confirm", msg: "Are you sure want to submit your mood?", okBtnTitle: "Yes", okBtnAction: {
             ProgressHUD.show()
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 ProgressHUD.dismiss()
                 let docId = getUniqueId()
-                let mood = MoodModel(moodId: docId, moodType: self.selectedMoodName.text!, moodValue: Int(self.moodeSlider.value), time: getTime(), date: getCurrentDate())
+                let mood = MoodModel(moodId: docId, moodType: self.selectedMoodName.text!, moodValue: Int(self.moodeSlider.value), time: getTime(), date: getCurrentDate(),country: currnetUser?.country ?? "", state: currnetUser?.region ?? "")
                 DataService.instance.saveMood(mood: mood, docId: docId)
                 self.delegateRefresh?.moodRefresh(success: true)
                 self.dismiss(animated: true, completion: nil)

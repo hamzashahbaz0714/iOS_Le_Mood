@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>com.moodApp.m</string>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -39,11 +43,11 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>&quot;Camera use for update profile picture&quot;</string>
+	<string>"Camera use for update profile picture"</string>
 	<key>NSContactsUsageDescription</key>
 	<string>Contacts are used to show app to your contacts</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>&quot;Photo library choose picture to updated profile picture&quot;</string>
+	<string>"Photo library choose picture to updated profile picture"</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -94,9 +98,5 @@
 	</array>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
-	<key>BGTaskSchedulerPermittedIdentifiers</key>
-	<array>
-		<string>com.moodApp.m</string>
-	</array>
 </dict>
 </plist>

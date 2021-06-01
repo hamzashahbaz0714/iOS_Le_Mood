@@ -41,6 +41,7 @@
 		FA6E32EF2657BEEA008C5013 /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E32ED2657BEEA008C5013 /* ChatListCell.swift */; };
 		FA6E32F42657C983008C5013 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E32F32657C983008C5013 /* SettingViewController.swift */; };
 		FA6E331C2657E3D7008C5013 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E331B2657E3D7008C5013 /* ProfileViewController.swift */; };
+		FA70CE3026663B1E008106DB /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA70CE2F26663B1E008106DB /* CustomTextView.swift */; };
 		FA9C913F26564BD0003CCBAD /* Onboard1VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9C913E26564BD0003CCBAD /* Onboard1VC.swift */; };
 		FA9C914226564CC4003CCBAD /* Onboard2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9C914126564CC4003CCBAD /* Onboard2VC.swift */; };
 		FA9C914526564D7A003CCBAD /* Onboard3VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9C914426564D7A003CCBAD /* Onboard3VC.swift */; };
@@ -126,6 +127,7 @@
 		FA6E32ED2657BEEA008C5013 /* ChatListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
 		FA6E32F32657C983008C5013 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		FA6E331B2657E3D7008C5013 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		FA70CE2F26663B1E008106DB /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
 		FA9C913E26564BD0003CCBAD /* Onboard1VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboard1VC.swift; sourceTree = "<group>"; };
 		FA9C914126564CC4003CCBAD /* Onboard2VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboard2VC.swift; sourceTree = "<group>"; };
 		FA9C914426564D7A003CCBAD /* Onboard3VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboard3VC.swift; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 				FA1B155C263FD6E0008CD9A3 /* Rechability.swift */,
 				FA1B1558263FD6E0008CD9A3 /* Storyboard.swift */,
 				FA1B155B263FD6E0008CD9A3 /* UtilityManager.swift */,
+				FA70CE2F26663B1E008106DB /* CustomTextView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -689,6 +692,7 @@
 				FA6E32F42657C983008C5013 /* SettingViewController.swift in Sources */,
 				FAC09339265E3515004B53F7 /* AllFriendsViewController.swift in Sources */,
 				FA1B1562263FD6E0008CD9A3 /* UtilityManager.swift in Sources */,
+				FA70CE3026663B1E008106DB /* CustomTextView.swift in Sources */,
 				FA3AA6F5265CDFC900D48BC2 /* MoodModel.swift in Sources */,
 				FA0AA2BE265D365F004545A3 /* CornerRadius.swift in Sources */,
 				FADF51CD265FC4920051F6FB /* ChatsCell.swift in Sources */,
@@ -851,7 +855,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Le Mood/Le Mood.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = A53Y9FPVYJ;
 				INFOPLIST_FILE = "Le Mood/Assets/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -874,7 +878,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Le Mood/Le Mood.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = A53Y9FPVYJ;
 				INFOPLIST_FILE = "Le Mood/Assets/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;

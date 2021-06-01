@@ -56,7 +56,7 @@ class MoodFriendsViewController: UIViewController {
                     }
                     DispatchQueue.main.async {
                         self?.getAllFriends()
-//                        ProgressHUD.dismiss()
+                        //                        ProgressHUD.dismiss()
                     }
                     
                     
@@ -77,22 +77,26 @@ class MoodFriendsViewController: UIViewController {
     func getAllFriends(){
         DataService.instance.getAllFriends { [weak self] (success, friends) in
             if success {
-                for i in 0..<(self?.contactArr.count ?? 0){
-                    for j in 0..<(friends?.count ?? 0) {
-
-                        let mobileContact = self?.contactArr[i].phoneNumber
-                        let phoneNumbers =  try? self?.phoneNumberKit.parse(mobileContact ?? "")
-                        let firebaseContact = friends?[j].phoneNumber
-                        let phoneNumbers1 =  try? self?.phoneNumberKit.parse(firebaseContact ?? "")
-                        if phoneNumbers?.nationalNumber == phoneNumbers1?.nationalNumber {
-                            self?.moodFriends.append((friends?[j])!)
-                            break
+                DispatchQueue.global().async { //1
+                    for i in 0..<(self?.contactArr.count ?? 0){
+                        for j in 0..<(friends?.count ?? 0) {
+                            
+                            let mobileContact = self?.contactArr[i].phoneNumber
+                            let phoneNumbers =  try? self?.phoneNumberKit.parse(mobileContact ?? "")
+                            let firebaseContact = friends?[j].phoneNumber
+                            let phoneNumbers1 =  try? self?.phoneNumberKit.parse(firebaseContact ?? "")
+                            if phoneNumbers?.nationalNumber == phoneNumbers1?.nationalNumber {
+                                self?.moodFriends.append((friends?[j])!)
+                                break
+                            }
+                            
                         }
-                        
+                    }
+                    DispatchQueue.main.async {
+                        self?.tableView.reloadData()
+                        ProgressHUD.dismiss()
                     }
                 }
-                self?.tableView.reloadData()
-                ProgressHUD.dismiss()
             }
             else
             {
@@ -123,7 +127,33 @@ extension MoodFriendsViewController: UITableViewDelegate,UITableViewDataSource{
         let data = moodFriends[indexPath.row]
         cell.lblContactName.text = data.name
         cell.lblContactNo.text = data.phoneNumber
-//        cell.MessageView.isHidden = true
+        //        cell.MessageView.isHidden = true
+        if data.moodType == "Angry" {
+            cell.moodValue.text = "\(data.moodValue)"
+            cell.moodImageView.image = UIImage(named: "emoji1")
+        }
+        else if data.moodType == "Sad"
+        {
+            cell.moodValue.text = "\(data.moodValue)"
+            cell.moodImageView.image = UIImage(named: "emoji2")
+        }
+        else if data.moodType == "Happy" {
+            cell.moodValue.text = "\(data.moodValue)"
+            cell.moodImageView.image = UIImage(named: "emoji3")
+        }
+        else if data.moodType == "Blush" {
+            cell.moodValue.text = "\(data.moodValue)"
+            cell.moodImageView.image = UIImage(named: "emoji4")
+        }
+        else if data.moodType == "Excited"{
+            cell.moodValue.text = "\(data.moodValue)"
+            cell.moodImageView.image = UIImage(named: "emoji_think")
+        }
+        else
+        {
+            
+            cell.moodValue.text = "---"
+        }
         cell.userImgView.sd_setImage(with: URL(string: data.image), placeholderImage: placeHolderImage, options: .forceTransition)
         return cell
     }

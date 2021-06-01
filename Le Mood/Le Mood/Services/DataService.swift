@@ -61,9 +61,11 @@ class DataService{
                 let image = data["image"] as? String ?? "Not Found"
                 let phoneNumber = data["phoneNumber"] as? String ?? "Not Found"
                 let fcmToken = data["fcmToken"] as? String ?? "Not Found"
+                let moodId = data["moodId"] as? String ?? "Not Found"
+                let moodType = data["moodType"] as? String ?? "Not Found"
+                let moodValue = data["moodValue"] as? Int ?? 0
                 
-                
-                let user = UserModel(id: id, name: name, email: email, phoneNumber: phoneNumber, image: image, gender: gender, country: country, region: region)
+                let user = UserModel(id: id, name: name, email: email, phoneNumber: phoneNumber, image: image, gender: gender, country: country, region: region,moodId: moodId,moodType: moodType,moodValue: moodValue)
                 user.fcmToken = fcmToken
                 handler(true,user)
                 
@@ -75,20 +77,71 @@ class DataService{
     }
     
     func saveMood(mood: MoodModel,docId: String){
-        userReference.document(Auth.auth().currentUser!.uid).collection("moods").document(docId).setData([
+        userReference.document(Auth.auth().currentUser!.uid).collection("moods").document(mood.moodId).setData([
             "moodId":mood.moodId,
             "moodType":mood.moodType,
             "moodValue":mood.moodValue,
             "time": mood.time,
             "date": mood.date,
+            "country": mood.country,
+            "state": mood.state,
             "createdAt": FieldValue.serverTimestamp()
         ], merge: true) { (err) in
             if let err = err {
                 debugPrint("Error adding document: \(err)")
             } else {
+                self.userReference.document(Auth.auth().currentUser!.uid).setData([
+                    "moodId":mood.moodId,
+                    "moodType":mood.moodType,
+                    "moodValue":mood.moodValue
+                ], merge: true) { (err) in
+                    if let err = err {
+                        debugPrint("Error adding document: \(err)")
+                    } else {
+                    }
+                }
             }
         }
     }
+//        country
+//        "Pakistan"
+//        createdAt
+//        May 26, 2021 at 5:47:57 PM UTC+5
+//        email
+//        "user3@gmail.com"
+//        (string)
+//        fcmToken
+//        "cZ5wLPq3TEAcsZt7SRePHH:APA91bFm0kobNP8ZOnFPMLN0uKn-jibfkz6hwZ--TczTz5YxB2pNV16MbhupB04g9FA2nNV4KBF27dBieLve_OsUOup7QudWhc0uG06O05tBZv0959tt132HPc4TuLfLK6TvGTejfjS4"
+//        gender
+//        "female"
+//        id
+//        "frTW4eReHPQyvZeuSSVizyB6olm2"
+//        image
+//        "https://firebasestorage.googleapis.com/v0/b/le-mood-50649.appspot.com/o/Profile%20Pics%2FfrTW4eReHPQyvZeuSSVizyB6olm2.jpg?alt=media&token=11f4fdbc-0fcf-414c-bbd7-47fd601a7161"
+//        name
+//        "User 3"
+//        phoneNumber
+//        "+923005098444"
+//        region
+//        "State 1"
+    
+//    chatReference.document(chatID).collection("messages").document(message.messageId).setData([
+//        "isIncoming":message.isIncoming,
+//        "message":message.messageBody,
+//        "messageDate":message.messageDate,
+//        "messageId":message.messageId,
+//        "messageTime":message.messageTime,
+//        "messageType":message.messageType,
+//        "receiverId":message.reciverId,
+//        "senderId":message.senderId,
+//        "createdAt": FieldValue.serverTimestamp()
+//    ], merge: true) { (err) in
+//        if let err = err {
+//            debugPrint("Error adding document: \(err)")
+//        } else {
+//            self.chatReference.document(chatID).setData([
+//                "chatId":chatID,
+
     
     func getAllFriends(handler: @escaping(_ success:Bool,_ allUser:[UserModel]?)->()){
         var userArray  = [UserModel]()
@@ -104,9 +157,13 @@ class DataService{
                 let image = data["image"] as? String ?? "Not Found"
                 let phoneNumber = data["phoneNumber"] as? String ?? "Not Found"
                 let fcmToken = data["fcmToken"] as? String ?? "Not Found"
+                let moodId = data["moodId"] as? String ?? "Not Found"
+                let moodType = data["moodType"] as? String ?? "Not Found"
+                let moodValue = data["moodValue"] as? Int ?? 0
+
                 
                 if id != Auth.auth().currentUser?.uid {
-                    let user = UserModel(id: id, name: name, email: email, phoneNumber: phoneNumber, image: image, gender: gender, country: country, region: region)
+                    let user = UserModel(id: id, name: name, email: email, phoneNumber: phoneNumber, image: image, gender: gender, country: country, region: region,moodId: moodId,moodType: moodType,moodValue: moodValue)
                     user.fcmToken = fcmToken
                     userArray.append(user)
                 }
@@ -128,8 +185,10 @@ class DataService{
                         let moodValue = data["moodValue"] as? Int ?? 0
                         let time = data["time"] as? String ?? "Not Found"
                         let date = data["date"] as? String ?? "Not Found"
+                        let country = data["country"] as? String ?? "Not Found"
+                        let state = data["state"] as? String ?? "Not Found"
                         
-                        let mood = MoodModel(moodId: moodId, moodType: moodType, moodValue: moodValue, time: time, date: date)
+                        let mood = MoodModel(moodId: moodId, moodType: moodType, moodValue: moodValue, time: time, date: date,country: country,state: state)
                         handler(true,mood)
                         break
                     }
@@ -174,7 +233,7 @@ class DataService{
     
     func getAllChats(handler:@escaping(_ chats:[Chat])->()){
         var chatsArray = [Chat]()
-        chatReference.order(by: "messageDate", descending: true).getDocuments() { (querySnapshot, err) in
+        chatReference.order(by: "createdAt", descending: true).getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
                 handler(chatsArray)
@@ -264,6 +323,7 @@ class DataService{
                     "createdAt":FieldValue.serverTimestamp(),
                     "messageType": message.messageType,
                     "notReadBy":notReadBy,
+                    "listnerId": [message.senderId,message.reciverId]
                 ], merge: true) { (err) in
                     if let err = err {
                         debugPrint("Error adding document: \(err)")

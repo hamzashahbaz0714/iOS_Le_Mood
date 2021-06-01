@@ -17,9 +17,11 @@ class UserModel {
     var gender: String
     var country: String
     var region: String
+    var moodId: String
+    var moodType: String
+    var moodValue: Int
     var fcmToken = ""
-    
-    init(id:String ,name: String, email: String, phoneNumber: String ,image: String ,gender: String ,country: String, region: String) {
+    init(id:String ,name: String, email: String, phoneNumber: String ,image: String ,gender: String ,country: String, region: String, moodId: String,moodType: String, moodValue: Int) {
         self.id = id
         self.name = name
         self.email = email
@@ -28,6 +30,9 @@ class UserModel {
         self.gender = gender
         self.country = country
         self.region = region
+        self.moodId = moodId
+        self.moodType = moodType
+        self.moodValue = moodValue
     }
 }
 

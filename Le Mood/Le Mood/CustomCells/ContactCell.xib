@@ -57,8 +57,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YR6-By-U2n">
                                 <rect key="frame" x="260" y="13" width="30" height="52"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emoji4" translatesAutoresizingMaskIntoConstraints="NO" id="Kgh-m8-qHf">
-                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="face.dashed.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Kgh-m8-qHf">
+                                        <rect key="frame" x="0.0" y="0.5" width="30" height="29"/>
+                                        <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="Amw-98-uja"/>
                                             <constraint firstAttribute="width" constant="30" id="aNM-vO-u2g"/>
@@ -107,6 +108,8 @@
                 <outlet property="MessageView" destination="YR6-By-U2n" id="cO3-oO-WDf"/>
                 <outlet property="lblContactName" destination="68E-v5-Vzo" id="9uO-qw-ya5"/>
                 <outlet property="lblContactNo" destination="qbY-yr-z1u" id="1PY-Fv-whi"/>
+                <outlet property="moodImageView" destination="Kgh-m8-qHf" id="fyw-No-83k"/>
+                <outlet property="moodValue" destination="Nld-lL-gQu" id="dnf-aa-4Tt"/>
                 <outlet property="userImgView" destination="sMO-CX-M4j" id="ePs-Z5-qOz"/>
             </connections>
             <point key="canvasLocation" x="353.62318840579712" y="63.616071428571423"/>
@@ -114,7 +117,7 @@
     </objects>
     <resources>
         <image name="ME" width="50" height="50"/>
-        <image name="emoji4" width="28" height="28"/>
+        <image name="face.dashed.fill" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

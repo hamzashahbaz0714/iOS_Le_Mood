@@ -19,7 +19,7 @@ class FriendsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewPager.roundCorners(corners: [.topLeft, .topRight], radius: 30)
+        viewPager.roundCorners(corners: [.topLeft, .topRight], radius: 15)
         setupViewPager()
     }
     

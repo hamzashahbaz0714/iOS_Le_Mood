@@ -41,7 +41,7 @@ class SettingViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let user = DataService.instance.currentUser
-        profileImgView.sd_setImage(with: URL(string: user?.image ?? "" ), placeholderImage: nil, options: .forceTransition)
+        profileImgView.sd_setImage(with: URL(string: user?.image ?? "" ), placeholderImage: placeHolderImage, options: .forceTransition)
         lblName.text = user?.name
         lblEmail.text = user?.email
 

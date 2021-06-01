@@ -10,7 +10,7 @@ import UIKit
 
 class ChatMessageCell: UITableViewCell {
 
-    let messageLabel = UILabel()
+    let messageLabel = UITextView()
     let bubbleBackgroundView = UIView()
     
     var leadingConstraint: NSLayoutConstraint!
@@ -22,8 +22,9 @@ class ChatMessageCell: UITableViewCell {
     }
     var chatMessage: Message! {
         didSet {
-            bubbleBackgroundView.backgroundColor = chatMessage.isIncoming ? .white : #colorLiteral(red: 0, green: 0.3716039062, blue: 0.5234339833, alpha: 1)
-            bubbleBackgroundView.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.7715111301)
+            messageLabel.delegate = self
+            bubbleBackgroundView.backgroundColor = chatMessage.isIncoming ? .white : #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
+            bubbleBackgroundView.layer.shadowColor = #colorLiteral(red: 0.3098039329, green: 0.01568627544, blue: 0.1294117719, alpha: 1)
             bubbleBackgroundView.layer.shadowOpacity = 0.2
             bubbleBackgroundView.layer.shadowOffset = .zero
             bubbleBackgroundView.layer.shadowRadius = 4
@@ -65,7 +66,14 @@ class ChatMessageCell: UITableViewCell {
         bubbleBackgroundView.layer.cornerRadius = 12
         bubbleBackgroundView.translatesAutoresizingMaskIntoConstraints = false
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
-        messageLabel.numberOfLines = 0
+        messageLabel.backgroundColor = UIColor.clear
+//        messageLabel.text.lineRange(for: 0)
+//        messageLabel.textContainer.maximumNumberOfLines = 0
+        messageLabel.dataDetectorTypes = [.link]
+        messageLabel.isUserInteractionEnabled = true // default: true
+        messageLabel.isEditable = false // default: true
+        messageLabel.isSelectable = true // default: true        self.messageLabel.delegate = self
+        messageLabel.isScrollEnabled = false
         
         addSubview(bubbleBackgroundView)
         addSubview(messageLabel)
@@ -99,6 +107,11 @@ class ChatMessageCell: UITableViewCell {
 
 
 
-
+extension ChatMessageCell: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+          UIApplication.shared.open(URL)
+          return false
+      }
+}
 
 

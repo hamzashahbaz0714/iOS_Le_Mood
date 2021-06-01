@@ -77,18 +77,23 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     @IBOutlet weak var messageTxtView:UITextView!
     @IBOutlet weak var imgView: UIImageView!
-    
+    @IBOutlet weak var txtMessageHeight: NSLayoutConstraint!
     var passRecieverUser : UserModel?
     fileprivate let cellId = "id123"
-    
-    
+    var isComeFromFirendsOrChatList = false
+    var passName: String?
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        lblChatRecieverName.text = passRecieverUser?.name
-        imgView.sd_setImage(with: URL(string: passRecieverUser?.image ?? ""), placeholderImage: placeHolderImage, options: SDWebImageOptions.forceTransition)
+        if isComeFromFirendsOrChatList == true {
+            self.lblChatRecieverName.text = passName
+        }
+        else
+        {
+            lblChatRecieverName.text = passRecieverUser?.name
+            imgView.sd_setImage(with: URL(string: passRecieverUser?.image ?? ""), placeholderImage: placeHolderImage, options: SDWebImageOptions.forceTransition)
+        }
         //view.bindKeyboard()
         let tapGester = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapGester)
@@ -230,15 +235,18 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         UIApplication.shared.applicationIconBadgeNumber = 0
-        let othertUserID = chatID?.replacingOccurrences(of: DataService.instance.currentUser!.id, with: "")
-        print("Other userID is: \(othertUserID!)")
-        DataService.instance.getUserOfID(userID: othertUserID!) { (success, returnedUser) in
-            if success{
-                print("Other user is: \(returnedUser!.name)")
-                self.navigationItem.title = returnedUser!.name
+        if isComeFromFirendsOrChatList == true {
+            let othertUserID = chatID?.replacingOccurrences(of: DataService.instance.currentUser!.id, with: "")
+            rID = othertUserID ?? ""
+            print("Other userID is: \(othertUserID!)")
+            DataService.instance.getUserOfID(userID: othertUserID!) {[weak self] (success, returnedUser) in
+                if success{
+                    self?.passRecieverUser = returnedUser
+                    self?.imgView.sd_setImage(with: URL(string: returnedUser?.image ?? ""), placeholderImage: placeHolderImage, options: SDWebImageOptions.forceTransition)
+                    
+                }
             }
         }
-        
     }
     
     @IBAction func btnBackTapped(_ sender: Any){
@@ -260,6 +268,9 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row >= messagesArray.count{
+            return UITableViewCell()
+        }
         if messagesArray[indexPath.row].messageType == "image" {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MediaCell", for: indexPath) as! MediaCell
             if messagesArray[indexPath.row].isIncoming {
@@ -339,6 +350,7 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         else
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ChatMessageCell
+            cell.selectionStyle = .none
             if messagesArray.indices.contains(indexPath.row){
                 cell.chatMessage = messagesArray[indexPath.row]
                 return cell
@@ -359,21 +371,18 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
     
     @IBAction func sendBtnTapped(_ sender:Any){
-        if messageTxtView.text != "" && isEdited == true{
+        if messageTxtView.text != ""{
             let m = messageTxtView.text
             let message = Message(messageId: getUniqueId(), reciverId: rID, senderId: Auth.auth().currentUser!.uid, messageBody: messageTxtView.text, messageType: "text", messageTime: getCurrentTime(), messageDate: getCurrentDateWithTime(), isIncoming: false)
             DataService.instance.addChatMessage(chatID: chatID!, message: message,notReadBy: [rID])
-            self.messageTxtView.textColor = .lightGray
-            self.messageTxtView.text = "Type Something..."
-            isEdited = false
-            self.messageTxtView.resignFirstResponder()
+            self.messageTxtView.text = ""
             let sender = PushNotificationSender()
             sender.sendPushNotification(to: "\(self.passRecieverUser!.fcmToken)", title: "New Message from \(DataService.instance.currentUser!.name)", body: m!,unread: 1)
-//
-//                        DataService.instance.getUnreadCountOfUser(string: self.user.userID) { success, unread in
-//                            if success{
-//                                let sender = PushNotificationSender()
-//                                sender.sendPushNotification(to: "\(self.user.fcmToken)", title: "New Message from \(DataService.instance.currentUser!.name)", body: m!,unread: unread + 1)
+            //
+            //                        DataService.instance.getUnreadCountOfUser(string: self.user.userID) { success, unread in
+            //                            if success{
+            //                                let sender = PushNotificationSender()
+            //                                sender.sendPushNotification(to: "\(self.user.fcmToken)", title: "New Message from \(DataService.instance.currentUser!.name)", body: m!,unread: unread + 1)
             //                    let usersRef = Firestore.firestore().collection("users").document(self.user.userID)
             //                    usersRef.setData(["unread": unread + 1], merge: true)
             //                }
@@ -388,12 +397,10 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 }
 
 extension MessagesVC:UITextViewDelegate{
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView == messageTxtView && isEdited == false{
-            textView.text = ""
-            textView.textColor = .black
-            isEdited = true
-        }
+    func textViewDidChange(_ textView: UITextView) {
+        let sizeToFitIn = CGSize(width: self.messageTxtView.bounds.size.width, height: 150)
+                let newSize = self.messageTxtView.sizeThatFits(sizeToFitIn)
+                self.txtMessageHeight.constant = newSize.height
     }
 }
 extension MessagesVC: LightboxControllerPageDelegate {
