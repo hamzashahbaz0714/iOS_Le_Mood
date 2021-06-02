@@ -58,7 +58,9 @@ class SettingViewController: UIViewController {
             print("Privacy Policy")
         case 3:
             print("Blocked")
-        default:
+        case 4:
+            let controller: LanguagesViewController = LanguagesViewController.initiateFrom(Storybaord: .Main)
+            self.pushController(contorller: controller, animated: true)        default:
            print("Logout")
             Alert.showWithTwoActions(title: "Confirm", msg: "Are you sure want to Logout?", okBtnTitle: "Yes", okBtnAction: {
                 ProgressHUD.show()

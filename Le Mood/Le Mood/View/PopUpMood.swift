@@ -15,7 +15,7 @@ protocol refresh : NSObject{
 }
 
 class PopUpMood: UIViewController {
-
+    
     //MARK:- Properties
     
     @IBOutlet weak var submitView: UIView!
@@ -41,7 +41,7 @@ class PopUpMood: UIViewController {
             let tapgesture = UITapGestureRecognizer(target: self, action: #selector(handleMoodimages(sender:)))
             img.addGestureRecognizer(tapgesture)
         }
-
+        
     }
     
     override func viewWillLayoutSubviews() {
@@ -70,7 +70,7 @@ class PopUpMood: UIViewController {
             selectMoodImg.image = moodImages[4].image
             selectedMoodName.text = "Excited"
         }
-
+        
     }
     
     //MARK:- Actions
@@ -108,13 +108,25 @@ class PopUpMood: UIViewController {
         let currnetUser = DataService.instance.currentUser
         Alert.showWithTwoActions(title: "Confirm", msg: "Are you sure want to submit your mood?", okBtnTitle: "Yes", okBtnAction: {
             ProgressHUD.show()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                ProgressHUD.dismiss()
-                let docId = getUniqueId()
-                let mood = MoodModel(moodId: docId, moodType: self.selectedMoodName.text!, moodValue: Int(self.moodeSlider.value), time: getTime(), date: getCurrentDate(),country: currnetUser?.country ?? "", state: currnetUser?.region ?? "")
-                DataService.instance.saveMood(mood: mood, docId: docId)
-                self.delegateRefresh?.moodRefresh(success: true)
-                self.dismiss(animated: true, completion: nil)
+            let docId = getUniqueId()
+            let mood = MoodModel(moodId: docId, moodType: self.selectedMoodName.text!, moodValue: Int(self.moodeSlider.value), time: getTime(), date: getCurrentDate(),country: currnetUser?.country ?? "", state: currnetUser?.region ?? "")
+            DataService.instance.saveMood(mood: mood, docId: docId)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                DataService.instance.getUserOfID(userID: currnetUser?.id ?? "") { (success, user) in
+                    if success {
+                        DataService.instance.setCurrentUser(user: user!)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            self.delegateRefresh?.moodRefresh(success: true)
+                            ProgressHUD.dismiss()
+                            self.dismiss(animated: true, completion: nil)
+                        }
+                    }
+                    else
+                    {
+                        ProgressHUD.dismiss()
+                    }
+                }
+
             }
         }, cancelBtnTitle: "Cancel") {
             

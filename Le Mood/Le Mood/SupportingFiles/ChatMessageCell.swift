@@ -33,7 +33,7 @@ class ChatMessageCell: UITableViewCell {
             if chatMessage.isIncoming{
                 let attributedText = NSMutableAttributedString(string: "\(chatMessage.messageBody)", attributes: [.font: UIFont(name: "Poppins-Medium", size: 17)!])
                 
-                attributedText.append(NSAttributedString(string: "\n\(chatMessage.messageDate)", attributes: [.font: UIFont(name: "Poppins-Medium", size: 12)!]))
+//                attributedText.append(NSAttributedString(string: "\n\(chatMessage.messageDate)", attributes: [.font: UIFont(name: "Poppins-Medium", size: 12)!]))
                 
                 messageLabel.attributedText = attributedText
                 

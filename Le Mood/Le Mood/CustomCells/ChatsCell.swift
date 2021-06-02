@@ -44,7 +44,16 @@ class ChatsCell: UITableViewCell {
         getTimeDifference()
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction))
         nameLbl.addGestureRecognizer(tap)
-        self.lastMessageLbl.text = chat.lastMessage
+        if chat.messageType == "text"{
+            self.lastMessageLbl.text = chat.lastMessage
+        }
+        else if chat.messageType == "video"{
+            self.lastMessageLbl.text = "video"
+        }
+        else
+        {
+            self.lastMessageLbl.text = "image"
+        }
     }
     
     func getTimeDifference(){

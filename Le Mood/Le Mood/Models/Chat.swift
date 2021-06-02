@@ -12,6 +12,7 @@ class Chat{
     public var chatId:String
     public var lastMessage:String
     public var lastMessageDate:String
+    public var messageType: String = ""
     public var lastMessageTime:Int
     public var sender:String
     public var receiver:String

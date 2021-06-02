@@ -64,9 +64,9 @@ class DataService{
                 let moodId = data["moodId"] as? String ?? "Not Found"
                 let moodType = data["moodType"] as? String ?? "Not Found"
                 let moodValue = data["moodValue"] as? Int ?? 0
+                let lastMoodDate = data["lastMoodDate"] as? String ?? ""
                 
-                let user = UserModel(id: id, name: name, email: email, phoneNumber: phoneNumber, image: image, gender: gender, country: country, region: region,moodId: moodId,moodType: moodType,moodValue: moodValue)
-                user.fcmToken = fcmToken
+                let user = UserModel(id: id, name: name, email: email, phoneNumber: phoneNumber, image: image, gender: gender, country: country, region: region,moodId: moodId,moodType: moodType,moodValue: moodValue,lastMoodDate: lastMoodDate,fcmToken: fcmToken)
                 handler(true,user)
                 
             } else {
@@ -93,7 +93,8 @@ class DataService{
                 self.userReference.document(Auth.auth().currentUser!.uid).setData([
                     "moodId":mood.moodId,
                     "moodType":mood.moodType,
-                    "moodValue":mood.moodValue
+                    "moodValue":mood.moodValue,
+                    "lastMoodDate":getCurrentDate()
                 ], merge: true) { (err) in
                     if let err = err {
                         debugPrint("Error adding document: \(err)")
@@ -160,10 +161,11 @@ class DataService{
                 let moodId = data["moodId"] as? String ?? "Not Found"
                 let moodType = data["moodType"] as? String ?? "Not Found"
                 let moodValue = data["moodValue"] as? Int ?? 0
+                let lastMoodDate = data["moodType"] as? String ?? "Not Found"
 
                 
                 if id != Auth.auth().currentUser?.uid {
-                    let user = UserModel(id: id, name: name, email: email, phoneNumber: phoneNumber, image: image, gender: gender, country: country, region: region,moodId: moodId,moodType: moodType,moodValue: moodValue)
+                    let user = UserModel(id: id, name: name, email: email, phoneNumber: phoneNumber, image: image, gender: gender, country: country, region: region,moodId: moodId,moodType: moodType,moodValue: moodValue,lastMoodDate: lastMoodDate,fcmToken: fcmToken)
                     user.fcmToken = fcmToken
                     userArray.append(user)
                 }
@@ -247,9 +249,10 @@ class DataService{
                     let sender = data["sender"] as? String ?? "Not Found"
                     let receiver = data["receiver"] as? String ?? ""
                     let notReadBy = data["notReadBy"] as? [String] ?? [String]()
-                    
+                    let messageType = data["messageType"] as? String ?? ""
+
                     let chat = Chat(chatId: chatId, lastMessage: lastMessage, lastMessageDate: lastMessageDate, lastMessageTime: lastMessageTime, sender: sender, receiver: receiver,notReadBy: notReadBy)
-                    
+                    chat.messageType = messageType
                     if chat.chatId.contains(Auth.auth().currentUser!.uid){
                         print("coming here")
                         let rID = chat.chatId.replacingOccurrences(of: Auth.auth().currentUser!.uid, with: "")

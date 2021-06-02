@@ -11,7 +11,7 @@ import SDWebImage
 import FirebaseAuth
 
 class HomeViewController: UIViewController {
-
+    
     //MARK:- Properties
     
     @IBOutlet weak var mainView: UIView!
@@ -36,41 +36,10 @@ class HomeViewController: UIViewController {
             view.addGestureRecognizer(tapgesture)
             view.roundCorners(corners: [.topRight, .bottomLeft], radius: 18)
         }
-        getTodayMood()
+        getMood()
     }
     
-    func getTodayMood(){
-        ProgressHUD.show()
-        DataService.instance.getMoodByDate { [weak self] (success, mood) in
-            if success {
-                ProgressHUD.dismiss()
-                self?.appDelegate.isMoodFetched = true
-                self?.appDelegate.mood = mood
-                self?.lblMoodValue.text = "\(mood?.moodValue ?? 0)"
-                self?.lblMoodValue.font = UIFont(name: "Poppins-Medium", size: 32)
-                switch mood?.moodType {
-                case "Angry":
-                    self?.moodImage.image = #imageLiteral(resourceName: "emoji1")
-                case "Sad":
-                    self?.moodImage.image = #imageLiteral(resourceName: "emoji2")
-                case "Happy":
-                    self?.moodImage.image = #imageLiteral(resourceName: "emoji4")
-                case "Blush":
-                    self?.moodImage.image = #imageLiteral(resourceName: "emoji3")
-                default:
-                    self?.moodImage.image = #imageLiteral(resourceName: "emoji_think")
-                }
-            }
-            else
-            {
-                ProgressHUD.dismiss()
-                self?.appDelegate.isMoodFetched = false
-                self?.moodImage.image = UIImage(named: "icon_submit_mood")
-                self?.lblMoodValue.font = UIFont(name: "Poppins-Medium", size: 18)
-                self?.lblMoodValue.text = "Submit your mood"
-            }
-        }
-    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -81,6 +50,36 @@ class HomeViewController: UIViewController {
     }
     
     //MARK:- Supporting Functions
+    
+    
+    func getMood(){
+        
+        let user = DataService.instance.currentUser
+        if user?.lastMoodDate != "" && user?.lastMoodDate == getCurrentDate(){
+            self.appDelegate.isMoodFetched = true
+            self.lblMoodValue.text = "\(user?.moodValue ?? 0)"
+            self.lblMoodValue.font = UIFont(name: "Poppins-Medium", size: 32)
+            switch user?.moodType {
+            case "Angry":
+                self.moodImage.image = #imageLiteral(resourceName: "emoji1")
+            case "Sad":
+                self.moodImage.image = #imageLiteral(resourceName: "emoji2")
+            case "Happy":
+                self.moodImage.image = #imageLiteral(resourceName: "emoji4")
+            case "Blush":
+                self.moodImage.image = #imageLiteral(resourceName: "emoji3")
+            default:
+                self.moodImage.image = #imageLiteral(resourceName: "emoji_think")
+            }
+        }
+        else
+        {
+            self.appDelegate.isMoodFetched = false
+            self.moodImage.image = UIImage(named: "icon_submit_mood")
+            self.lblMoodValue.font = UIFont(name: "Poppins-Medium", size: 18)
+            self.lblMoodValue.text = "Submit your mood"
+        }
+    }
     
     @objc func handleDashobardView(sender: UITapGestureRecognizer){
         switch sender.view?.tag {
@@ -97,20 +96,19 @@ class HomeViewController: UIViewController {
             print("4")
         default:
             ProgressHUD.show()
-            DataService.instance.getMoodByDate { (success, mood) in
-                if success {
-                    ProgressHUD.dismiss()
-                    Alert.showMsg(title: "Oops", msg: "Today mood is already submitted.", btnActionTitle: "OK")
-                }
-                else
-                {
-                    ProgressHUD.dismiss()
-                    let popUp = PopUpMood()
-                    popUp.modalPresentationStyle = .overFullScreen
-                    popUp.modalTransitionStyle = .crossDissolve
-                    popUp.delegateRefresh = self
-                    self.present(popUp, animated: true, completion: nil)
-                }
+            let user = DataService.instance.currentUser
+            if user?.lastMoodDate != "" && user?.lastMoodDate == getCurrentDate() && user?.lastMoodDate != "Not found"{
+                ProgressHUD.dismiss()
+                Alert.showMsg(msg: "Today mood is already submitted!..")
+            }
+            else
+            {
+                ProgressHUD.dismiss()
+                let popUp = PopUpMood()
+                popUp.modalPresentationStyle = .overFullScreen
+                popUp.modalTransitionStyle = .crossDissolve
+                popUp.delegateRefresh = self
+                self.present(popUp, animated: true, completion: nil)
             }
         }
     }
@@ -124,7 +122,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController: refresh {
     func moodRefresh(success: Bool) {
         if true {
-            getTodayMood()
+            getMood()
         }
     }
     

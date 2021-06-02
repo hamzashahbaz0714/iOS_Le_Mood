@@ -53,20 +53,24 @@ class StatisticsViewController: UIViewController {
     
     func getTodayMood(){
         if appDelegate.isMoodFetched == true {
-            self.lblMoodValue.text = "\(appDelegate.mood?.moodValue ?? 0)"
-            switch appDelegate.mood?.moodType {
-            case "Angry":
-                self.moodImage.image = #imageLiteral(resourceName: "emoji1")
-            case "Sad":
-                self.moodImage.image = #imageLiteral(resourceName: "emoji2")
-            case "Happy":
-                self.moodImage.image = #imageLiteral(resourceName: "emoji4")
-            case "Blush":
-                self.moodImage.image = #imageLiteral(resourceName: "emoji3")
-            default:
-                self.moodImage.image = #imageLiteral(resourceName: "emoji_think")
+            let user = DataService.instance.currentUser
+            if user?.lastMoodDate != "" && user?.lastMoodDate == getCurrentDate() && user?.lastMoodDate != "Not found"{
+                self.appDelegate.isMoodFetched = true
+                self.lblMoodValue.text = "\(user?.moodValue ?? 0)"
+                self.lblMoodValue.font = UIFont(name: "Poppins-Medium", size: 32)
+                switch user?.moodType {
+                case "Angry":
+                    self.moodImage.image = #imageLiteral(resourceName: "emoji1")
+                case "Sad":
+                    self.moodImage.image = #imageLiteral(resourceName: "emoji2")
+                case "Happy":
+                    self.moodImage.image = #imageLiteral(resourceName: "emoji4")
+                case "Blush":
+                    self.moodImage.image = #imageLiteral(resourceName: "emoji3")
+                default:
+                    self.moodImage.image = #imageLiteral(resourceName: "emoji_think")
+                }
             }
-
         }
         else{
             self.moodImage.image = UIImage(named: "icon_submit_mood")

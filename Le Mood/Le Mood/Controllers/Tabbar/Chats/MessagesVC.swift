@@ -157,6 +157,8 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
                 print(url)
                 let message = Message(messageId: getUniqueId(), reciverId: rID, senderId: Auth.auth().currentUser!.uid, messageBody: url, messageType: "image", messageTime: getCurrentTime(), messageDate: getCurrentDateWithTime(), isIncoming: false)
                 DataService.instance.addChatMessage(chatID: self?.chatID ?? "", message: message,notReadBy: [rID])
+                let sender = PushNotificationSender()
+                sender.sendPushNotification(to: "\(self?.passRecieverUser!.fcmToken ?? "")", title: "New Message from \(DataService.instance.currentUser!.name)", body: "image",unread: 1)
             }
             else
             {
@@ -173,6 +175,8 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             if success {
                 let message = Message(messageId: getUniqueId(), reciverId: rID, senderId: Auth.auth().currentUser!.uid, messageBody: url, messageType: "video", messageTime: getCurrentTime(), messageDate: getCurrentDateWithTime(), isIncoming: false)
                 DataService.instance.addChatMessage(chatID: self?.chatID ?? "", message: message,notReadBy: [rID])
+                let sender = PushNotificationSender()
+                sender.sendPushNotification(to: "\(self?.passRecieverUser!.fcmToken ?? "")", title: "New Message from \(DataService.instance.currentUser!.name)", body: "video",unread: 1)
                 ProgressHUD.dismiss()
                 print("Uploaded")
             }
@@ -277,6 +281,7 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
                 cell.backGroundView?.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
                 cell.stackView.alignment = .leading
                 cell.lblTime.textAlignment = .left
+                cell.btnPlay.isHidden = true
                 cell.lblTime.text = messagesArray[indexPath.row].messageDate
                 cell.imgView.tag = indexPath.row
                 let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapped(sender:)))
@@ -291,6 +296,7 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
                 cell.lblTime.textAlignment = .right
                 cell.stackView.alignment = .trailing
                 cell.imgView.tag = indexPath.row
+                cell.btnPlay.isHidden = true
                 let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapped))
                 cell.imgView.addGestureRecognizer(tapGesture)
                 cell.imgView.sd_setImage(with: URL(string: messagesArray[indexPath.row].messageBody), placeholderImage: UIImage(named: "placeHolder"), options: .forceTransition)
@@ -349,10 +355,17 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         }
         else
         {
-            let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ChatMessageCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ChatsTextCell", for: indexPath) as! ChatsTextCell
             cell.selectionStyle = .none
             if messagesArray.indices.contains(indexPath.row){
-                cell.chatMessage = messagesArray[indexPath.row]
+                cell.setData(message: messagesArray[indexPath.row])
+                if messagesArray[indexPath.row].isIncoming == false {
+                    cell.setBubble(type: .outgoing)
+                }
+                else
+                {
+                    cell.setBubble(type: .incoming)
+                }
                 return cell
             }else{
                 return UITableViewCell(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
@@ -378,6 +391,7 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             self.messageTxtView.text = ""
             let sender = PushNotificationSender()
             sender.sendPushNotification(to: "\(self.passRecieverUser!.fcmToken)", title: "New Message from \(DataService.instance.currentUser!.name)", body: m!,unread: 1)
+            print(sender)
             //
             //                        DataService.instance.getUnreadCountOfUser(string: self.user.userID) { success, unread in
             //                            if success{
