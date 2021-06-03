@@ -47,6 +47,12 @@ func getCurrentDate() -> String{
     formatter.dateFormat = "dd/MM/yyyy"
     return (formatter.string(from: currentDateTime))
 }
+func getCurrentDateWithDash() -> String{
+    let currentDateTime = Date()
+    let formatter = DateFormatter()
+    formatter.dateFormat = "dd-MM-yyyy"
+    return (formatter.string(from: currentDateTime))
+}
 func getUniqueId(length: Int = 20) -> String {
    let base = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
    var randomString: String = ""

@@ -37,7 +37,8 @@ class DataService{
             "gender": user.gender,
             "country":user.country,
             "region": user.region,
-            "createdAt": FieldValue.serverTimestamp()
+            "createdAt": FieldValue.serverTimestamp(),
+            "language": user.language
         ], merge: true) { (err) in
             if let err = err {
                 debugPrint("Error adding document: \(err)")
@@ -65,8 +66,9 @@ class DataService{
                 let moodType = data["moodType"] as? String ?? "Not Found"
                 let moodValue = data["moodValue"] as? Int ?? 0
                 let lastMoodDate = data["lastMoodDate"] as? String ?? ""
+                let language = data["language"] as? String ?? "Not Found"
                 
-                let user = UserModel(id: id, name: name, email: email, phoneNumber: phoneNumber, image: image, gender: gender, country: country, region: region,moodId: moodId,moodType: moodType,moodValue: moodValue,lastMoodDate: lastMoodDate,fcmToken: fcmToken)
+                let user = UserModel(id: id, name: name, email: email, phoneNumber: phoneNumber, image: image, gender: gender, country: country, region: region,moodId: moodId,moodType: moodType,moodValue: moodValue,lastMoodDate: lastMoodDate,fcmToken: fcmToken, language: language)
                 handler(true,user)
                 
             } else {
@@ -104,45 +106,60 @@ class DataService{
             }
         }
     }
-//        country
-//        "Pakistan"
-//        createdAt
-//        May 26, 2021 at 5:47:57 PM UTC+5
-//        email
-//        "user3@gmail.com"
-//        (string)
-//        fcmToken
-//        "cZ5wLPq3TEAcsZt7SRePHH:APA91bFm0kobNP8ZOnFPMLN0uKn-jibfkz6hwZ--TczTz5YxB2pNV16MbhupB04g9FA2nNV4KBF27dBieLve_OsUOup7QudWhc0uG06O05tBZv0959tt132HPc4TuLfLK6TvGTejfjS4"
-//        gender
-//        "female"
-//        id
-//        "frTW4eReHPQyvZeuSSVizyB6olm2"
-//        image
-//        "https://firebasestorage.googleapis.com/v0/b/le-mood-50649.appspot.com/o/Profile%20Pics%2FfrTW4eReHPQyvZeuSSVizyB6olm2.jpg?alt=media&token=11f4fdbc-0fcf-414c-bbd7-47fd601a7161"
-//        name
-//        "User 3"
-//        phoneNumber
-//        "+923005098444"
-//        region
-//        "State 1"
+    func saveMoodByDate(mood: MoodModel,docId: String){
+        
+        Firestore.firestore().collection("allMoods").document(docId).collection("moods").document().setData([
+            "moodId":mood.moodId,
+            "moodType":mood.moodType,
+            "moodValue":mood.moodValue,
+            "time": mood.time,
+            "date": mood.date,
+            "country": mood.country,
+            "state": mood.state,
+            "createdAt": FieldValue.serverTimestamp()
+        ], merge: true) { (err) in
+            
+        }
+    }
+    //        country
+    //        "Pakistan"
+    //        createdAt
+    //        May 26, 2021 at 5:47:57 PM UTC+5
+    //        email
+    //        "user3@gmail.com"
+    //        (string)
+    //        fcmToken
+    //        "cZ5wLPq3TEAcsZt7SRePHH:APA91bFm0kobNP8ZOnFPMLN0uKn-jibfkz6hwZ--TczTz5YxB2pNV16MbhupB04g9FA2nNV4KBF27dBieLve_OsUOup7QudWhc0uG06O05tBZv0959tt132HPc4TuLfLK6TvGTejfjS4"
+    //        gender
+    //        "female"
+    //        id
+    //        "frTW4eReHPQyvZeuSSVizyB6olm2"
+    //        image
+    //        "https://firebasestorage.googleapis.com/v0/b/le-mood-50649.appspot.com/o/Profile%20Pics%2FfrTW4eReHPQyvZeuSSVizyB6olm2.jpg?alt=media&token=11f4fdbc-0fcf-414c-bbd7-47fd601a7161"
+    //        name
+    //        "User 3"
+    //        phoneNumber
+    //        "+923005098444"
+    //        region
+    //        "State 1"
     
-//    chatReference.document(chatID).collection("messages").document(message.messageId).setData([
-//        "isIncoming":message.isIncoming,
-//        "message":message.messageBody,
-//        "messageDate":message.messageDate,
-//        "messageId":message.messageId,
-//        "messageTime":message.messageTime,
-//        "messageType":message.messageType,
-//        "receiverId":message.reciverId,
-//        "senderId":message.senderId,
-//        "createdAt": FieldValue.serverTimestamp()
-//    ], merge: true) { (err) in
-//        if let err = err {
-//            debugPrint("Error adding document: \(err)")
-//        } else {
-//            self.chatReference.document(chatID).setData([
-//                "chatId":chatID,
-
+    //    chatReference.document(chatID).collection("messages").document(message.messageId).setData([
+    //        "isIncoming":message.isIncoming,
+    //        "message":message.messageBody,
+    //        "messageDate":message.messageDate,
+    //        "messageId":message.messageId,
+    //        "messageTime":message.messageTime,
+    //        "messageType":message.messageType,
+    //        "receiverId":message.reciverId,
+    //        "senderId":message.senderId,
+    //        "createdAt": FieldValue.serverTimestamp()
+    //    ], merge: true) { (err) in
+    //        if let err = err {
+    //            debugPrint("Error adding document: \(err)")
+    //        } else {
+    //            self.chatReference.document(chatID).setData([
+    //                "chatId":chatID,
+    
     
     func getAllFriends(handler: @escaping(_ success:Bool,_ allUser:[UserModel]?)->()){
         var userArray  = [UserModel]()
@@ -162,10 +179,45 @@ class DataService{
                 let moodType = data["moodType"] as? String ?? "Not Found"
                 let moodValue = data["moodValue"] as? Int ?? 0
                 let lastMoodDate = data["moodType"] as? String ?? "Not Found"
-
+                let language = data["language"] as? String ?? "Not Found"
+                
+                
                 
                 if id != Auth.auth().currentUser?.uid {
-                    let user = UserModel(id: id, name: name, email: email, phoneNumber: phoneNumber, image: image, gender: gender, country: country, region: region,moodId: moodId,moodType: moodType,moodValue: moodValue,lastMoodDate: lastMoodDate,fcmToken: fcmToken)
+                    let user = UserModel(id: id, name: name, email: email, phoneNumber: phoneNumber, image: image, gender: gender, country: country, region: region,moodId: moodId,moodType: moodType,moodValue: moodValue,lastMoodDate: lastMoodDate,fcmToken: fcmToken, language: language)
+                    user.fcmToken = fcmToken
+                    userArray.append(user)
+                }
+                
+            }
+            handler(true,userArray)
+        }
+    }
+    
+    func searchLanguageBaseFriend(language: String,handler: @escaping(_ success:Bool,_ allUser:[UserModel]?)->()){
+        var userArray  = [UserModel]()
+        userReference.whereField("language", in: [language]).getDocuments { (snapshot, error) in
+            for document in snapshot!.documents {
+                let data = document.data()
+                let id = data["id"] as? String ?? "Not Found"
+                let name = data["name"] as? String ?? "Not Found"
+                let email = data["email"] as? String ?? "Not Found"
+                let gender = data["gender"] as? String ?? "Not Found"
+                let country = data["country"] as? String ?? "Not Found"
+                let region = data["region"] as? String ?? "Not Found"
+                let image = data["image"] as? String ?? "Not Found"
+                let phoneNumber = data["phoneNumber"] as? String ?? "Not Found"
+                let fcmToken = data["fcmToken"] as? String ?? "Not Found"
+                let moodId = data["moodId"] as? String ?? "Not Found"
+                let moodType = data["moodType"] as? String ?? "Not Found"
+                let moodValue = data["moodValue"] as? Int ?? 0
+                let lastMoodDate = data["moodType"] as? String ?? "Not Found"
+                let language = data["language"] as? String ?? "Not Found"
+                
+                
+                
+                if id != Auth.auth().currentUser?.uid {
+                    let user = UserModel(id: id, name: name, email: email, phoneNumber: phoneNumber, image: image, gender: gender, country: country, region: region,moodId: moodId,moodType: moodType,moodValue: moodValue,lastMoodDate: lastMoodDate,fcmToken: fcmToken, language: language)
                     user.fcmToken = fcmToken
                     userArray.append(user)
                 }
@@ -198,6 +250,41 @@ class DataService{
                     {
                         handler(false,nil)
                     }
+                }
+            }
+            else
+            {
+                handler(false,nil)
+                
+            }
+        })
+        
+    }
+    
+    func getMoodStatistics(country: String, state: String ,handler: @escaping(_ success:Bool,_ mood:[MoodModel]?)->()){
+        let userRef = Firestore.firestore().collection("allMoods").document(getCurrentDateWithDash()).collection("moods").whereField("country", isEqualTo: country).whereField("state", isEqualTo: state)
+        userRef.getDocuments(completion: { (snapshot, error) in
+            if snapshot?.documents.count  ?? 0 > 0 {
+                var moodArr = [MoodModel]()
+                for document in snapshot!.documents {
+                    if document == document {
+                        let data = document.data()
+                        let moodId = data["moodId"] as? String ?? "Not Found"
+                        let moodType = data["moodType"] as? String ?? "Not Found"
+                        let moodValue = data["moodValue"] as? Int ?? 0
+                        let time = data["time"] as? String ?? "Not Found"
+                        let date = data["date"] as? String ?? "Not Found"
+                        let country = data["country"] as? String ?? "Not Found"
+                        let state = data["state"] as? String ?? "Not Found"
+                        
+                        let mood = MoodModel(moodId: moodId, moodType: moodType, moodValue: moodValue, time: time, date: date,country: country,state: state)
+                        moodArr.append(mood)
+                    }
+                    else
+                    {
+                        handler(false,nil)
+                    }
+                    handler(true,moodArr)
                 }
             }
             else
@@ -250,7 +337,7 @@ class DataService{
                     let receiver = data["receiver"] as? String ?? ""
                     let notReadBy = data["notReadBy"] as? [String] ?? [String]()
                     let messageType = data["messageType"] as? String ?? ""
-
+                    
                     let chat = Chat(chatId: chatId, lastMessage: lastMessage, lastMessageDate: lastMessageDate, lastMessageTime: lastMessageTime, sender: sender, receiver: receiver,notReadBy: notReadBy)
                     chat.messageType = messageType
                     if chat.chatId.contains(Auth.auth().currentUser!.uid){
@@ -301,7 +388,7 @@ class DataService{
         }
     }
     
-    func addChatMessage(chatID:String,message:Message,notReadBy:[String]){
+    func addChatMessage(chatID:String,message:Message,notReadBy:[String],senderName: String,senderImage: String){
         chatReference.document(chatID).collection("messages").document(message.messageId).setData([
             "isIncoming":message.isIncoming,
             "message":message.messageBody,
@@ -326,6 +413,8 @@ class DataService{
                     "createdAt":FieldValue.serverTimestamp(),
                     "messageType": message.messageType,
                     "notReadBy":notReadBy,
+                    "senderName":senderName,
+                    "senderImage":senderImage,
                     "listnerId": [message.senderId,message.reciverId]
                 ], merge: true) { (err) in
                     if let err = err {

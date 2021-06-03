@@ -37,6 +37,9 @@
 		FA4CEA8F2660CD1D005C9044 /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4CEA8D2660CD1D005C9044 /* PushNotificationManager.swift */; };
 		FA4CEA902660CD1D005C9044 /* PushNotificationSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4CEA8E2660CD1D005C9044 /* PushNotificationSender.swift */; };
 		FA4CEA9F2660F7CB005C9044 /* MediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4CEA9E2660F7CB005C9044 /* MediaCell.swift */; };
+		FA69D6E62668CF5A001AB78E /* LineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA69D6E32668CF5A001AB78E /* LineChart.swift */; };
+		FA69D6E72668CF5A001AB78E /* DotCALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA69D6E42668CF5A001AB78E /* DotCALayer.swift */; };
+		FA69D6E82668CF5A001AB78E /* CurveAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA69D6E52668CF5A001AB78E /* CurveAlgorithm.swift */; };
 		FA6E32E226578F8E008C5013 /* PopUpMood.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E32E026578F8E008C5013 /* PopUpMood.swift */; };
 		FA6E32E326578F8E008C5013 /* PopUpMood.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6E32E126578F8E008C5013 /* PopUpMood.xib */; };
 		FA6E32EE2657BEEA008C5013 /* ChatListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6E32EC2657BEEA008C5013 /* ChatListCell.xib */; };
@@ -124,6 +127,9 @@
 		FA4CEA8D2660CD1D005C9044 /* PushNotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationManager.swift; sourceTree = "<group>"; };
 		FA4CEA8E2660CD1D005C9044 /* PushNotificationSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationSender.swift; sourceTree = "<group>"; };
 		FA4CEA9E2660F7CB005C9044 /* MediaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCell.swift; sourceTree = "<group>"; };
+		FA69D6E32668CF5A001AB78E /* LineChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineChart.swift; sourceTree = "<group>"; };
+		FA69D6E42668CF5A001AB78E /* DotCALayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotCALayer.swift; sourceTree = "<group>"; };
+		FA69D6E52668CF5A001AB78E /* CurveAlgorithm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurveAlgorithm.swift; sourceTree = "<group>"; };
 		FA6E32E026578F8E008C5013 /* PopUpMood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpMood.swift; sourceTree = "<group>"; };
 		FA6E32E126578F8E008C5013 /* PopUpMood.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpMood.xib; sourceTree = "<group>"; };
 		FA6E32EC2657BEEA008C5013 /* ChatListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatListCell.xib; sourceTree = "<group>"; };
@@ -404,6 +410,7 @@
 		FA1B1556263FD6C7008CD9A3 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				FA69D6E22668CF48001AB78E /* LineChart */,
 				FA1B155D263FD6E0008CD9A3 /* Alert.swift */,
 				FA1B155E263FD6E0008CD9A3 /* Constants.swift */,
 				FA1B1559263FD6E0008CD9A3 /* Defaults.swift */,
@@ -421,6 +428,16 @@
 				FA1B1567263FD6EC008CD9A3 /* Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		FA69D6E22668CF48001AB78E /* LineChart */ = {
+			isa = PBXGroup;
+			children = (
+				FA69D6E52668CF5A001AB78E /* CurveAlgorithm.swift */,
+				FA69D6E42668CF5A001AB78E /* DotCALayer.swift */,
+				FA69D6E32668CF5A001AB78E /* LineChart.swift */,
+			);
+			path = LineChart;
 			sourceTree = "<group>";
 		};
 		FA6E32E72657BBDC008C5013 /* Chats */ = {
@@ -681,6 +698,7 @@
 				FA1B1532263FD027008CD9A3 /* AppDelegate.swift in Sources */,
 				FA6E32EF2657BEEA008C5013 /* ChatListCell.swift in Sources */,
 				FA43C95A265B7E1400A57EA6 /* UserModel.swift in Sources */,
+				FA69D6E62668CF5A001AB78E /* LineChart.swift in Sources */,
 				FADF51D8265FC53F0051F6FB /* Chat.swift in Sources */,
 				FA9C9185265692A5003CCBAD /* HomeViewController.swift in Sources */,
 				FAC0932D265E1F71004B53F7 /* VerificationViewController.swift in Sources */,
@@ -701,6 +719,7 @@
 				FA6E32E226578F8E008C5013 /* PopUpMood.swift in Sources */,
 				FA6E32F42657C983008C5013 /* SettingViewController.swift in Sources */,
 				FAC09339265E3515004B53F7 /* AllFriendsViewController.swift in Sources */,
+				FA69D6E82668CF5A001AB78E /* CurveAlgorithm.swift in Sources */,
 				FA1B1562263FD6E0008CD9A3 /* UtilityManager.swift in Sources */,
 				FA70CE3026663B1E008106DB /* CustomTextView.swift in Sources */,
 				FA13A17B2667AC180058ED40 /* LanguageCell.swift in Sources */,
@@ -714,6 +733,7 @@
 				FADF51CE265FC4920051F6FB /* ChatMessageCell.swift in Sources */,
 				FA6E331C2657E3D7008C5013 /* ProfileViewController.swift in Sources */,
 				FA9C917D26567D4E003CCBAD /* LoginViewController.swift in Sources */,
+				FA69D6E72668CF5A001AB78E /* DotCALayer.swift in Sources */,
 				FADF51DB265FC6FA0051F6FB /* CircleImage.swift in Sources */,
 				FADF51D4265FC4F50051F6FB /* MessagesVC.swift in Sources */,
 				FA43C976265BC04F00A57EA6 /* EditProfileViewController.swift in Sources */,
@@ -867,7 +887,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Le Mood/Le Mood.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = A53Y9FPVYJ;
 				INFOPLIST_FILE = "Le Mood/Assets/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -890,7 +910,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Le Mood/Le Mood.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = A53Y9FPVYJ;
 				INFOPLIST_FILE = "Le Mood/Assets/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;

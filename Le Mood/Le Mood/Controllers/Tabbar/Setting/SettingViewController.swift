@@ -10,7 +10,7 @@ import Firebase
 import ProgressHUD
 
 class SettingViewController: UIViewController {
-
+    
     //MARK:- Properties
     @IBOutlet weak var mainView: UIView!
     @IBOutlet var settingsView: [UIView]!
@@ -19,7 +19,7 @@ class SettingViewController: UIViewController {
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblEmail: UILabel!
     
-
+    
     
     //MARK:- Controller Life Cycle
     
@@ -30,7 +30,7 @@ class SettingViewController: UIViewController {
             let tapgesture = UITapGestureRecognizer(target: self, action: #selector(handleSettingViews(sender:)))
             views.addGestureRecognizer(tapgesture)
         }
-      
+        
     }
     
     override func viewWillLayoutSubviews() {
@@ -44,7 +44,7 @@ class SettingViewController: UIViewController {
         profileImgView.sd_setImage(with: URL(string: user?.image ?? "" ), placeholderImage: placeHolderImage, options: .forceTransition)
         lblName.text = user?.name
         lblEmail.text = user?.email
-
+        
     }
     
     //MARK:- Supporting Functions
@@ -57,11 +57,11 @@ class SettingViewController: UIViewController {
         case 2:
             print("Privacy Policy")
         case 3:
-            print("Blocked")
-        case 4:
+            print("")
             let controller: LanguagesViewController = LanguagesViewController.initiateFrom(Storybaord: .Main)
-            self.pushController(contorller: controller, animated: true)        default:
-           print("Logout")
+            self.pushController(contorller: controller, animated: true)
+        default:
+            print("Logout")
             Alert.showWithTwoActions(title: "Confirm", msg: "Are you sure want to Logout?", okBtnTitle: "Yes", okBtnAction: {
                 ProgressHUD.show()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
@@ -77,12 +77,12 @@ class SettingViewController: UIViewController {
                 
             }
         }
-
+        
     }
     
     
     //MARK:- Actions
     
     
-
+    
 }

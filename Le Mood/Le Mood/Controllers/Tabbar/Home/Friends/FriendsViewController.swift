@@ -13,7 +13,6 @@ class FriendsViewController: UIViewController {
     //MARK:- Properties
     @IBOutlet weak var viewPager: LZViewPager!
     private var subControllers:[UIViewController] = []
-    var isComeFromLanguage = false
 
     
     //MARK:- Controller Life Cycle
@@ -39,13 +38,7 @@ class FriendsViewController: UIViewController {
         let vc1 = mainStoryboard.instantiateViewController(withIdentifier: "MoodFriendsViewController") as! MoodFriendsViewController
         vc1.title = "Friends"
         let vc2 = mainStoryboard.instantiateViewController(withIdentifier: "AllFriendsViewController") as! AllFriendsViewController
-        if isComeFromLanguage == false{
-            vc2.title = "All users"
-            vc2.isComeFromLanguage = false
-        }else{
-            vc2.title = "Language users"
-            vc2.isComeFromLanguage = true
-        }
+        vc2.title = "All users"
         subControllers = [vc1, vc2]
         viewPager.reload()
     }
@@ -78,10 +71,7 @@ extension FriendsViewController: LZViewPagerDelegate, LZViewPagerDataSource{
     
     
     func widthForButton(at index: Int) -> CGFloat {
-        if isComeFromLanguage == false {
          return 80
-        }
-        return 140
     }
     func colorForIndicator(at index: Int) -> UIColor {
         return #colorLiteral(red: 0, green: 0.3716039062, blue: 0.5234339833, alpha: 1)

@@ -22,7 +22,8 @@ class UserModel {
     var moodValue: Int
     var lastMoodDate: String
     var fcmToken : String
-    init(id:String ,name: String, email: String, phoneNumber: String ,image: String ,gender: String ,country: String, region: String, moodId: String,moodType: String, moodValue: Int,lastMoodDate: String,fcmToken: String) {
+    var language: String
+    init(id:String ,name: String, email: String, phoneNumber: String ,image: String ,gender: String ,country: String, region: String, moodId: String,moodType: String, moodValue: Int,lastMoodDate: String,fcmToken: String,language: String) {
         self.id = id
         self.name = name
         self.email = email
@@ -36,6 +37,7 @@ class UserModel {
         self.moodValue = moodValue
         self.lastMoodDate = lastMoodDate
         self.fcmToken = fcmToken
+        self.language = language
     }
 }
 

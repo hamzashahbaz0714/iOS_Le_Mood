@@ -111,6 +111,7 @@ class PopUpMood: UIViewController {
             let docId = getUniqueId()
             let mood = MoodModel(moodId: docId, moodType: self.selectedMoodName.text!, moodValue: Int(self.moodeSlider.value), time: getTime(), date: getCurrentDate(),country: currnetUser?.country ?? "", state: currnetUser?.region ?? "")
             DataService.instance.saveMood(mood: mood, docId: docId)
+            DataService.instance.saveMoodByDate(mood: mood, docId: getCurrentDateWithDash())
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 DataService.instance.getUserOfID(userID: currnetUser?.id ?? "") { (success, user) in
                     if success {

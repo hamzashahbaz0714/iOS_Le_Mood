@@ -156,7 +156,7 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             if success {
                 print(url)
                 let message = Message(messageId: getUniqueId(), reciverId: rID, senderId: Auth.auth().currentUser!.uid, messageBody: url, messageType: "image", messageTime: getCurrentTime(), messageDate: getCurrentDateWithTime(), isIncoming: false)
-                DataService.instance.addChatMessage(chatID: self?.chatID ?? "", message: message,notReadBy: [rID])
+                DataService.instance.addChatMessage(chatID: self?.chatID ?? "", message: message,notReadBy: [rID],senderName: DataService.instance.currentUser.name, senderImage: DataService.instance.currentUser.image)
                 let sender = PushNotificationSender()
                 sender.sendPushNotification(to: "\(self?.passRecieverUser!.fcmToken ?? "")", title: "New Message from \(DataService.instance.currentUser!.name)", body: "image",unread: 1)
             }
@@ -174,7 +174,7 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         DataService.instance.uploadVideos(videoURL: selectedVideo) { [weak self] (success, url) in
             if success {
                 let message = Message(messageId: getUniqueId(), reciverId: rID, senderId: Auth.auth().currentUser!.uid, messageBody: url, messageType: "video", messageTime: getCurrentTime(), messageDate: getCurrentDateWithTime(), isIncoming: false)
-                DataService.instance.addChatMessage(chatID: self?.chatID ?? "", message: message,notReadBy: [rID])
+                DataService.instance.addChatMessage(chatID: self?.chatID ?? "", message: message,notReadBy: [rID],senderName: DataService.instance.currentUser.name,senderImage: DataService.instance.currentUser.image)
                 let sender = PushNotificationSender()
                 sender.sendPushNotification(to: "\(self?.passRecieverUser!.fcmToken ?? "")", title: "New Message from \(DataService.instance.currentUser!.name)", body: "video",unread: 1)
                 ProgressHUD.dismiss()
@@ -387,7 +387,7 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         if messageTxtView.text != ""{
             let m = messageTxtView.text
             let message = Message(messageId: getUniqueId(), reciverId: rID, senderId: Auth.auth().currentUser!.uid, messageBody: messageTxtView.text, messageType: "text", messageTime: getCurrentTime(), messageDate: getCurrentDateWithTime(), isIncoming: false)
-            DataService.instance.addChatMessage(chatID: chatID!, message: message,notReadBy: [rID])
+            DataService.instance.addChatMessage(chatID: chatID!, message: message,notReadBy: [rID],senderName: DataService.instance.currentUser.name,senderImage: DataService.instance.currentUser.image)
             self.messageTxtView.text = ""
             let sender = PushNotificationSender()
             sender.sendPushNotification(to: "\(self.passRecieverUser!.fcmToken)", title: "New Message from \(DataService.instance.currentUser!.name)", body: m!,unread: 1)

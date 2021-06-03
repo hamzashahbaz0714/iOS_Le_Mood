@@ -17,8 +17,6 @@ class AllFriendsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var allFriendsArr = [UserModel]()
-    var shuffleFriend = [UserModel]()
-    var isComeFromLanguage: Bool?
     
     //MARK:- Controller Life Cycle
     
@@ -41,20 +39,8 @@ class AllFriendsViewController: UIViewController {
         DataService.instance.getAllFriends { [weak self] (success, friends) in
             if success {
                 ProgressHUD.dismiss()
-                if self?.isComeFromLanguage == true{
-                    self?.allFriendsArr = friends!
-                    self?.allFriendsArr.shuffle()
-                    if self?.allFriendsArr.count  ?? 0 > 0{
-                        self?.shuffleFriend.append((self?.allFriendsArr[0])!)
-                    }
-                    self?.tableView.reloadData()
-                }
-                else
-                {
-                    self?.allFriendsArr = friends!
-                    self?.tableView.reloadData()
-                }
-             
+                self?.allFriendsArr = friends!
+                self?.tableView.reloadData()
             }
             else
             {
@@ -82,82 +68,41 @@ extension AllFriendsViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isComeFromLanguage == true{
-            return shuffleFriend.count
-        }
-        else
-        {
-            return allFriendsArr.count
-        }
+        return allFriendsArr.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath) as! ContactCell
-        if isComeFromLanguage == true {
-            let data = shuffleFriend[indexPath.row]
-            if data.moodType == "Angry" {
-                cell.moodValue.text = "\(data.moodValue)"
-                cell.moodImageView.image = UIImage(named: "emoji1")
-            }
-            else if data.moodType == "Sad"
-            {
-                cell.moodValue.text = "\(data.moodValue)"
-                cell.moodImageView.image = UIImage(named: "emoji2")
-            }
-            else if data.moodType == "Happy" {
-                cell.moodValue.text = "\(data.moodValue)"
-                cell.moodImageView.image = UIImage(named: "emoji3")
-            }
-            else if data.moodType == "Blush" {
-                cell.moodValue.text = "\(data.moodValue)"
-                cell.moodImageView.image = UIImage(named: "emoji4")
-            }
-            else if data.moodType == "Excited"{
-                cell.moodValue.text = "\(data.moodValue)"
-                cell.moodImageView.image = UIImage(named: "emoji_think")
-            }
-            else
-            {
-                
-                cell.moodValue.text = "--"
-            }
-            cell.lblContactName.text = data.name
-            cell.lblContactNo.text = data.country
-            cell.userImgView.sd_setImage(with: URL(string: data.image ), placeholderImage: placeHolderImage, options: .forceTransition)
+        let data = allFriendsArr[indexPath.row]
+        if data.moodType == "Angry" {
+            cell.moodValue.text = "\(data.moodValue)"
+            cell.moodImageView.image = UIImage(named: "emoji1")
+        }
+        else if data.moodType == "Sad"
+        {
+            cell.moodValue.text = "\(data.moodValue)"
+            cell.moodImageView.image = UIImage(named: "emoji2")
+        }
+        else if data.moodType == "Happy" {
+            cell.moodValue.text = "\(data.moodValue)"
+            cell.moodImageView.image = UIImage(named: "emoji3")
+        }
+        else if data.moodType == "Blush" {
+            cell.moodValue.text = "\(data.moodValue)"
+            cell.moodImageView.image = UIImage(named: "emoji4")
+        }
+        else if data.moodType == "Excited"{
+            cell.moodValue.text = "\(data.moodValue)"
+            cell.moodImageView.image = UIImage(named: "emoji_think")
         }
         else
         {
-            let data = allFriendsArr[indexPath.row]
-            if data.moodType == "Angry" {
-                cell.moodValue.text = "\(data.moodValue)"
-                cell.moodImageView.image = UIImage(named: "emoji1")
-            }
-            else if data.moodType == "Sad"
-            {
-                cell.moodValue.text = "\(data.moodValue)"
-                cell.moodImageView.image = UIImage(named: "emoji2")
-            }
-            else if data.moodType == "Happy" {
-                cell.moodValue.text = "\(data.moodValue)"
-                cell.moodImageView.image = UIImage(named: "emoji3")
-            }
-            else if data.moodType == "Blush" {
-                cell.moodValue.text = "\(data.moodValue)"
-                cell.moodImageView.image = UIImage(named: "emoji4")
-            }
-            else if data.moodType == "Excited"{
-                cell.moodValue.text = "\(data.moodValue)"
-                cell.moodImageView.image = UIImage(named: "emoji_think")
-            }
-            else
-            {
-                
-                cell.moodValue.text = "--"
-            }
-            cell.lblContactName.text = data.name
-            cell.lblContactNo.text = data.country
-            cell.userImgView.sd_setImage(with: URL(string: data.image ), placeholderImage: placeHolderImage, options: .forceTransition)
+            
+            cell.moodValue.text = "--"
         }
-    
+        cell.lblContactName.text = data.name
+        cell.lblContactNo.text = data.country
+        cell.userImgView.sd_setImage(with: URL(string: data.image ), placeholderImage: placeHolderImage, options: .forceTransition)
+        
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
