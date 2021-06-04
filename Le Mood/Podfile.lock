@@ -284,6 +284,7 @@ PODS:
   - FirebaseStorage (7.9.0):
     - FirebaseCore (~> 7.0)
     - GTMSessionFetcher/Core (~> 1.4)
+  - Gifu (3.3)
   - GoogleDataTransport (8.3.0):
     - GoogleUtilities/Environment (~> 7.2)
     - nanopb (~> 2.30907.0)
@@ -366,6 +367,7 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Firebase/Storage
   - FirebaseMessaging
+  - Gifu
   - iOSDropDown
   - IQKeyboardManager
   - Lightbox
@@ -392,6 +394,7 @@ SPEC REPOS:
     - FirebaseInstanceID
     - FirebaseMessaging
     - FirebaseStorage
+    - Gifu
     - GoogleDataTransport
     - GoogleUtilities
     - "gRPC-C++"
@@ -427,6 +430,7 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: ad5135045a498d7775903efd39762d2cdfa1be27
   FirebaseMessaging: 163435fb6db065e3b6228f1e577b10ed2cc506d2
   FirebaseStorage: 0646be9a7552aac5703d095961081942e693967d
+  Gifu: 97c2a3c3865fbc834ab13f797e2e8e7729a1853c
   GoogleDataTransport: b006084b73915a42c28a3466961a4edda3065da6
   GoogleUtilities: e1d9ed4e544fc32a93e00e721400cbc3f377200d
   "gRPC-C++": 13d8ccef97d5c3c441b7e3c529ef28ebee86fad2
@@ -447,6 +451,6 @@ SPEC CHECKSUMS:
   SVPinView: 9b538d0ba68cdb092afe4f0f67ec84cbed079466
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: b61827a503c064e3efa7bc737596e2d3845c6bbf
+PODFILE CHECKSUM: bc8666e9a819881edccfac3a705162c27c2b1e2f
 
 COCOAPODS: 1.10.1

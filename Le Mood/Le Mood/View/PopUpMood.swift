@@ -28,6 +28,7 @@ class PopUpMood: UIViewController {
     
     weak var delegateRefresh : refresh?
     var currnetUser = DataService.instance.currentUser
+    var isEditOrUpdate = false
     
     //MARK:- Controller Life Cycle
     
@@ -105,32 +106,63 @@ class PopUpMood: UIViewController {
     }
     
     @IBAction func btnSubmitMoodTapped(_ sender: Any){
-        let currnetUser = DataService.instance.currentUser
-        Alert.showWithTwoActions(title: "Confirm", msg: "Are you sure want to submit your mood?", okBtnTitle: "Yes", okBtnAction: {
-            ProgressHUD.show()
-            let docId = getUniqueId()
-            let mood = MoodModel(moodId: docId, moodType: self.selectedMoodName.text!, moodValue: Int(self.moodeSlider.value), time: getTime(), date: getCurrentDate(),country: currnetUser?.country ?? "", state: currnetUser?.region ?? "")
-            DataService.instance.saveMood(mood: mood, docId: docId)
-            DataService.instance.saveMoodByDate(mood: mood, docId: getCurrentDateWithDash())
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                DataService.instance.getUserOfID(userID: currnetUser?.id ?? "") { (success, user) in
-                    if success {
-                        DataService.instance.setCurrentUser(user: user!)
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                            self.delegateRefresh?.moodRefresh(success: true)
+        if isEditOrUpdate == false {
+            let currnetUser = DataService.instance.currentUser
+            Alert.showWithTwoActions(title: "Confirm", msg: "Are you sure want to submit your mood?", okBtnTitle: "Yes", okBtnAction: {
+                ProgressHUD.show()
+                let docId = getUniqueId()
+                let mood = MoodModel(moodId: docId, moodType: self.selectedMoodName.text!, moodValue: Int(self.moodeSlider.value), time: getTime(), date: getCurrentDate(),country: currnetUser?.country ?? "", state: currnetUser?.region ?? "")
+                DataService.instance.saveAndEditMood(mood: mood, docId: docId)
+                DataService.instance.saveMoodByDate(mood: mood, docId: getCurrentDateWithDash(),moodId: docId)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    DataService.instance.getUserOfID(userID: currnetUser?.id ?? "") { (success, user) in
+                        if success {
+                            DataService.instance.setCurrentUser(user: user!)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                self.delegateRefresh?.moodRefresh(success: true)
+                                ProgressHUD.dismiss()
+                                self.dismiss(animated: true, completion: nil)
+                            }
+                        }
+                        else
+                        {
                             ProgressHUD.dismiss()
-                            self.dismiss(animated: true, completion: nil)
                         }
                     }
-                    else
-                    {
-                        ProgressHUD.dismiss()
-                    }
+                    
                 }
-
+            }, cancelBtnTitle: "Cancel") {
+                
             }
-        }, cancelBtnTitle: "Cancel") {
-            
+        }
+        else
+        {
+            let currnetUser = DataService.instance.currentUser
+            Alert.showWithTwoActions(title: "Confirm", msg: "Are you sure want to Update your mood?", okBtnTitle: "Yes", okBtnAction: {
+                ProgressHUD.show()
+                let mood = MoodModel(moodId: currnetUser?.moodId ?? "", moodType: self.selectedMoodName.text!, moodValue: Int(self.moodeSlider.value), time: getTime(), date: getCurrentDate(),country: currnetUser?.country ?? "", state: currnetUser?.region ?? "")
+                DataService.instance.saveAndEditMood(mood: mood, docId: currnetUser?.moodId ?? "")
+                DataService.instance.saveMoodByDate(mood: mood, docId: getCurrentDateWithDash(),moodId: currnetUser?.moodId ?? "")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    DataService.instance.getUserOfID(userID: currnetUser?.id ?? "") { (success, user) in
+                        if success {
+                            DataService.instance.setCurrentUser(user: user!)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                ProgressHUD.dismiss()
+                                self.delegateRefresh?.moodRefresh(success: true)
+                                self.dismiss(animated: true, completion: nil)
+                            }
+                        }
+                        else
+                        {
+                            ProgressHUD.dismiss()
+                        }
+                    }
+                    
+                }
+            }, cancelBtnTitle: "Cancel") {
+                
+            }
         }
     }
 }

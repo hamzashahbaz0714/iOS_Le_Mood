@@ -50,6 +50,9 @@ class ChatsCell: UITableViewCell {
         else if chat.messageType == "video"{
             self.lastMessageLbl.text = "video"
         }
+        else if chat.messageType == "gif"{
+            self.lastMessageLbl.text = "gif"
+        }
         else
         {
             self.lastMessageLbl.text = "image"

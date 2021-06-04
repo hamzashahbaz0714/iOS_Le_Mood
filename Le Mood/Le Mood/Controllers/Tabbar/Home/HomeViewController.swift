@@ -37,6 +37,7 @@ class HomeViewController: UIViewController {
             view.roundCorners(corners: [.topRight, .bottomLeft], radius: 18)
         }
         getMood()
+        
     }
     
     
@@ -99,7 +100,16 @@ class HomeViewController: UIViewController {
             let user = DataService.instance.currentUser
             if user?.lastMoodDate != "" && user?.lastMoodDate == getCurrentDate() && user?.lastMoodDate != "Not found"{
                 ProgressHUD.dismiss()
-                Alert.showMsg(msg: "Today mood is already submitted!..")
+                Alert.showWithTwoActions(title: "Your Mood is already submitted", msg: "You can update your current mood to press yes.", okBtnTitle: "Yes", okBtnAction: {
+                    let popUp = PopUpMood()
+                    popUp.modalPresentationStyle = .overFullScreen
+                    popUp.modalTransitionStyle = .crossDissolve
+                    popUp.isEditOrUpdate = true
+                    popUp.delegateRefresh = self
+                    self.present(popUp, animated: true, completion: nil)
+                }, cancelBtnTitle: "Cancel") {
+                    
+                }
             }
             else
             {

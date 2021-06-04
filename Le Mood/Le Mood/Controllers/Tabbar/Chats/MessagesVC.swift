@@ -79,7 +79,6 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var txtMessageHeight: NSLayoutConstraint!
     var passRecieverUser : UserModel?
-    fileprivate let cellId = "id123"
     var isComeFromFirendsOrChatList = false
     var passName: String?
     
@@ -102,7 +101,6 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         tableView.dataSource = self
         navigationItem.title = "Messages"
         navigationController?.navigationBar.prefersLargeTitles = false
-        tableView.register(ChatMessageCell.self, forCellReuseIdentifier: cellId)
         tableView.separatorStyle = .none
         tableView.backgroundColor = #colorLiteral(red: 0.9647058824, green: 0.9764705882, blue: 1, alpha: 1)
         DataService.instance.getChatOfID(chatID: self.chatID!) { (success, returnedChat) in
@@ -189,16 +187,45 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         }
     }
     
+    func uploadGifsInFirebase(selectedGif: URL){
+        ProgressHUD.show()
+        DataService.instance.uploadGifs(selectedGif: selectedGif) { [weak self] (success, url) in
+            if success {
+                let message = Message(messageId: getUniqueId(), reciverId: rID, senderId: Auth.auth().currentUser!.uid, messageBody: url, messageType: "gif", messageTime: getCurrentTime(), messageDate: getCurrentDateWithTime(), isIncoming: false)
+                DataService.instance.addChatMessage(chatID: self?.chatID ?? "", message: message,notReadBy: [rID],senderName: DataService.instance.currentUser.name,senderImage: DataService.instance.currentUser.image)
+                let sender = PushNotificationSender()
+                sender.sendPushNotification(to: "\(self?.passRecieverUser!.fcmToken ?? "")", title: "New Message from \(DataService.instance.currentUser!.name)", body: "video",unread: 1)
+                ProgressHUD.dismiss()
+                print("Uploaded")
+            }
+            else
+            {
+                ProgressHUD.dismiss()
+                print("Not upload Video")
+            }
+            
+        }
+    }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
         if let mediaType = info[UIImagePickerController.InfoKey.mediaType] as? String {
             
             if mediaType  == "public.image" {
-                print("Image Selected")
                 guard let image = info[.originalImage] as? UIImage else {
                     fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
                 }
-                uploadPictureInFirebase(selectedImage: image)
+                if let imageURL = info[UIImagePickerController.InfoKey.imageURL] as? URL {
+                    if  isAnimatedImage(imageURL) == true {
+                        print("gif Selected")
+                        uploadGifsInFirebase(selectedGif: imageURL)
+                    }
+                    else
+                    {
+                        print("Image Selected")
+                        uploadPictureInFirebase(selectedImage: image)
+                    }
+                }
             }
             
             if mediaType == "public.movie" {
@@ -275,7 +302,7 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         if indexPath.row >= messagesArray.count{
             return UITableViewCell()
         }
-        if messagesArray[indexPath.row].messageType == "image" {
+        if messagesArray[indexPath.row].messageType == "image"  || messagesArray[indexPath.row].messageType == "gif" {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MediaCell", for: indexPath) as! MediaCell
             if messagesArray[indexPath.row].isIncoming {
                 cell.backGroundView?.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -314,15 +341,6 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
                 cell.imgView.tag = indexPath.row
                 let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapped(sender:)))
                 cell.imgView.addGestureRecognizer(tapGesture)
-                //                DispatchQueue.global(qos: .background).async {
-                //                    let videoURL = self.messagesArray[indexPath.row].messageBody
-                //                    let ass = AVAsset(url: URL(string: videoURL)!)
-                //                    DispatchQueue.main.async {
-                //                        if let videoThumbnail = ass.videoThumbnail{
-                //                            cell.imgView.image = videoThumbnail
-                //                        }
-                //                    }
-                //                }
                 getThumbnailImageFromVideoUrl(url: URL(string: self.messagesArray[indexPath.row].messageBody)!) { (thumbImage) in
                     cell.imgView.image = thumbImage
                 }
@@ -338,15 +356,6 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
                 cell.btnPlay.isHidden = false
                 let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapped))
                 cell.imgView.addGestureRecognizer(tapGesture)
-                //                DispatchQueue.global(qos: .background).async {
-                //                    let videoURL = self.messagesArray[indexPath.row].messageBody
-                //                    let ass = AVAsset(url: URL(string: videoURL)!)
-                //                    DispatchQueue.main.async {
-                //                        if let videoThumbnail = ass.videoThumbnail{
-                //                            cell.imgView.image = videoThumbnail
-                //                        }
-                //                    }
-                //                }
                 getThumbnailImageFromVideoUrl(url: URL(string: self.messagesArray[indexPath.row].messageBody)!) { (thumbImage) in
                     cell.imgView.image = thumbImage
                 }
@@ -413,8 +422,8 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 extension MessagesVC:UITextViewDelegate{
     func textViewDidChange(_ textView: UITextView) {
         let sizeToFitIn = CGSize(width: self.messageTxtView.bounds.size.width, height: 150)
-                let newSize = self.messageTxtView.sizeThatFits(sizeToFitIn)
-                self.txtMessageHeight.constant = newSize.height
+        let newSize = self.messageTxtView.sizeThatFits(sizeToFitIn)
+        self.txtMessageHeight.constant = newSize.height
     }
 }
 extension MessagesVC: LightboxControllerPageDelegate {
@@ -422,4 +431,14 @@ extension MessagesVC: LightboxControllerPageDelegate {
     func lightboxController(_ controller: LightboxController, didMoveToPage page: Int) {
         print(page)
     }
+}
+
+func isAnimatedImage(_ imageUrl: URL) -> Bool {
+    if let data = try? Data(contentsOf: imageUrl),
+       let source = CGImageSourceCreateWithData(data as CFData, nil) {
+        
+        let count = CGImageSourceGetCount(source)
+        return count > 1
+    }
+    return false
 }

@@ -78,9 +78,9 @@ class DataService{
         }
     }
     
-    func saveMood(mood: MoodModel,docId: String){
-        userReference.document(Auth.auth().currentUser!.uid).collection("moods").document(mood.moodId).setData([
-            "moodId":mood.moodId,
+    func saveAndEditMood(mood: MoodModel,docId: String){
+        userReference.document(Auth.auth().currentUser!.uid).collection("moods").document(docId).setData([
+            "moodId":docId,
             "moodType":mood.moodType,
             "moodValue":mood.moodValue,
             "time": mood.time,
@@ -106,9 +106,10 @@ class DataService{
             }
         }
     }
-    func saveMoodByDate(mood: MoodModel,docId: String){
+    
+    func saveMoodByDate(mood: MoodModel,docId: String, moodId: String){
         
-        Firestore.firestore().collection("allMoods").document(docId).collection("moods").document().setData([
+        Firestore.firestore().collection("allMoods").document(docId).collection("moods").document(moodId).setData([
             "moodId":mood.moodId,
             "moodType":mood.moodType,
             "moodValue":mood.moodValue,
@@ -121,44 +122,6 @@ class DataService{
             
         }
     }
-    //        country
-    //        "Pakistan"
-    //        createdAt
-    //        May 26, 2021 at 5:47:57 PM UTC+5
-    //        email
-    //        "user3@gmail.com"
-    //        (string)
-    //        fcmToken
-    //        "cZ5wLPq3TEAcsZt7SRePHH:APA91bFm0kobNP8ZOnFPMLN0uKn-jibfkz6hwZ--TczTz5YxB2pNV16MbhupB04g9FA2nNV4KBF27dBieLve_OsUOup7QudWhc0uG06O05tBZv0959tt132HPc4TuLfLK6TvGTejfjS4"
-    //        gender
-    //        "female"
-    //        id
-    //        "frTW4eReHPQyvZeuSSVizyB6olm2"
-    //        image
-    //        "https://firebasestorage.googleapis.com/v0/b/le-mood-50649.appspot.com/o/Profile%20Pics%2FfrTW4eReHPQyvZeuSSVizyB6olm2.jpg?alt=media&token=11f4fdbc-0fcf-414c-bbd7-47fd601a7161"
-    //        name
-    //        "User 3"
-    //        phoneNumber
-    //        "+923005098444"
-    //        region
-    //        "State 1"
-    
-    //    chatReference.document(chatID).collection("messages").document(message.messageId).setData([
-    //        "isIncoming":message.isIncoming,
-    //        "message":message.messageBody,
-    //        "messageDate":message.messageDate,
-    //        "messageId":message.messageId,
-    //        "messageTime":message.messageTime,
-    //        "messageType":message.messageType,
-    //        "receiverId":message.reciverId,
-    //        "senderId":message.senderId,
-    //        "createdAt": FieldValue.serverTimestamp()
-    //    ], merge: true) { (err) in
-    //        if let err = err {
-    //            debugPrint("Error adding document: \(err)")
-    //        } else {
-    //            self.chatReference.document(chatID).setData([
-    //                "chatId":chatID,
     
     
     func getAllFriends(handler: @escaping(_ success:Bool,_ allUser:[UserModel]?)->()){
@@ -485,7 +448,40 @@ class DataService{
         
         if let videoData = NSData(contentsOf: videoURL) as Data? {
             let storageRef = Storage.storage().reference().child("iOS_App_Video").child(("\(UUID().uuidString).mp4"))
-            _ = storageRef.putData(videoData, metadata: nil) { (metaData, err) in
+            _ = storageRef.putData(videoData, metadata: metadata) { (metaData, err) in
+                print("upload task finished")
+                if let err = err {
+                    print("Failed to upload movie:", err)
+                    handler(false,downloadLink)
+                    return
+                }
+                
+                storageRef.downloadURL(completion: { (url, err) in
+                    if let err = err {
+                        print("Failed to get download url:", err)
+                        handler(false,downloadLink)
+                        return
+                        
+                    }
+                    else
+                    {
+                        downloadLink = (url?.absoluteString) ?? ""
+                        handler(true,downloadLink)
+                    }
+                })
+            }
+            
+        }
+    }
+    
+    func uploadGifs(selectedGif:URL,handler :@escaping(_ success:Bool,_ picUrl:String)-> Void){
+        var downloadLink = ""
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/gif"
+        
+        if let videoData = NSData(contentsOf: selectedGif) as Data? {
+            let storageRef = Storage.storage().reference().child("iOS_App_Pics").child(("\(UUID().uuidString).gif"))
+            _ = storageRef.putData(videoData, metadata: metadata) { (metaData, err) in
                 print("upload task finished")
                 if let err = err {
                     print("Failed to upload movie:", err)

@@ -17,6 +17,7 @@ target 'Le Mood' do
   pod 'PhoneNumberKit', '~> 3.3'
   pod 'Lightbox'
   pod 'FirebaseMessaging'
+  pod 'Gifu'
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   
