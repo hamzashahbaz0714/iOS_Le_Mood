@@ -100,7 +100,7 @@ class HomeViewController: UIViewController {
             let user = DataService.instance.currentUser
             if user?.lastMoodDate != "" && user?.lastMoodDate == getCurrentDate() && user?.lastMoodDate != "Not found"{
                 ProgressHUD.dismiss()
-                Alert.showWithTwoActions(title: "Your Mood is already submitted", msg: "You can update your current mood to press yes.", okBtnTitle: "Yes", okBtnAction: {
+                Alert.showWithTwoActions(title: "Your Mood is already submitted", msg: "Would you like to update your mood?", okBtnTitle: "Yes", okBtnAction: {
                     let popUp = PopUpMood()
                     popUp.modalPresentationStyle = .overFullScreen
                     popUp.modalTransitionStyle = .crossDissolve
