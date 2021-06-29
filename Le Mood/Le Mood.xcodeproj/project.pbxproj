@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04600D16268B591C00DB8947 /* ChatsTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04600D15268B591C00DB8947 /* ChatsTextCell.swift */; };
 		9D62F002C714FAEE4886DB5C /* Pods_Le_Mood.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF09B5E5C9A7471C522B93C /* Pods_Le_Mood.framework */; };
 		FA0AA2AE265D2014004545A3 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0AA2AD265D2014004545A3 /* StatisticsViewController.swift */; };
 		FA0AA2BE265D365F004545A3 /* CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0AA2BD265D365F004545A3 /* CornerRadius.swift */; };
 		FA0AA2C1265D36A0004545A3 /* NumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0AA2C0265D36A0004545A3 /* NumberViewController.swift */; };
-		FA13A17026676BD50058ED40 /* ChatsTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13A16F26676BD50058ED40 /* ChatsTextCell.swift */; };
 		FA13A175266782840058ED40 /* LanguagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13A174266782840058ED40 /* LanguagesViewController.swift */; };
 		FA13A17B2667AC180058ED40 /* LanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13A17A2667AC180058ED40 /* LanguageCell.swift */; };
 		FA1B1532263FD027008CD9A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B1531263FD027008CD9A3 /* AppDelegate.swift */; };
@@ -99,12 +99,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04600D15268B591C00DB8947 /* ChatsTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsTextCell.swift; sourceTree = "<group>"; };
 		C2CAB410993297DDFFF3DFCF /* Pods-Le Mood.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Le Mood.debug.xcconfig"; path = "Target Support Files/Pods-Le Mood/Pods-Le Mood.debug.xcconfig"; sourceTree = "<group>"; };
 		CFE8B30F3C0CD2920545C271 /* Pods-Le Mood.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Le Mood.release.xcconfig"; path = "Target Support Files/Pods-Le Mood/Pods-Le Mood.release.xcconfig"; sourceTree = "<group>"; };
 		FA0AA2AD265D2014004545A3 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		FA0AA2BD265D365F004545A3 /* CornerRadius.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CornerRadius.swift; sourceTree = "<group>"; };
 		FA0AA2C0265D36A0004545A3 /* NumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberViewController.swift; sourceTree = "<group>"; };
-		FA13A16F26676BD50058ED40 /* ChatsTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatsTextCell.swift; path = ../../../../../Sculpted_Code/sculpted_ios_code/Sculpt/CustomCells/ChatsTextCell.swift; sourceTree = "<group>"; };
 		FA13A174266782840058ED40 /* LanguagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagesViewController.swift; sourceTree = "<group>"; };
 		FA13A17A2667AC180058ED40 /* LanguageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCell.swift; sourceTree = "<group>"; };
 		FA1B152E263FD027008CD9A3 /* Le Mood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Le Mood.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -357,7 +357,7 @@
 			children = (
 				FA70CC212683752D00473156 /* languageSelectConfirmCell.swift */,
 				FADF51CB265FC4920051F6FB /* ChatsCell.swift */,
-				FA13A16F26676BD50058ED40 /* ChatsTextCell.swift */,
+				04600D15268B591C00DB8947 /* ChatsTextCell.swift */,
 				FA6E32ED2657BEEA008C5013 /* ChatListCell.swift */,
 				FA6E32EC2657BEEA008C5013 /* ChatListCell.xib */,
 				FAC0935D265E3BE7004B53F7 /* ContactCell.swift */,
@@ -723,6 +723,7 @@
 				FAF9D8C12689EE08004D3092 /* StatCell.swift in Sources */,
 				FAC0932D265E1F71004B53F7 /* VerificationViewController.swift in Sources */,
 				FA1B1565263FD6E0008CD9A3 /* Constants.swift in Sources */,
+				04600D16268B591C00DB8947 /* ChatsTextCell.swift in Sources */,
 				FA70CC0026836E8C00473156 /* RandomChatSelectVC.swift in Sources */,
 				FA9C914226564CC4003CCBAD /* Onboard2VC.swift in Sources */,
 				FA37ED692664CBE5007872AA /* CountriesStatesModel.swift in Sources */,
@@ -737,7 +738,6 @@
 				FAC09336265E3504004B53F7 /* MoodFriendsViewController.swift in Sources */,
 				FA1B1563263FD6E0008CD9A3 /* Rechability.swift in Sources */,
 				FA70CC222683752D00473156 /* languageSelectConfirmCell.swift in Sources */,
-				FA13A17026676BD50058ED40 /* ChatsTextCell.swift in Sources */,
 				FA6E32E226578F8E008C5013 /* PopUpMood.swift in Sources */,
 				FA6E32F42657C983008C5013 /* SettingViewController.swift in Sources */,
 				FAC09339265E3515004B53F7 /* AllFriendsViewController.swift in Sources */,
