@@ -80,6 +80,7 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     @IBOutlet weak var txtMessageHeight: NSLayoutConstraint!
     var passRecieverUser : UserModel?
     var isComeFromFirendsOrChatList = false
+    var isComefromRandomORMyCHat = false
     var passName: String?
     
     override func viewDidLoad() {
@@ -103,12 +104,12 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         navigationController?.navigationBar.prefersLargeTitles = false
         tableView.separatorStyle = .none
         tableView.backgroundColor = #colorLiteral(red: 0.9647058824, green: 0.9764705882, blue: 1, alpha: 1)
-        DataService.instance.getChatOfID(chatID: self.chatID!) { (success, returnedChat) in
+        DataService.instance.getChatOfID(isComeFromRandomORChat: isComefromRandomORMyCHat, chatID: self.chatID!) { (success, returnedChat) in
             if success{
                 if returnedChat!.notReadBy.contains(Auth.auth().currentUser!.uid){
                     if let index = returnedChat!.notReadBy.firstIndex(of: Auth.auth().currentUser!.uid){
                         returnedChat!.notReadBy.remove(at: index)
-                        DataService.instance.updateChatNotRead(chatID: self.chatID!, notReadBy: returnedChat!.notReadBy)
+                        DataService.instance.updateChatNotRead(isComeFromRandomORChat: self.isComefromRandomORMyCHat, chatID: self.chatID!, notReadBy: returnedChat!.notReadBy)
                     }
                 }
             }
@@ -116,20 +117,42 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         
         
         DispatchQueue.main.async {
-            let chatReference = Firestore.firestore().collection("chats").document(self.chatID!).collection("messages")
-            chatReference.addSnapshotListener({ (snapShot, error) in
+            if self.isComefromRandomORMyCHat == false {
                 self.messagesArray.removeAll()
-                DataService.instance.getAllChatMessages(chatID: self.chatID!) { (success,returnedArray) in
-                    if success{
-                        self.messagesArray = returnedArray
-                        self.tableView.reloadData()
-                        if returnedArray.count > 0{
-                            print("returnedArray.count \(returnedArray.count)")
-                            self.tableView.scrollToBottom()
+                let chatReference = Firestore.firestore().collection("chats").document(self.chatID!).collection("messages")
+                chatReference.addSnapshotListener({ (snapShot, error) in
+                    self.messagesArray.removeAll()
+                    DataService.instance.getAllChatMessages(chatID: self.chatID!) { (success,returnedArray) in
+                        if success{
+                            self.messagesArray = returnedArray
+                            self.tableView.reloadData()
+                            if returnedArray.count > 0{
+                                print("returnedArray.count \(returnedArray.count)")
+                                self.tableView.scrollToBottom()
+                            }
                         }
                     }
-                }
-            })
+                })
+            }
+            else
+            {
+                self.messagesArray.removeAll()
+                let chatReference = Firestore.firestore().collection("randomChats").document(self.chatID!).collection("messages")
+                chatReference.addSnapshotListener({ (snapShot, error) in
+                    self.messagesArray.removeAll()
+                    DataService.instance.getRandomChatMessages(chatID: self.chatID!) { (success,returnedArray) in
+                        if success{
+                            self.messagesArray = returnedArray
+                            self.tableView.reloadData()
+                            if returnedArray.count > 0{
+                                print("returnedArray.count \(returnedArray.count)")
+                                self.tableView.scrollToBottom()
+                            }
+                        }
+                    }
+                })
+            }
+            
         }
         
     }
@@ -154,7 +177,7 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             if success {
                 print(url)
                 let message = Message(messageId: getUniqueId(), reciverId: rID, senderId: Auth.auth().currentUser!.uid, messageBody: url, messageType: "image", messageTime: getCurrentTime(), messageDate: getCurrentDateWithTime(), isIncoming: false)
-                DataService.instance.addChatMessage(chatID: self?.chatID ?? "", message: message,notReadBy: [rID],senderName: DataService.instance.currentUser.name, senderImage: DataService.instance.currentUser.image)
+                DataService.instance.addChatMessage(isComefromRandomORMyCHat: self?.isComefromRandomORMyCHat,chatID: self?.chatID ?? "", message: message,notReadBy: [rID],senderName: DataService.instance.currentUser.name, senderImage: DataService.instance.currentUser.image)
                 let sender = PushNotificationSender()
                 sender.sendPushNotification(to: "\(self?.passRecieverUser!.fcmToken ?? "")", title: "New Message from \(DataService.instance.currentUser!.name)", body: "image",unread: 1)
             }
@@ -172,7 +195,7 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         DataService.instance.uploadVideos(videoURL: selectedVideo) { [weak self] (success, url) in
             if success {
                 let message = Message(messageId: getUniqueId(), reciverId: rID, senderId: Auth.auth().currentUser!.uid, messageBody: url, messageType: "video", messageTime: getCurrentTime(), messageDate: getCurrentDateWithTime(), isIncoming: false)
-                DataService.instance.addChatMessage(chatID: self?.chatID ?? "", message: message,notReadBy: [rID],senderName: DataService.instance.currentUser.name,senderImage: DataService.instance.currentUser.image)
+                DataService.instance.addChatMessage(isComefromRandomORMyCHat: self?.isComefromRandomORMyCHat,chatID: self?.chatID ?? "", message: message,notReadBy: [rID],senderName: DataService.instance.currentUser.name,senderImage: DataService.instance.currentUser.image)
                 let sender = PushNotificationSender()
                 sender.sendPushNotification(to: "\(self?.passRecieverUser!.fcmToken ?? "")", title: "New Message from \(DataService.instance.currentUser!.name)", body: "video",unread: 1)
                 ProgressHUD.dismiss()
@@ -192,7 +215,7 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         DataService.instance.uploadGifs(selectedGif: selectedGif) { [weak self] (success, url) in
             if success {
                 let message = Message(messageId: getUniqueId(), reciverId: rID, senderId: Auth.auth().currentUser!.uid, messageBody: url, messageType: "gif", messageTime: getCurrentTime(), messageDate: getCurrentDateWithTime(), isIncoming: false)
-                DataService.instance.addChatMessage(chatID: self?.chatID ?? "", message: message,notReadBy: [rID],senderName: DataService.instance.currentUser.name,senderImage: DataService.instance.currentUser.image)
+                DataService.instance.addChatMessage(isComefromRandomORMyCHat: self?.isComefromRandomORMyCHat,chatID: self?.chatID ?? "", message: message,notReadBy: [rID],senderName: DataService.instance.currentUser.name,senderImage: DataService.instance.currentUser.image)
                 let sender = PushNotificationSender()
                 sender.sendPushNotification(to: "\(self?.passRecieverUser!.fcmToken ?? "")", title: "New Message from \(DataService.instance.currentUser!.name)", body: "video",unread: 1)
                 ProgressHUD.dismiss()
@@ -396,7 +419,7 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         if messageTxtView.text != ""{
             let m = messageTxtView.text
             let message = Message(messageId: getUniqueId(), reciverId: rID, senderId: Auth.auth().currentUser!.uid, messageBody: messageTxtView.text, messageType: "text", messageTime: getCurrentTime(), messageDate: getCurrentDateWithTime(), isIncoming: false)
-            DataService.instance.addChatMessage(chatID: chatID!, message: message,notReadBy: [rID],senderName: DataService.instance.currentUser.name,senderImage: DataService.instance.currentUser.image)
+            DataService.instance.addChatMessage(isComefromRandomORMyCHat: isComefromRandomORMyCHat, chatID: chatID!, message: message,notReadBy: [rID],senderName: DataService.instance.currentUser.name,senderImage: DataService.instance.currentUser.image)
             self.messageTxtView.text = ""
             let sender = PushNotificationSender()
             sender.sendPushNotification(to: "\(self.passRecieverUser!.fcmToken)", title: "New Message from \(DataService.instance.currentUser!.name)", body: m!,unread: 1)

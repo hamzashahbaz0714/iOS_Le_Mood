@@ -16,6 +16,8 @@ class DataService{
     let userReference = Firestore.firestore().collection("users")
     let patientReference = Firestore.firestore().collection("Patients")
     let chatReference = Firestore.firestore().collection("chats")
+    let randomchatReference = Firestore.firestore().collection("randomChats")
+    
     
     var currentUser : UserModel!
     
@@ -157,9 +159,9 @@ class DataService{
         }
     }
     
-    func searchLanguageBaseFriend(language: String,handler: @escaping(_ success:Bool,_ allUser:[UserModel]?)->()){
+    func searchLanguageBaseFriend(language: [String],handler: @escaping(_ success:Bool,_ allUser:[UserModel]?)->()){
         var userArray  = [UserModel]()
-        userReference.whereField("language", in: [language]).getDocuments { (snapshot, error) in
+        userReference.whereField("language", in: language).getDocuments { (snapshot, error) in
             for document in snapshot!.documents {
                 let data = document.data()
                 let id = data["id"] as? String ?? "Not Found"
@@ -224,11 +226,12 @@ class DataService{
         
     }
     
-    func getMoodStatistics(country: String, state: String ,handler: @escaping(_ success:Bool,_ mood:[MoodModel]?)->()){
-        let userRef = Firestore.firestore().collection("allMoods").document(getCurrentDateWithDash()).collection("moods").whereField("country", isEqualTo: country).whereField("state", isEqualTo: state)
+    func getMoodStatistics(handler: @escaping(_ success:Bool,_ mood:[MoodModel]?, _ country:[String]?)->()){
+        let userRef = Firestore.firestore().collection("allMoods").document(getCurrentDateWithDash()).collection("moods")
         userRef.getDocuments(completion: { (snapshot, error) in
             if snapshot?.documents.count  ?? 0 > 0 {
                 var moodArr = [MoodModel]()
+                var countries = [String]()
                 for document in snapshot!.documents {
                     if document == document {
                         let data = document.data()
@@ -242,17 +245,18 @@ class DataService{
                         
                         let mood = MoodModel(moodId: moodId, moodType: moodType, moodValue: moodValue, time: time, date: date,country: country,state: state)
                         moodArr.append(mood)
+                        countries.append(country)
                     }
                     else
                     {
-                        handler(false,nil)
+                        handler(false,nil, nil)
                     }
-                    handler(true,moodArr)
+                    handler(true,moodArr,countries)
                 }
             }
             else
             {
-                handler(false,nil)
+                handler(false,nil, nil)
                 
             }
         })
@@ -316,10 +320,44 @@ class DataService{
             }
         }
     }
+    func getRandomAllChats(handler:@escaping(_ chats:[Chat])->()){
+        var chatsArray = [Chat]()
+        randomchatReference.order(by: "createdAt", descending: true).getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                handler(chatsArray)
+            } else {
+                for document in querySnapshot!.documents {
+                    let data = document.data()
+                    let chatId = data["chatId"] as? String ?? "Not Found"
+                    let lastMessage = data["message"] as? String ?? "Not Found"
+                    let lastMessageDate = data["messageDate"] as? String ?? "Not Found"
+                    let lastMessageTime = data["messageTime"] as? Int ?? 0
+                    let sender = data["sender"] as? String ?? "Not Found"
+                    let receiver = data["receiver"] as? String ?? ""
+                    let notReadBy = data["notReadBy"] as? [String] ?? [String]()
+                    let messageType = data["messageType"] as? String ?? ""
+                    
+                    let chat = Chat(chatId: chatId, lastMessage: lastMessage, lastMessageDate: lastMessageDate, lastMessageTime: lastMessageTime, sender: sender, receiver: receiver,notReadBy: notReadBy)
+                    chat.messageType = messageType
+                    if chat.chatId.contains(Auth.auth().currentUser!.uid){
+                        print("coming here")
+                        let rID = chat.chatId.replacingOccurrences(of: Auth.auth().currentUser!.uid, with: "")
+                        chat.otherUser = rID
+                        chatsArray.append(chat)
+                    }
+                    
+                    
+                }
+                handler(chatsArray)
+            }
+        }
+    }
     
-    func getChatOfID(chatID:String,handler:@escaping(_ success:Bool,_ chat:Chat?) -> ()){
+    
+    func getChatOfID(isComeFromRandomORChat:Bool,chatID:String,handler:@escaping(_ success:Bool,_ chat:Chat?) -> ()){
+        if isComeFromRandomORChat == false {
         let chatRef = chatReference.document(chatID)
-        
         chatRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 let data = document.data()!
@@ -339,53 +377,131 @@ class DataService{
                 print("Document does not exist")
             }
         }
+        }
+        else
+        {
+            let chatRef = randomchatReference.document(chatID)
+            chatRef.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    let data = document.data()!
+                    let chatId = data["chatId"] as? String ?? "Not Found"
+                    let lastMessage = data["message"] as? String ?? "Not Found"
+                    let lastMessageDate = data["messageDate"] as? String ?? "Not Found"
+                    let lastMessageTime = data["messageTime"] as? Int ?? 0
+                    let sender = data["sender"] as? String ?? "Not Found"
+                    let receiver = data["receiver"] as? String ?? ""
+                    let notReadBy = data["notReadBy"] as? [String] ?? [String]()
+                    
+                    let chat = Chat(chatId: chatId, lastMessage: lastMessage, lastMessageDate: lastMessageDate, lastMessageTime: lastMessageTime, sender: sender, receiver: receiver,notReadBy: notReadBy)
+                    handler(true,chat)
+                    
+                } else {
+                    handler(false,nil)
+                    print("Document does not exist")
+                }
+            }
+        }
     }
-    func updateChatNotRead(chatID:String,notReadBy:[String]){
-        self.chatReference.document(chatID).setData([
-            "notReadBy":notReadBy,
-        ], merge: true) { (err) in
-            if let err = err {
-                debugPrint("Error adding document: \(err)")
-            } else {
+    func updateChatNotRead(isComeFromRandomORChat:Bool,chatID:String,notReadBy:[String]){
+        if isComeFromRandomORChat == false {
+            self.chatReference.document(chatID).setData([
+                "notReadBy":notReadBy,
+            ], merge: true) { (err) in
+                if let err = err {
+                    debugPrint("Error adding document: \(err)")
+                } else {
+                }
+            }
+        }
+        else
+        {
+            self.randomchatReference.document(chatID).setData([
+                "notReadBy":notReadBy,
+            ], merge: true) { (err) in
+                if let err = err {
+                    debugPrint("Error adding document: \(err)")
+                } else {
+                }
             }
         }
     }
     
-    func addChatMessage(chatID:String,message:Message,notReadBy:[String],senderName: String,senderImage: String){
-        chatReference.document(chatID).collection("messages").document(message.messageId).setData([
-            "isIncoming":message.isIncoming,
-            "message":message.messageBody,
-            "messageDate":message.messageDate,
-            "messageId":message.messageId,
-            "messageTime":message.messageTime,
-            "messageType":message.messageType,
-            "receiverId":message.reciverId,
-            "senderId":message.senderId,
-            "createdAt": FieldValue.serverTimestamp()
-        ], merge: true) { (err) in
-            if let err = err {
-                debugPrint("Error adding document: \(err)")
-            } else {
-                self.chatReference.document(chatID).setData([
-                    "chatId":chatID,
-                    "senderId":message.senderId,
-                    "receiverId":message.reciverId,
-                    "message":message.messageBody,
-                    "messageDate":message.messageDate,
-                    "messageTime":message.messageTime,
-                    "createdAt":FieldValue.serverTimestamp(),
-                    "messageType": message.messageType,
-                    "notReadBy":notReadBy,
-                    "senderName":senderName,
-                    "senderImage":senderImage,
-                    "listnerId": [message.senderId,message.reciverId]
-                ], merge: true) { (err) in
-                    if let err = err {
-                        debugPrint("Error adding document: \(err)")
-                    } else {
+    func addChatMessage(isComefromRandomORMyCHat: Bool?,chatID:String,message:Message,notReadBy:[String],senderName: String,senderImage: String){
+        if isComefromRandomORMyCHat == false {
+            chatReference.document(chatID).collection("messages").document(message.messageId).setData([
+                "isIncoming":message.isIncoming,
+                "message":message.messageBody,
+                "messageDate":message.messageDate,
+                "messageId":message.messageId,
+                "messageTime":message.messageTime,
+                "messageType":message.messageType,
+                "receiverId":message.reciverId,
+                "senderId":message.senderId,
+                "createdAt": FieldValue.serverTimestamp()
+            ], merge: true) { (err) in
+                if let err = err {
+                    debugPrint("Error adding document: \(err)")
+                } else {
+                    self.chatReference.document(chatID).setData([
+                        "chatId":chatID,
+                        "senderId":message.senderId,
+                        "receiverId":message.reciverId,
+                        "message":message.messageBody,
+                        "messageDate":message.messageDate,
+                        "messageTime":message.messageTime,
+                        "createdAt":FieldValue.serverTimestamp(),
+                        "messageType": message.messageType,
+                        "notReadBy":notReadBy,
+                        "senderName":senderName,
+                        "senderImage":senderImage,
+                        "listnerId": [message.senderId,message.reciverId]
+                    ], merge: true) { (err) in
+                        if let err = err {
+                            debugPrint("Error adding document: \(err)")
+                        } else {
+                        }
                     }
                 }
             }
+        }
+        else
+        {
+            Firestore.firestore().collection("randomChats").document(chatID).collection("messages").document(message.messageId).setData([
+                "isIncoming":message.isIncoming,
+                "message":message.messageBody,
+                "messageDate":message.messageDate,
+                "messageId":message.messageId,
+                "messageTime":message.messageTime,
+                "messageType":message.messageType,
+                "receiverId":message.reciverId,
+                "senderId":message.senderId,
+                "createdAt": FieldValue.serverTimestamp()
+            ], merge: true) { (err) in
+                if let err = err {
+                    debugPrint("Error adding document: \(err)")
+                } else {
+                    self.randomchatReference.document(chatID).setData([
+                        "chatId":chatID,
+                        "senderId":message.senderId,
+                        "receiverId":message.reciverId,
+                        "message":message.messageBody,
+                        "messageDate":message.messageDate,
+                        "messageTime":message.messageTime,
+                        "createdAt":FieldValue.serverTimestamp(),
+                        "messageType": message.messageType,
+                        "notReadBy":notReadBy,
+                        "senderName":senderName,
+                        "senderImage":senderImage,
+                        "listnerId": [message.senderId,message.reciverId]
+                    ], merge: true) { (err) in
+                        if let err = err {
+                            debugPrint("Error adding document: \(err)")
+                        } else {
+                        }
+                    }
+                }
+            }
+            
         }
     }
     
@@ -420,6 +536,38 @@ class DataService{
             }
         }
     }
+    func getRandomChatMessages(chatID:String,handler:@escaping(_ success:Bool,_ messages:[Message])->()){
+        var messageArray = [Message]()
+        randomchatReference.document(chatID).collection("messages").order(by: "createdAt", descending: false).getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                //handler(messageArray)
+            } else {
+                for document in querySnapshot!.documents {
+                    let data = document.data()
+                    let messageId = data["messageId"] as? String ?? "Not Found"
+                    let reciverId = data["receiverId"] as? String ?? "Not Found"
+                    let senderId = data["senderId"] as? String ?? "Not Found"
+                    let messageBody = data["message"] as? String ?? "Not Found"
+                    let messageType = data["messageType"] as? String ?? "Not Found"
+                    let messageTime = data["messageTime"] as? Int ?? 0
+                    let messageDate = data["messageDate"] as? String ?? ""
+                    
+                    let message = Message(messageId: messageId, reciverId: reciverId, senderId: senderId, messageBody: messageBody, messageType: messageType, messageTime: messageTime, messageDate: messageDate, isIncoming: false)
+                    if senderId != Auth.auth().currentUser?.uid{
+                        message.isIncoming = true
+                        messageArray.append(message)
+                    }else{
+                        message.isIncoming = false
+                        messageArray.append(message)
+                    }
+                    
+                }
+                handler(true,messageArray)
+            }
+        }
+    }
+    
     
     func uploadPIcture(image:UIImage,handler :@escaping(_ success:Bool,_ picUrl:String)->()){
         var downloadLink = ""

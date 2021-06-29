@@ -1,17 +1,17 @@
 //
-//  LanguageCell.swift
+//  StatCell.swift
 //  Le Mood
 //
-//  Created by Hamza Shahbaz on 02/06/2021.
+//  Created by Hamza Shahbaz on 28/06/2021.
 //
 
 import UIKit
 
-class LanguageCell: UITableViewCell {
+class StatCell: UITableViewCell {
 
-    @IBOutlet weak var lblName: UILabel!
-    @IBOutlet weak var lblNativeName: UILabel!
-    @IBOutlet weak var btnSelect: UIButton!
+    @IBOutlet weak var lblCityName: UILabel!
+    @IBOutlet weak var moodImgView: UIImageView!
+    @IBOutlet weak var lblMoodValue: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

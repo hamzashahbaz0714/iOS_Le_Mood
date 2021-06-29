@@ -25,6 +25,17 @@ extension UIViewController {
     }
 }
 
+extension Array where Element: Equatable {
+    var unique: [Element] {
+        var uniqueValues: [Element] = []
+        forEach { item in
+            guard !uniqueValues.contains(item) else { return }
+            uniqueValues.append(item)
+        }
+        return uniqueValues
+    }
+}
+
 extension UIViewController {
     
     
@@ -139,9 +150,9 @@ extension UIImage {
         ctx.concatenate(transform)
         
         if ( self.imageOrientation == UIImage.Orientation.left ||
-            self.imageOrientation == UIImage.Orientation.leftMirrored ||
-            self.imageOrientation == UIImage.Orientation.right ||
-            self.imageOrientation == UIImage.Orientation.rightMirrored ) {
+                self.imageOrientation == UIImage.Orientation.leftMirrored ||
+                self.imageOrientation == UIImage.Orientation.right ||
+                self.imageOrientation == UIImage.Orientation.rightMirrored ) {
             ctx.draw(self.cgImage!, in: CGRect(x: 0,y: 0,width: self.size.height,height: self.size.width))
         } else {
             ctx.draw(self.cgImage!, in: CGRect(x: 0,y: 0,width: self.size.width,height: self.size.height))
@@ -194,30 +205,30 @@ extension String {
 
 extension AVAsset{
     var videoThumbnail:UIImage?{
-
+        
         let assetImageGenerator = AVAssetImageGenerator(asset: self)
         assetImageGenerator.appliesPreferredTrackTransform = true
-
+        
         var time = self.duration
         time.value = min(time.value, 0)
-
+        
         do {
             let imageRef = try assetImageGenerator.copyCGImage(at: time, actualTime: nil)
             let thumbNail = UIImage.init(cgImage: imageRef)
-
-
+            
+            
             print(debugDescription)
-
+            
             return thumbNail
-
+            
         } catch {
-
+            
             print(debugDescription,error.localizedDescription)
             return nil
-
-
+            
+            
         }
-
+        
     }
 }
 
@@ -248,5 +259,5 @@ extension UIViewController: UINavigationControllerDelegate,UIImagePickerControll
         
         self.present(actionSheet, animated: true, completion: nil)
     }
-
+    
 }

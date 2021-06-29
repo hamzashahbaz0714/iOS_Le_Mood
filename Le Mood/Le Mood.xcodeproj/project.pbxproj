@@ -46,6 +46,11 @@
 		FA6E32EF2657BEEA008C5013 /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E32ED2657BEEA008C5013 /* ChatListCell.swift */; };
 		FA6E32F42657C983008C5013 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E32F32657C983008C5013 /* SettingViewController.swift */; };
 		FA6E331C2657E3D7008C5013 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E331B2657E3D7008C5013 /* ProfileViewController.swift */; };
+		FA70CBF8268319AC00473156 /* ChatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA70CBF7268319AC00473156 /* ChatsVC.swift */; };
+		FA70CBFD26831AF000473156 /* RandomChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA70CBFC26831AF000473156 /* RandomChatVC.swift */; };
+		FA70CC0026836E8C00473156 /* RandomChatSelectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA70CBFF26836E8C00473156 /* RandomChatSelectVC.swift */; };
+		FA70CC1F2683745500473156 /* MICollectionViewBubbleLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA70CC1E2683745500473156 /* MICollectionViewBubbleLayout.swift */; };
+		FA70CC222683752D00473156 /* languageSelectConfirmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA70CC212683752D00473156 /* languageSelectConfirmCell.swift */; };
 		FA70CE3026663B1E008106DB /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA70CE2F26663B1E008106DB /* CustomTextView.swift */; };
 		FA9C913F26564BD0003CCBAD /* Onboard1VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9C913E26564BD0003CCBAD /* Onboard1VC.swift */; };
 		FA9C914226564CC4003CCBAD /* Onboard2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9C914126564CC4003CCBAD /* Onboard2VC.swift */; };
@@ -89,7 +94,8 @@
 		FADF51D4265FC4F50051F6FB /* MessagesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF51D3265FC4F50051F6FB /* MessagesVC.swift */; };
 		FADF51D8265FC53F0051F6FB /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF51D7265FC53F0051F6FB /* Chat.swift */; };
 		FADF51DB265FC6FA0051F6FB /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF51DA265FC6FA0051F6FB /* CircleImage.swift */; };
-		FADF5204265FCD1E0051F6FB /* ChatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF5203265FCD1E0051F6FB /* ChatsVC.swift */; };
+		FADF5204265FCD1E0051F6FB /* MyChatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF5203265FCD1E0051F6FB /* MyChatsVC.swift */; };
+		FAF9D8C12689EE08004D3092 /* StatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF9D8C02689EE08004D3092 /* StatCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -136,6 +142,11 @@
 		FA6E32ED2657BEEA008C5013 /* ChatListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
 		FA6E32F32657C983008C5013 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		FA6E331B2657E3D7008C5013 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		FA70CBF7268319AC00473156 /* ChatsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsVC.swift; sourceTree = "<group>"; };
+		FA70CBFC26831AF000473156 /* RandomChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomChatVC.swift; sourceTree = "<group>"; };
+		FA70CBFF26836E8C00473156 /* RandomChatSelectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomChatSelectVC.swift; sourceTree = "<group>"; };
+		FA70CC1E2683745500473156 /* MICollectionViewBubbleLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MICollectionViewBubbleLayout.swift; sourceTree = "<group>"; };
+		FA70CC212683752D00473156 /* languageSelectConfirmCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = languageSelectConfirmCell.swift; sourceTree = "<group>"; };
 		FA70CE2F26663B1E008106DB /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
 		FA9C913E26564BD0003CCBAD /* Onboard1VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboard1VC.swift; sourceTree = "<group>"; };
 		FA9C914126564CC4003CCBAD /* Onboard2VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboard2VC.swift; sourceTree = "<group>"; };
@@ -179,7 +190,8 @@
 		FADF51D3265FC4F50051F6FB /* MessagesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesVC.swift; sourceTree = "<group>"; };
 		FADF51D7265FC53F0051F6FB /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		FADF51DA265FC6FA0051F6FB /* CircleImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
-		FADF5203265FCD1E0051F6FB /* ChatsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsVC.swift; sourceTree = "<group>"; };
+		FADF5203265FCD1E0051F6FB /* MyChatsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyChatsVC.swift; sourceTree = "<group>"; };
+		FAF9D8C02689EE08004D3092 /* StatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatCell.swift; sourceTree = "<group>"; };
 		FCF09B5E5C9A7471C522B93C /* Pods_Le_Mood.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Le_Mood.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -331,6 +343,7 @@
 		FA1B154D263FD14E008CD9A3 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				FA70CC1E2683745500473156 /* MICollectionViewBubbleLayout.swift */,
 				FA37ED6B2664D7B9007872AA /* CountriesStatesList.json */,
 				FADF51CC265FC4920051F6FB /* ChatMessageCell.swift */,
 				FA1B1557263FD6CB008CD9A3 /* Extensions */,
@@ -342,6 +355,7 @@
 		FA1B154E263FD151008CD9A3 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
+				FA70CC212683752D00473156 /* languageSelectConfirmCell.swift */,
 				FADF51CB265FC4920051F6FB /* ChatsCell.swift */,
 				FA13A16F26676BD50058ED40 /* ChatsTextCell.swift */,
 				FA6E32ED2657BEEA008C5013 /* ChatListCell.swift */,
@@ -350,6 +364,7 @@
 				FAC0935C265E3BE7004B53F7 /* ContactCell.xib */,
 				FA4CEA9E2660F7CB005C9044 /* MediaCell.swift */,
 				FA13A17A2667AC180058ED40 /* LanguageCell.swift */,
+				FAF9D8C02689EE08004D3092 /* StatCell.swift */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -443,8 +458,11 @@
 		FA6E32E72657BBDC008C5013 /* Chats */ = {
 			isa = PBXGroup;
 			children = (
-				FADF5203265FCD1E0051F6FB /* ChatsVC.swift */,
+				FA70CBF7268319AC00473156 /* ChatsVC.swift */,
+				FADF5203265FCD1E0051F6FB /* MyChatsVC.swift */,
 				FADF51D3265FC4F50051F6FB /* MessagesVC.swift */,
+				FA70CBFC26831AF000473156 /* RandomChatVC.swift */,
+				FA70CBFF26836E8C00473156 /* RandomChatSelectVC.swift */,
 			);
 			path = Chats;
 			sourceTree = "<group>";
@@ -687,6 +705,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA70CBF8268319AC00473156 /* ChatsVC.swift in Sources */,
 				FA9C91892656A0B4003CCBAD /* TabbarViewController.swift in Sources */,
 				FA1B1564263FD6E0008CD9A3 /* Alert.swift in Sources */,
 				FA1B155F263FD6E0008CD9A3 /* Storyboard.swift in Sources */,
@@ -701,11 +720,13 @@
 				FA69D6E62668CF5A001AB78E /* LineChart.swift in Sources */,
 				FADF51D8265FC53F0051F6FB /* Chat.swift in Sources */,
 				FA9C9185265692A5003CCBAD /* HomeViewController.swift in Sources */,
+				FAF9D8C12689EE08004D3092 /* StatCell.swift in Sources */,
 				FAC0932D265E1F71004B53F7 /* VerificationViewController.swift in Sources */,
 				FA1B1565263FD6E0008CD9A3 /* Constants.swift in Sources */,
+				FA70CC0026836E8C00473156 /* RandomChatSelectVC.swift in Sources */,
 				FA9C914226564CC4003CCBAD /* Onboard2VC.swift in Sources */,
 				FA37ED692664CBE5007872AA /* CountriesStatesModel.swift in Sources */,
-				FADF5204265FCD1E0051F6FB /* ChatsVC.swift in Sources */,
+				FADF5204265FCD1E0051F6FB /* MyChatsVC.swift in Sources */,
 				FA9C914526564D7A003CCBAD /* Onboard3VC.swift in Sources */,
 				FA0AA2AE265D2014004545A3 /* StatisticsViewController.swift in Sources */,
 				FA9C918026568AB6003CCBAD /* SignupViewController.swift in Sources */,
@@ -715,12 +736,14 @@
 				FA4CEA8F2660CD1D005C9044 /* PushNotificationManager.swift in Sources */,
 				FAC09336265E3504004B53F7 /* MoodFriendsViewController.swift in Sources */,
 				FA1B1563263FD6E0008CD9A3 /* Rechability.swift in Sources */,
+				FA70CC222683752D00473156 /* languageSelectConfirmCell.swift in Sources */,
 				FA13A17026676BD50058ED40 /* ChatsTextCell.swift in Sources */,
 				FA6E32E226578F8E008C5013 /* PopUpMood.swift in Sources */,
 				FA6E32F42657C983008C5013 /* SettingViewController.swift in Sources */,
 				FAC09339265E3515004B53F7 /* AllFriendsViewController.swift in Sources */,
 				FA69D6E82668CF5A001AB78E /* CurveAlgorithm.swift in Sources */,
 				FA1B1562263FD6E0008CD9A3 /* UtilityManager.swift in Sources */,
+				FA70CC1F2683745500473156 /* MICollectionViewBubbleLayout.swift in Sources */,
 				FA70CE3026663B1E008106DB /* CustomTextView.swift in Sources */,
 				FA13A17B2667AC180058ED40 /* LanguageCell.swift in Sources */,
 				FA3AA6F5265CDFC900D48BC2 /* MoodModel.swift in Sources */,
@@ -731,6 +754,7 @@
 				FA4CEA902660CD1D005C9044 /* PushNotificationSender.swift in Sources */,
 				FA1B1534263FD027008CD9A3 /* SceneDelegate.swift in Sources */,
 				FADF51CE265FC4920051F6FB /* ChatMessageCell.swift in Sources */,
+				FA70CBFD26831AF000473156 /* RandomChatVC.swift in Sources */,
 				FA6E331C2657E3D7008C5013 /* ProfileViewController.swift in Sources */,
 				FA9C917D26567D4E003CCBAD /* LoginViewController.swift in Sources */,
 				FA69D6E72668CF5A001AB78E /* DotCALayer.swift in Sources */,
@@ -890,7 +914,7 @@
 				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = A53Y9FPVYJ;
 				INFOPLIST_FILE = "Le Mood/Assets/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -913,7 +937,7 @@
 				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = A53Y9FPVYJ;
 				INFOPLIST_FILE = "Le Mood/Assets/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

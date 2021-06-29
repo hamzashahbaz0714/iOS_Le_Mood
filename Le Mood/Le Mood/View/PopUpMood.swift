@@ -58,18 +58,28 @@ class PopUpMood: UIViewController {
         case 1:
             selectMoodImg.image = moodImages[0].image
             selectedMoodName.text = "Angry"
+            selectedMoodValue.text = "20"
+            moodeSlider.value = 20
         case 2:
             selectMoodImg.image = moodImages[1].image
             selectedMoodName.text = "Sad"
+            selectedMoodValue.text = "40"
+            moodeSlider.value = 40
         case 3:
             selectMoodImg.image = moodImages[2].image
             selectedMoodName.text = "Happy"
+            selectedMoodValue.text = "60"
+            moodeSlider.value = 60
         case 4:
             selectMoodImg.image = moodImages[3].image
             selectedMoodName.text = "Blush"
+            selectedMoodValue.text = "80"
+            moodeSlider.value = 80
         default:
             selectMoodImg.image = moodImages[4].image
             selectedMoodName.text = "Excited"
+            selectedMoodValue.text = "100"
+            moodeSlider.value = 100
         }
         
     }

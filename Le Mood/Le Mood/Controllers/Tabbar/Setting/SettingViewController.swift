@@ -60,6 +60,10 @@ class SettingViewController: UIViewController {
             print("")
             let controller: LanguagesViewController = LanguagesViewController.initiateFrom(Storybaord: .Main)
             self.pushController(contorller: controller, animated: true)
+        case 4:
+            print("random Chat")
+            let controller: RandomChatSelectVC = RandomChatSelectVC.initiateFrom(Storybaord: .Main)
+            self.pushController(contorller: controller, animated: true)
         default:
             print("Logout")
             Alert.showWithTwoActions(title: "Confirm", msg: "Are you sure want to Logout?", okBtnTitle: "Yes", okBtnAction: {

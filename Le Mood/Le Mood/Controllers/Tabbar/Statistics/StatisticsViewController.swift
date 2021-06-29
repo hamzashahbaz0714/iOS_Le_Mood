@@ -19,17 +19,13 @@ class StatisticsViewController: UIViewController {
     @IBOutlet weak var lblEmail: UILabel!
     @IBOutlet var statisticsViews: [UIView]!
     @IBOutlet weak var lblMoodValue: UILabel!
-    @IBOutlet weak var moodImageStat: UIImageView!
-    @IBOutlet weak var lblMoodValueStat: UILabel!
     @IBOutlet weak var moodImage: UIImageView!
-    @IBOutlet weak var txtCountry: DropDown!
-    @IBOutlet weak var txtState: DropDown!
-    @IBOutlet weak var btnShowStatView: UIView!
+    @IBOutlet weak var tableView: UITableView!
     
-
     
-    var countryArr = [String]()
-    var statesArr = [String]()
+    var countryArr = [Any]()
+    
+    var moodArr = [MoodModel]()
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     
@@ -39,7 +35,6 @@ class StatisticsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureDropDown()
         
     }
     
@@ -50,8 +45,9 @@ class StatisticsViewController: UIViewController {
         profileImgView.sd_setImage(with: URL(string: user?.image ?? "" ), placeholderImage: placeHolderImage, options: .forceTransition)
         lblName.text = user?.name
         lblEmail.text = user?.email
-        getStatistics(country: DataService.instance.currentUser.country, state: DataService.instance.currentUser.region)
-
+        //        getStatistics(country: DataService.instance.currentUser.country, state: DataService.instance.currentUser.region)
+        getStatistics()
+        
     }
     
     override func viewWillLayoutSubviews() {
@@ -60,8 +56,7 @@ class StatisticsViewController: UIViewController {
         statisticsViews.forEach { (view) in
             view.roundCorners(corners: [.topRight, .bottomLeft], radius: 18)
         }
-        btnShowStatView.roundCorners(corners: [.topLeft, .bottomRight], radius: 18)
- 
+        
     }
     
     //MARK:- Supporting Functions
@@ -81,64 +76,27 @@ class StatisticsViewController: UIViewController {
         return result
     }
     
-    func configureDropDown(){
-        appDelegate.countries?.countries?.forEach({ (country) in
-            countryArr.append(country.country ?? "")
-        })
-        txtCountry.optionArray = countryArr
-        txtCountry.didSelect { [self](selectedText, row, number) in
-            statesArr.removeAll()
-            self.txtState.text = ""
-            self.txtCountry.text = selectedText
-            appDelegate.countries?.countries?[row].states?.forEach({ (states) in
-                statesArr.append(states)
-            })
-            txtState.optionArray = statesArr
-            txtState.didSelect { (selectedText, row, number) in
-                self.txtState.text = selectedText
-            }
-        }
-    }
     
-    func getStatistics(country: String,state: String){
+    
+    func getStatistics(){
         ProgressHUD.show()
-        DataService.instance.getMoodStatistics(country: country, state: state) { [weak self](success, mood) in
+        DataService.instance.getMoodStatistics { (success, mood, coutry) in
             if success {
-                var value = 0
                 ProgressHUD.dismiss()
-                if mood?.count ?? 0 > 0 {
-                    mood?.forEach({ (moodValue) in
-                        value = value + moodValue.moodValue
-                    })
-                    let average = value / (mood?.count ?? 0)
-                    self?.lblMoodValueStat.text = "\(average)"
-                    if average <= 100  && average >= 80{
-                        self?.moodImageStat.image = UIImage(named: "5")
-                        
-                    }
-                    else if average <= 80  && average >= 60 {
-                        self?.moodImageStat.image = UIImage(named: "4")
-                    }
-                    else if average <= 60  && average >= 40 {
-                        self?.moodImageStat.image = UIImage(named: "3")
-                    }
-                    else if average <= 40  && average >= 20  {
-                        self?.moodImageStat.image = UIImage(named: "2")
-                    }
-                    else
-                    {
-                        self?.moodImageStat.image = UIImage(named: "1")
-                    }
-                }
+                self.moodArr = mood!
+                let uniqueOrdered = Array(NSOrderedSet(array: coutry!))
+                print(uniqueOrdered)
+                self.countryArr = uniqueOrdered
+                self.tableView.reloadData()
+                
             }
             else
             {
                 ProgressHUD.dismiss()
-                Alert.showMsg(msg: "NO Record Found again this country and state")
-                
             }
         }
     }
+    
     
     func getTodayMood(){
         if appDelegate.isMoodFetched == true {
@@ -172,13 +130,51 @@ class StatisticsViewController: UIViewController {
     
     //MARK:- Actions
     
-    @IBAction func btnShowStatTapped(_ sender: Any){
-        if txtCountry.text != "" && txtState.text != "" {
-            getStatistics(country: txtCountry.text!, state: txtState.text!)
+    
+}
+
+extension StatisticsViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return countryArr.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "StatCell", for: indexPath) as! StatCell
+        let countries = countryArr[indexPath.row] as? String
+        cell.lblCityName.text = countries
+        var moodValue = 0
+        var totalCountries = 0
+        for i in 0..<moodArr.count {
+            if countries == moodArr[i].country {
+                moodValue = moodValue + moodArr[i].moodValue
+                print(moodValue)
+                totalCountries =  totalCountries + 1
+                
+            }
+            
         }
-        else
-        {
-            Alert.showMsg(msg: "Please select country and state to show statistics")
+
+        let avg = moodValue / totalCountries
+        cell.lblMoodValue.text = "\(avg)%"
+        
+        if (avg <= 100 && avg > 80) {
+            cell.moodImgView.image = UIImage(named: "5")
+        } else if (avg <= 80 && avg > 60) {
+            cell.moodImgView.image = UIImage(named: "4")
+        } else if (avg <= 60 && avg > 40) {
+            cell.moodImgView.image = UIImage(named: "3")
+        } else if (avg <= 40 && avg > 20) {
+            cell.moodImgView.image = UIImage(named: "2")
+        } else {
+            cell.moodImgView.image = UIImage(named: "1")
         }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
     }
 }

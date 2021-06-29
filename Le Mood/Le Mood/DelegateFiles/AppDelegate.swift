@@ -17,6 +17,7 @@ import ProgressHUD
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
+    var selectLanguage = [String]()
     let gcmMessageIDKey = "gcm.Message_ID"
     var isMoodFetched : Bool?
     var mood: MoodModel?

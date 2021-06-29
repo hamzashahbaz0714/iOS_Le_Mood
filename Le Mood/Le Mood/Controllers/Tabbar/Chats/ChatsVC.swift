@@ -1,119 +1,71 @@
 //
 //  ChatsVC.swift
-//  Wind Searched
+//  Le Mood
 //
-//  Created by Hamza Shahbaz on 07/01/20.
-//  Copyright © 2018 Brian Voong. All rights reserved.
+//  Created by Hamza Shahbaz on 23/06/2021.
 //
 
 import UIKit
-import Firebase
-import ProgressHUD
-import FirebaseAuth
-import FirebaseFirestore
-
+import LZViewPager
 class ChatsVC: UIViewController {
+
+    //MARK:- Properties
     
-    
-    //MARK:- Propeties
-    
-    @IBOutlet weak var tableView:UITableView!
-    var chats = [Chat]()
+    @IBOutlet weak var viewPager: LZViewPager!
+    private var subControllers:[UIViewController] = []
     
     //MARK:- Controller Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadChatList()
+        setupViewPager()
+
     }
+
+    func setupViewPager(){
+        viewPager.dataSource = self
+        viewPager.delegate = self
+        viewPager.hostController = self
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        //        if Auth.auth().currentUser?.uid != nil{
-        //            ProgressHUD.show("Loading chats")
-        //            let chatReference = Firestore.firestore().collection("chats")
-        //            chatReference.addSnapshotListener({ (snapShot, error) in
-        //                DataService.instance.getAllChats { (returnedArray) in
-        //                    ProgressHUD.dismiss()
-        //                    self.chats = returnedArray
-        //                    self.tableView.reloadData()
-        //                }
-        //            })
-        //        }else{
-        //            print("sdljcnvsa")
-        //        }
-        UIApplication.shared.applicationIconBadgeNumber = 0
-    }
-    
-    //MARK:- Supporting Functions
-    
-    func loadChatList(){
         
-        tableView.delegate = self
-        tableView.dataSource = self
-        if Auth.auth().currentUser?.uid != nil{
-            ProgressHUD.show("Loading chats")
-            let chatReference = Firestore.firestore().collection("chats")
-            chatReference.addSnapshotListener({ (snapShot, error) in
-                DataService.instance.getAllChats { (returnedArray) in
-                    ProgressHUD.dismiss()
-                    self.chats = returnedArray
-                    self.tableView.reloadData()
-                }
-            })
-        }else{
-            let popUp = UIAlertController(title: "Warning", message: "You must be logged in to view", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "Ok", style: .default) { (okTapped) in
-                self.tabBarController?.selectedIndex = 4
-            }
-            popUp.addAction(okAction)
-            self.present(popUp,animated: true)
-        }
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        viewPager.tintColor = #colorLiteral(red: 0.5076961517, green: 0.2106034458, blue: 0.2362745106, alpha: 1)
+        let vc1 = mainStoryboard.instantiateViewController(withIdentifier: "MyChatsVC") as! MyChatsVC
+        vc1.title = "My Chats"
+        let vc2 = mainStoryboard.instantiateViewController(withIdentifier: "RandomChatVC") as! RandomChatVC
+        vc2.title = "Random Chat"
+        subControllers = [vc1, vc2]
+        viewPager.reload()
     }
-    
     
 }
-extension ChatsVC:UITableViewDataSource,UITableViewDelegate,ChatsCellDelegate{
-    
-    func openProfile(uid: UserModel) {
-        
-        
+
+extension ChatsVC: LZViewPagerDelegate, LZViewPagerDataSource{
+    func numberOfItems() -> Int {
+        return self.subControllers.count
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return chats.count
+    func controller(at index: Int) -> UIViewController {
+        return subControllers[index]
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ChatsCell", for: indexPath) as! ChatsCell
-        cell.chat = chats[indexPath.row]
-        cell.initCell()
-        DataService.instance.getUserOfID(userID: chats[indexPath.row].otherUser) { (success, returnedUser) in
-            if success{
-                cell.nameLbl.text = returnedUser!.name
-                cell.profileImg.sd_setImage(with: URL(string: returnedUser!.image), placeholderImage: placeHolderImage)
-            }
-        }
-        if cell.chat.notReadBy.contains(DataService.instance.currentUser!.id){
-            cell.dotImg.isHidden = false
-        }else{
-            cell.dotImg.isHidden = true
-        }
-        cell.delegate = self
-        return cell
+    func button(at index: Int) -> UIButton {
+        //Customize your button styles here
+        let button = UIButton()
+        button.setTitleColor(UIColor.black, for: .normal)
+        button.titleLabel?.font = UIFont(name: "TTCommons-Bold", size: 20)
+        return button
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "MessagesVC") as! MessagesVC
-        if let cell = tableView.cellForRow(at: indexPath) as? ChatsCell {
-            let name = cell.nameLbl.text
-            vc.passName = name
-        }
-        vc.chatID = chats[indexPath.row].chatId
-        vc.notReadBy = self.chats[indexPath.row].notReadBy
-        vc.isComeFromFirendsOrChatList = true
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
     
+  
+    func colorForIndicator(at index: Int) -> UIColor {
+        return #colorLiteral(red: 0, green: 0.3716039062, blue: 0.5234339833, alpha: 1)
+    }
+  
+    func heightForIndicator() -> CGFloat {
+        return 4
+    }
+
     
 }
