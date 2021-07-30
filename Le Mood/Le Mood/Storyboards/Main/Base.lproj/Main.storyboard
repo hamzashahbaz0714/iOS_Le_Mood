@@ -61,20 +61,21 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SyJ-ZC-d8t">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_mood" translatesAutoresizingMaskIntoConstraints="NO" id="Q5f-rl-Gm0">
-                                                <rect key="frame" x="132" y="70" width="150" height="40.5"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_Standard" translatesAutoresizingMaskIntoConstraints="NO" id="Q5f-rl-Gm0">
+                                                <rect key="frame" x="132" y="70" width="150" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="8mx-Yb-Yhm"/>
+                                                    <constraint firstAttribute="height" constant="50" id="crD-62-IsE"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CG3-bO-ic3">
-                                                <rect key="frame" x="165.5" y="140.5" width="83" height="39.5"/>
+                                                <rect key="frame" x="165.5" y="150" width="83" height="39.5"/>
                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="28"/>
                                                 <color key="textColor" red="1" green="0.74509803921568629" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="2gP-qm-JlA">
-                                                <rect key="frame" x="50" y="230" width="314" height="120"/>
+                                                <rect key="frame" x="50" y="239.5" width="314" height="120"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z5Y-jF-Cnw">
                                                         <rect key="frame" x="0.0" y="0.0" width="314" height="50"/>
@@ -167,7 +168,7 @@
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JEb-np-zE3">
-                                                <rect key="frame" x="241" y="379" width="123" height="30"/>
+                                                <rect key="frame" x="241" y="388.5" width="123" height="30"/>
                                                 <state key="normal" title="Forgot password?">
                                                     <color key="titleColor" red="0.86274509803921573" green="0.2627450980392157" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </state>
@@ -176,7 +177,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d9t-v4-UNn">
-                                                <rect key="frame" x="132" y="429" width="150" height="40"/>
+                                                <rect key="frame" x="132" y="438.5" width="150" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="kNm-XE-bM3"/>
                                                     <constraint firstAttribute="width" constant="150" id="tkn-Cl-EsU"/>
@@ -187,7 +188,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rDh-gs-asU">
-                                                <rect key="frame" x="97.5" y="499" width="219" height="30"/>
+                                                <rect key="frame" x="97.5" y="508.5" width="219" height="30"/>
                                                 <state key="normal">
                                                     <attributedString key="attributedTitle">
                                                         <fragment content="Don't have an account?">
@@ -327,16 +328,16 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="aFJ-go-QKs">
-                                <rect key="frame" x="50" y="682.5" width="314" height="63.5"/>
+                                <rect key="frame" x="50" y="687" width="314" height="59"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem Ipsum" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HVn-Na-1Td">
-                                        <rect key="frame" x="0.0" y="0.0" width="314" height="25.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="314" height="21"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GLe-0h-mmk">
-                                        <rect key="frame" x="0.0" y="35.5" width="314" height="28"/>
+                                        <rect key="frame" x="0.0" y="31" width="314" height="28"/>
                                         <string key="text">Lorem Ipsum is simply dummy text of the 
 printing and typesetting industry.</string>
                                         <fontDescription key="fontDescription" name="AcuminPro-Regular" family="Acumin Pro" pointSize="14"/>
@@ -432,16 +433,16 @@ printing and typesetting industry.</string>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hh2-tX-pBg">
-                                <rect key="frame" x="50" y="682.5" width="314" height="63.5"/>
+                                <rect key="frame" x="50" y="687" width="314" height="59"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem Ipsum" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Os4-xl-nvy">
-                                        <rect key="frame" x="0.0" y="0.0" width="314" height="25.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="314" height="21"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lnz-3p-jGg">
-                                        <rect key="frame" x="0.0" y="35.5" width="314" height="28"/>
+                                        <rect key="frame" x="0.0" y="31" width="314" height="28"/>
                                         <string key="text">Lorem Ipsum is simply dummy text of the 
 printing and typesetting industry.</string>
                                         <fontDescription key="fontDescription" name="AcuminPro-Regular" family="Acumin Pro" pointSize="14"/>
@@ -512,16 +513,16 @@ printing and typesetting industry.</string>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="T5R-4Z-c1z">
-                                <rect key="frame" x="50" y="682.5" width="314" height="63.5"/>
+                                <rect key="frame" x="50" y="687" width="314" height="59"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem Ipsum" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vVv-G1-6JG">
-                                        <rect key="frame" x="0.0" y="0.0" width="314" height="25.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="314" height="21"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Fw-Az-f1q">
-                                        <rect key="frame" x="0.0" y="35.5" width="314" height="28"/>
+                                        <rect key="frame" x="0.0" y="31" width="314" height="28"/>
                                         <string key="text">Lorem Ipsum is simply dummy text of the 
 printing and typesetting industry.</string>
                                         <fontDescription key="fontDescription" name="AcuminPro-Regular" family="Acumin Pro" pointSize="14"/>
@@ -585,22 +586,23 @@ printing and typesetting industry.</string>
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gap-bo-pwp">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="989"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="998.5"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_mood" translatesAutoresizingMaskIntoConstraints="NO" id="WZo-PL-RzV">
-                                                <rect key="frame" x="132" y="70" width="150" height="40.5"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_Standard" translatesAutoresizingMaskIntoConstraints="NO" id="WZo-PL-RzV">
+                                                <rect key="frame" x="132" y="70" width="150" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="O6l-OX-ibW"/>
+                                                    <constraint firstAttribute="height" constant="50" id="c6v-BT-ghv"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aB8-xx-fUY">
-                                                <rect key="frame" x="153.5" y="140.5" width="107.5" height="39.5"/>
+                                                <rect key="frame" x="153.5" y="150" width="107.5" height="39.5"/>
                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="28"/>
                                                 <color key="textColor" red="1" green="0.74509803919999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="yiU-tR-KD1">
-                                                <rect key="frame" x="50" y="230" width="314" height="260"/>
+                                                <rect key="frame" x="50" y="239.5" width="314" height="260"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="giT-SW-YeZ">
                                                         <rect key="frame" x="0.0" y="0.0" width="314" height="50"/>
@@ -781,7 +783,7 @@ printing and typesetting industry.</string>
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MPS-2K-NON">
-                                                <rect key="frame" x="94" y="909" width="226" height="30"/>
+                                                <rect key="frame" x="94" y="918.5" width="226" height="30"/>
                                                 <state key="normal">
                                                     <attributedString key="attributedTitle">
                                                         <fragment content="Al ready have an account?">
@@ -812,13 +814,13 @@ printing and typesetting industry.</string>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other Information" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P0W-W5-aNe">
-                                                <rect key="frame" x="50" y="510" width="128" height="20"/>
+                                                <rect key="frame" x="50" y="519.5" width="128" height="20"/>
                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="14"/>
                                                 <color key="textColor" red="0.066666666669999999" green="0.36862745099999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Cg9-OL-ovr">
-                                                <rect key="frame" x="50" y="550" width="314" height="120"/>
+                                                <rect key="frame" x="50" y="559.5" width="314" height="120"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EJf-8i-TeY">
                                                         <rect key="frame" x="0.0" y="0.0" width="314" height="50"/>
@@ -903,13 +905,13 @@ printing and typesetting industry.</string>
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Gender" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFm-5k-4nh">
-                                                <rect key="frame" x="50" y="690" width="99.5" height="20"/>
+                                                <rect key="frame" x="50" y="699.5" width="99.5" height="20"/>
                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="14"/>
                                                 <color key="textColor" red="0.066666666669999999" green="0.36862745099999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="O6D-Mu-bZK">
-                                                <rect key="frame" x="104.5" y="730" width="205" height="79"/>
+                                                <rect key="frame" x="104.5" y="739.5" width="205" height="79"/>
                                                 <subviews>
                                                     <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mYN-f2-MCm">
                                                         <rect key="frame" x="0.0" y="0.0" width="55" height="79"/>
@@ -1001,7 +1003,7 @@ printing and typesetting industry.</string>
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h7i-KB-Jh0">
-                                                <rect key="frame" x="132" y="839" width="150" height="40"/>
+                                                <rect key="frame" x="132" y="848.5" width="150" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="4e9-GX-aaE"/>
                                                     <constraint firstAttribute="width" constant="150" id="pXG-lt-VXu"/>
@@ -1093,16 +1095,16 @@ printing and typesetting industry.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="ZQv-ft-omc">
-                                <rect key="frame" x="152.5" y="129" width="109.5" height="41.5"/>
+                                <rect key="frame" x="158.5" y="129" width="97" height="37"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blain Charly" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mGS-RE-8hn">
-                                        <rect key="frame" x="0.0" y="0.0" width="109.5" height="25.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="97" height="21"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="California, USA" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kcN-Dr-IqF">
-                                        <rect key="frame" x="0.0" y="27.5" width="109.5" height="14"/>
+                                        <rect key="frame" x="0.0" y="23" width="97" height="14"/>
                                         <fontDescription key="fontDescription" name="AcuminPro-Regular" family="Acumin Pro" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -1122,16 +1124,16 @@ printing and typesetting industry.</string>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YGf-zU-BbC">
-                                <rect key="frame" x="0.0" y="190.5" width="414" height="622.5"/>
+                                <rect key="frame" x="0.0" y="186" width="414" height="627"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghp-Rf-APo">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="622.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="627"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rBY-l5-AXd">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="622.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="627"/>
                                                 <subviews>
                                                     <view tag="5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qOI-lu-33W">
-                                                        <rect key="frame" x="25" y="68" width="364" height="130"/>
+                                                        <rect key="frame" x="25" y="63.5" width="364" height="130"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_submit_mood" translatesAutoresizingMaskIntoConstraints="NO" id="qri-Yr-34i">
                                                                 <rect key="frame" x="20" y="22.5" width="85" height="85"/>
@@ -1149,7 +1151,7 @@ printing and typesetting industry.</string>
                                                                 <rect key="frame" x="254" y="25" width="85" height="35"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bKn-Yo-ZQe">
-                                                                        <rect key="frame" x="17.5" y="6.5" width="50" height="22.5"/>
+                                                                        <rect key="frame" x="21" y="8" width="43" height="19"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
                                                                         <color key="textColor" red="0.066666666669999999" green="0.36862745099999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                         <nil key="highlightedColor"/>
@@ -1164,7 +1166,7 @@ printing and typesetting industry.</string>
                                                                 </constraints>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="90" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eeo-nI-S4o">
-                                                                <rect key="frame" x="276" y="75" width="41" height="45"/>
+                                                                <rect key="frame" x="278.5" y="82.5" width="36" height="37.5"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="32"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -1186,13 +1188,13 @@ printing and typesetting industry.</string>
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STATISTICS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jAn-OX-ZMD">
-                                                        <rect key="frame" x="151" y="20" width="112" height="28"/>
+                                                        <rect key="frame" x="153.5" y="20" width="107.5" height="23.5"/>
                                                         <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="20"/>
                                                         <color key="textColor" red="0.066666666669999999" green="0.36862745099999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ifg-8b-BDc">
-                                                        <rect key="frame" x="0.0" y="198" width="414" height="424.5"/>
+                                                        <rect key="frame" x="0.0" y="193.5" width="414" height="433.5"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <prototypes>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StatCell" rowHeight="56" id="Xei-TR-w3V" customClass="StatCell" customModule="Le_Mood" customModuleProvider="target">
@@ -1206,19 +1208,19 @@ printing and typesetting industry.</string>
                                                                             <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STATISTICS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vQG-jt-rcT">
-                                                                                    <rect key="frame" x="10" y="16" width="95.5" height="24"/>
+                                                                                    <rect key="frame" x="10" y="18" width="91.5" height="20"/>
                                                                                     <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="17"/>
                                                                                     <color key="textColor" red="0.066666666669999999" green="0.36862745099999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1FW-Wu-Lbs">
-                                                                                    <rect key="frame" x="367.5" y="16" width="36.5" height="24"/>
+                                                                                    <rect key="frame" x="368" y="18" width="36" height="20"/>
                                                                                     <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="17"/>
                                                                                     <color key="textColor" red="0.066666666669999999" green="0.36862745099999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MBD-cd-raP">
-                                                                                    <rect key="frame" x="327.5" y="13" width="30" height="30"/>
+                                                                                    <rect key="frame" x="328" y="13" width="30" height="30"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" constant="30" id="AZ4-V8-RfD"/>
                                                                                         <constraint firstAttribute="height" constant="30" id="lO9-hQ-Im9"/>
@@ -1335,16 +1337,16 @@ printing and typesetting industry.</string>
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="769"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Zzj-W7-EBp">
-                                                <rect key="frame" x="152.5" y="93" width="109.5" height="41.5"/>
+                                                <rect key="frame" x="158.5" y="93" width="97" height="37"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blain Charly" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v1K-4d-r8O">
-                                                        <rect key="frame" x="0.0" y="0.0" width="109.5" height="25.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="97" height="21"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="18"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="California, USA" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VN4-XL-SUr">
-                                                        <rect key="frame" x="0.0" y="27.5" width="109.5" height="14"/>
+                                                        <rect key="frame" x="0.0" y="23" width="97" height="14"/>
                                                         <fontDescription key="fontDescription" name="AcuminPro-Regular" family="Acumin Pro" pointSize="14"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -1364,22 +1366,22 @@ printing and typesetting industry.</string>
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RMo-3v-vXf">
-                                                <rect key="frame" x="0.0" y="154.5" width="414" height="614.5"/>
+                                                <rect key="frame" x="0.0" y="150" width="414" height="619"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DASHBOARD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YRm-Io-yt6">
-                                                        <rect key="frame" x="144.5" y="25" width="125.5" height="28"/>
+                                                        <rect key="frame" x="145" y="25" width="124.5" height="23.5"/>
                                                         <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="20"/>
                                                         <color key="textColor" red="0.066666666669999999" green="0.36862745099999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZzU-qR-ANa">
-                                                        <rect key="frame" x="20" y="83" width="177" height="150"/>
+                                                        <rect key="frame" x="20" y="78.5" width="177" height="150"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" image="icon_chat" translatesAutoresizingMaskIntoConstraints="NO" id="7VP-Rs-YGd">
-                                                                <rect key="frame" x="15" y="20" width="147" height="100"/>
+                                                                <rect key="frame" x="15" y="20" width="147" height="103.5"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chat" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="muj-gA-2ej">
-                                                                <rect key="frame" x="71" y="125" width="35" height="20"/>
+                                                                <rect key="frame" x="73.5" y="128.5" width="30" height="16.5"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -1397,13 +1399,13 @@ printing and typesetting industry.</string>
                                                         </constraints>
                                                     </view>
                                                     <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hRW-qL-mf9">
-                                                        <rect key="frame" x="217" y="83" width="177" height="150"/>
+                                                        <rect key="frame" x="217" y="78.5" width="177" height="150"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" image="icon_friends" translatesAutoresizingMaskIntoConstraints="NO" id="Vwn-52-kNR">
-                                                                <rect key="frame" x="15" y="20" width="147" height="100"/>
+                                                                <rect key="frame" x="15" y="20" width="147" height="103.5"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friends" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iNf-U8-0Ll">
-                                                                <rect key="frame" x="63" y="125" width="51" height="20"/>
+                                                                <rect key="frame" x="65.5" y="128.5" width="46.5" height="16.5"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -1421,13 +1423,13 @@ printing and typesetting industry.</string>
                                                         </constraints>
                                                     </view>
                                                     <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qTY-KH-8q6">
-                                                        <rect key="frame" x="20" y="253" width="177" height="150"/>
+                                                        <rect key="frame" x="20" y="248.5" width="177" height="150"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" image="icon_statistics" translatesAutoresizingMaskIntoConstraints="NO" id="W8d-iy-Zj2">
-                                                                <rect key="frame" x="15" y="20" width="147" height="100"/>
+                                                                <rect key="frame" x="15" y="20" width="147" height="103.5"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Statistics" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcy-2D-czD">
-                                                                <rect key="frame" x="56.5" y="125" width="64.5" height="20"/>
+                                                                <rect key="frame" x="59.5" y="128.5" width="58" height="16.5"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -1445,13 +1447,13 @@ printing and typesetting industry.</string>
                                                         </constraints>
                                                     </view>
                                                     <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YRv-jM-tfM">
-                                                        <rect key="frame" x="217" y="253" width="177" height="150"/>
+                                                        <rect key="frame" x="217" y="248.5" width="177" height="150"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" image="icon_other-1" translatesAutoresizingMaskIntoConstraints="NO" id="oiT-c5-CzO">
-                                                                <rect key="frame" x="15" y="20" width="147" height="100"/>
+                                                                <rect key="frame" x="15" y="20" width="147" height="103.5"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coming soon" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ll-qL-8Cw">
-                                                                <rect key="frame" x="41" y="125" width="95" height="20"/>
+                                                                <rect key="frame" x="46.5" y="128.5" width="84" height="16.5"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -1469,7 +1471,7 @@ printing and typesetting industry.</string>
                                                         </constraints>
                                                     </view>
                                                     <view tag="5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iqa-l2-SpJ">
-                                                        <rect key="frame" x="20" y="423" width="374" height="130"/>
+                                                        <rect key="frame" x="20" y="418.5" width="374" height="130"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_submit_mood" translatesAutoresizingMaskIntoConstraints="NO" id="vBb-do-Sp0">
                                                                 <rect key="frame" x="20" y="22.5" width="85" height="85"/>
@@ -1487,7 +1489,7 @@ printing and typesetting industry.</string>
                                                                 <rect key="frame" x="264" y="25" width="85" height="35"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hj7-WB-MSy">
-                                                                        <rect key="frame" x="17.5" y="6.5" width="50" height="22.5"/>
+                                                                        <rect key="frame" x="21" y="8" width="43" height="19"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
                                                                         <color key="textColor" red="0.066666666669999999" green="0.36862745099999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                         <nil key="highlightedColor"/>
@@ -1502,7 +1504,7 @@ printing and typesetting industry.</string>
                                                                 </constraints>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="90" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MJP-8C-vwv">
-                                                                <rect key="frame" x="286" y="75" width="41" height="45"/>
+                                                                <rect key="frame" x="288.5" y="82.5" width="36" height="37.5"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="32"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -1632,16 +1634,16 @@ printing and typesetting industry.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="b9d-Gi-2Hc">
-                                <rect key="frame" x="152.5" y="129" width="109.5" height="41.5"/>
+                                <rect key="frame" x="158.5" y="129" width="97" height="37"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blain Charly" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="obh-9n-5Ge">
-                                        <rect key="frame" x="0.0" y="0.0" width="109.5" height="25.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="97" height="21"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="California, USA" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="18E-CR-tWl">
-                                        <rect key="frame" x="0.0" y="27.5" width="109.5" height="14"/>
+                                        <rect key="frame" x="0.0" y="23" width="97" height="14"/>
                                         <fontDescription key="fontDescription" name="AcuminPro-Regular" family="Acumin Pro" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -1661,7 +1663,7 @@ printing and typesetting industry.</string>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nyq-xf-hnR">
-                                <rect key="frame" x="0.0" y="190.5" width="414" height="622.5"/>
+                                <rect key="frame" x="0.0" y="186" width="414" height="627"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="MEC-EF-u6z">
                                         <rect key="frame" x="10" y="30" width="394" height="325"/>
@@ -1678,10 +1680,10 @@ printing and typesetting industry.</string>
                                                         </constraints>
                                                     </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="NOW-J0-ULu">
-                                                        <rect key="frame" x="50" y="10" width="120.5" height="37"/>
+                                                        <rect key="frame" x="50" y="10" width="109" height="37"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile Update" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IPE-BO-uyU">
-                                                                <rect key="frame" x="0.0" y="0.0" width="120.5" height="37"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="109" height="37"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="17"/>
                                                                 <color key="textColor" red="0.066666666669999999" green="0.36862745099999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
@@ -1721,10 +1723,10 @@ printing and typesetting industry.</string>
                                                         </constraints>
                                                     </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gNA-G4-dJe">
-                                                        <rect key="frame" x="50" y="10" width="154" height="37"/>
+                                                        <rect key="frame" x="50" y="10" width="138" height="37"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Privacy &amp; Security" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONC-Rb-Ysh">
-                                                                <rect key="frame" x="0.0" y="0.0" width="154" height="37"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="138" height="37"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="17"/>
                                                                 <color key="textColor" red="0.066666666669999999" green="0.36862745099999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
@@ -1764,10 +1766,10 @@ printing and typesetting industry.</string>
                                                         </constraints>
                                                     </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="WrY-5E-RQP">
-                                                        <rect key="frame" x="50" y="10" width="168.5" height="0.0"/>
+                                                        <rect key="frame" x="50" y="10" width="149" height="0.0"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Preffered Language" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGJ-Hb-6Qt">
-                                                                <rect key="frame" x="0.0" y="0.0" width="168.5" height="0.0"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="149" height="0.0"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="17"/>
                                                                 <color key="textColor" red="0.066666666669999999" green="0.36862745099999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
@@ -1807,10 +1809,10 @@ printing and typesetting industry.</string>
                                                         </constraints>
                                                     </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="re0-JV-vVe">
-                                                        <rect key="frame" x="50" y="10" width="143" height="37"/>
+                                                        <rect key="frame" x="50" y="10" width="128" height="37"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Language" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WgW-JU-d8F">
-                                                                <rect key="frame" x="0.0" y="0.0" width="143" height="37"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="128" height="37"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="17"/>
                                                                 <color key="textColor" red="0.066666666669999999" green="0.36862745099999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
@@ -1850,10 +1852,10 @@ printing and typesetting industry.</string>
                                                         </constraints>
                                                     </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="JWC-Nm-cbN">
-                                                        <rect key="frame" x="50" y="10" width="120" height="37"/>
+                                                        <rect key="frame" x="50" y="10" width="106" height="37"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Random Chat" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQz-hs-eV0">
-                                                                <rect key="frame" x="0.0" y="0.0" width="120" height="37"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="106" height="37"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="17"/>
                                                                 <color key="textColor" red="0.066666666669999999" green="0.36862745099999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
@@ -1893,10 +1895,10 @@ printing and typesetting industry.</string>
                                                         </constraints>
                                                     </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="RPJ-HU-gQp">
-                                                        <rect key="frame" x="50" y="10" width="58.5" height="37"/>
+                                                        <rect key="frame" x="50" y="10" width="54" height="37"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logout" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4EV-xs-wqU">
-                                                                <rect key="frame" x="0.0" y="0.0" width="58.5" height="37"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="54" height="37"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="17"/>
                                                                 <color key="textColor" red="0.066666666669999999" green="0.36862745099999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
@@ -1975,7 +1977,7 @@ printing and typesetting industry.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Random Chat" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aZE-bp-xDu">
-                                <rect key="frame" x="55" y="58.5" width="127" height="26"/>
+                                <rect key="frame" x="55" y="58.5" width="112" height="26"/>
                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -2001,10 +2003,10 @@ printing and typesetting industry.</string>
                                 <rect key="frame" x="0.0" y="114.5" width="414" height="781.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fI1-l5-bjQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="783"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="781.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ake-CA-vqR">
-                                                <rect key="frame" x="30" y="264" width="354" height="40"/>
+                                                <rect key="frame" x="30" y="260" width="354" height="40"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2iG-Z2-3jG">
                                                         <rect key="frame" x="0.0" y="0.0" width="354" height="40"/>
@@ -2027,7 +2029,7 @@ printing and typesetting industry.</string>
                                                 </constraints>
                                             </view>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0kz-ue-0Yb">
-                                                <rect key="frame" x="10" y="84" width="394" height="150"/>
+                                                <rect key="frame" x="10" y="80" width="394" height="150"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="150" id="wwi-ET-9bV"/>
@@ -2106,9 +2108,9 @@ printing and typesetting industry.</string>
                                                 </connections>
                                             </collectionView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OKC-Y4-Ku1">
-                                                <rect key="frame" x="50" y="368" width="314" height="284"/>
+                                                <rect key="frame" x="50" y="360" width="314" height="280"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="5" translatesAutoresizingMaskIntoConstraints="NO" id="1qt-Fu-mR1">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Emoji_5" translatesAutoresizingMaskIntoConstraints="NO" id="1qt-Fu-mR1">
                                                         <rect key="frame" x="122" y="30" width="70" height="70"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="70" id="ZhZ-ZU-xjk"/>
@@ -2116,20 +2118,20 @@ printing and typesetting industry.</string>
                                                         </constraints>
                                                     </imageView>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="1" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="5s3-3r-FM0">
-                                                        <rect key="frame" x="28" y="154" width="258" height="31"/>
+                                                        <rect key="frame" x="28" y="150" width="258" height="31"/>
                                                         <color key="tintColor" red="0.070588235289999995" green="0.36470588240000001" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <connections>
                                                             <action selector="didChangedSliderValue:" destination="cFD-1O-FXq" eventType="valueChanged" id="bTR-V0-6JO"/>
                                                         </connections>
                                                     </slider>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Excited" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zrS-VG-SIn">
-                                                        <rect key="frame" x="126" y="110" width="62" height="24"/>
+                                                        <rect key="frame" x="128.5" y="110" width="57" height="20"/>
                                                         <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="17"/>
                                                         <color key="textColor" red="0.066666666669999999" green="0.36862745099999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G4Q-ud-ae7">
-                                                        <rect key="frame" x="82" y="214" width="150" height="40"/>
+                                                        <rect key="frame" x="82" y="210" width="150" height="40"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gkx-PJ-2AK">
                                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="40"/>
@@ -2168,20 +2170,20 @@ printing and typesetting industry.</string>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your chat patners mood" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s44-TE-jQx">
-                                                <rect key="frame" x="20" y="324" width="210.5" height="24"/>
+                                                <rect key="frame" x="20" y="320" width="183" height="20"/>
                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="17"/>
                                                 <color key="textColor" red="0.066666666669999999" green="0.36862745099999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EfV-lv-zzP">
-                                                <rect key="frame" x="0.0" y="672" width="414" height="1"/>
+                                                <rect key="frame" x="0.0" y="660" width="414" height="1"/>
                                                 <color key="backgroundColor" red="0.070588235289999995" green="0.36470588240000001" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="hUB-me-ylm"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YBp-dC-nzx">
-                                                <rect key="frame" x="132" y="693" width="150" height="40"/>
+                                                <rect key="frame" x="132" y="681" width="150" height="40"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mKX-bs-xqr">
                                                         <rect key="frame" x="0.0" y="0.0" width="150" height="40"/>
@@ -2205,7 +2207,7 @@ printing and typesetting industry.</string>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selected Languages" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JfW-AL-O80">
-                                                <rect key="frame" x="20" y="30" width="175.5" height="24"/>
+                                                <rect key="frame" x="20" y="30" width="155.5" height="20"/>
                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="17"/>
                                                 <color key="textColor" red="0.066666666669999999" green="0.36862745099999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="highlightedColor"/>
@@ -2284,7 +2286,7 @@ printing and typesetting industry.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Languages" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WG0-yT-ofR">
-                                <rect key="frame" x="45" y="59" width="101" height="25.5"/>
+                                <rect key="frame" x="45" y="61" width="89" height="21"/>
                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -2324,10 +2326,10 @@ printing and typesetting industry.</string>
                                                             <rect key="frame" x="10" y="0.0" width="394" height="83"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="baU-9D-pMy">
-                                                                    <rect key="frame" x="10" y="15.5" width="46" height="52"/>
+                                                                    <rect key="frame" x="10" y="15.5" width="40" height="52"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jg4-4n-Dvc">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="46" height="21"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="40" height="21"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="21" id="DvT-ef-fKp"/>
                                                                             </constraints>
@@ -2336,7 +2338,7 @@ printing and typesetting industry.</string>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Native" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kyf-vR-1Qr">
-                                                                            <rect key="frame" x="0.0" y="31" width="46" height="21"/>
+                                                                            <rect key="frame" x="0.0" y="31" width="40" height="21"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="21" id="3cE-Tc-XfS"/>
                                                                             </constraints>
@@ -2459,7 +2461,7 @@ printing and typesetting industry.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R19-9F-Y5q">
-                                <rect key="frame" x="55" y="59" width="56" height="25.5"/>
+                                <rect key="frame" x="55" y="61" width="51" height="21"/>
                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -2482,22 +2484,22 @@ printing and typesetting industry.</string>
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jI1-eR-4nD">
-                                <rect key="frame" x="0.0" y="114.5" width="414" height="781.5"/>
+                                <rect key="frame" x="0.0" y="112" width="414" height="784"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LXj-QR-RUH">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="781.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="784"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="BHA-Mc-vvb">
-                                                <rect key="frame" x="20" y="120" width="78.5" height="50"/>
+                                                <rect key="frame" x="20" y="120" width="70.5" height="43"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4U-um-gYv">
-                                                        <rect key="frame" x="0.0" y="0.0" width="78.5" height="20"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="70.5" height="16.5"/>
                                                         <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="14"/>
                                                         <color key="textColor" red="0.066666666669999999" green="0.36862745099999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aliimran" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OJq-7q-fTk">
-                                                        <rect key="frame" x="0.0" y="30" width="78.5" height="20"/>
+                                                        <rect key="frame" x="0.0" y="26.5" width="70.5" height="16.5"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                                         <color key="textColor" red="0.066666666669999999" green="0.36862745099999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
@@ -2505,16 +2507,16 @@ printing and typesetting industry.</string>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nwg-aR-lvb">
-                                                <rect key="frame" x="20" y="190" width="133.5" height="50"/>
+                                                <rect key="frame" x="20" y="183" width="115.5" height="43"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLg-uF-mSh">
-                                                        <rect key="frame" x="0.0" y="0.0" width="133.5" height="20"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="115.5" height="16.5"/>
                                                         <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="14"/>
                                                         <color key="textColor" red="0.066666666669999999" green="0.36862745099999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="saood@gmail.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdg-vx-gde">
-                                                        <rect key="frame" x="0.0" y="30" width="133.5" height="20"/>
+                                                        <rect key="frame" x="0.0" y="26.5" width="115.5" height="16.5"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                                         <color key="textColor" red="0.066666666669999999" green="0.36862745099999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
@@ -2522,22 +2524,22 @@ printing and typesetting industry.</string>
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other Information" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U7q-20-umo">
-                                                <rect key="frame" x="20" y="270" width="128" height="20"/>
+                                                <rect key="frame" x="20" y="256" width="110" height="16.5"/>
                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="14"/>
                                                 <color key="textColor" red="0.066666666669999999" green="0.36862745099999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="baX-Hc-Ubk">
-                                                <rect key="frame" x="20" y="320" width="61.5" height="50"/>
+                                                <rect key="frame" x="20" y="302.5" width="54" height="43"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQs-of-mD3">
-                                                        <rect key="frame" x="0.0" y="0.0" width="61.5" height="20"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="54" height="16.5"/>
                                                         <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="14"/>
                                                         <color key="textColor" red="0.066666666669999999" green="0.36862745099999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pakistan" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NEW-g5-DjR">
-                                                        <rect key="frame" x="0.0" y="30" width="61.5" height="20"/>
+                                                        <rect key="frame" x="0.0" y="26.5" width="54" height="16.5"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                                         <color key="textColor" red="0.066666666669999999" green="0.36862745099999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
@@ -2545,16 +2547,16 @@ printing and typesetting industry.</string>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="v9a-LB-NwE">
-                                                <rect key="frame" x="20" y="390" width="53" height="50"/>
+                                                <rect key="frame" x="20" y="365.5" width="48" height="43"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Region:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhg-iJ-h6i">
-                                                        <rect key="frame" x="0.0" y="0.0" width="53" height="20"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="48" height="16.5"/>
                                                         <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="14"/>
                                                         <color key="textColor" red="0.066666666669999999" green="0.36862745099999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="punjab" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsc-sk-2Ho">
-                                                        <rect key="frame" x="0.0" y="30" width="53" height="20"/>
+                                                        <rect key="frame" x="0.0" y="26.5" width="48" height="16.5"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                                         <color key="textColor" red="0.066666666669999999" green="0.36862745099999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
@@ -2562,13 +2564,13 @@ printing and typesetting industry.</string>
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gender:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="byA-Sj-2Lg">
-                                                <rect key="frame" x="20" y="470" width="56.5" height="20"/>
+                                                <rect key="frame" x="20" y="438.5" width="50.5" height="16.5"/>
                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="14"/>
                                                 <color key="textColor" red="0.066666666669999999" green="0.36862745099999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZWU-uX-kxD">
-                                                <rect key="frame" x="20" y="510" width="55" height="77"/>
+                                                <rect key="frame" x="20" y="475" width="55" height="79"/>
                                                 <subviews>
                                                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cz8-li-Z9I">
                                                         <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
@@ -2579,7 +2581,7 @@ printing and typesetting industry.</string>
                                                         <state key="normal" image="icon_male"/>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Male" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CoY-7j-mMf">
-                                                        <rect key="frame" x="0.0" y="65" width="55" height="12"/>
+                                                        <rect key="frame" x="0.0" y="65" width="55" height="14"/>
                                                         <fontDescription key="fontDescription" name="AcuminPro-Bold" family="Acumin Pro" pointSize="12"/>
                                                         <color key="textColor" red="0.070588235289999995" green="0.36470588240000001" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
@@ -2641,7 +2643,7 @@ printing and typesetting industry.</string>
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xag-cU-bKL">
-                                <rect key="frame" x="364" y="64.5" width="40" height="40"/>
+                                <rect key="frame" x="364" y="62" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="6PM-C6-1d8"/>
                                     <constraint firstAttribute="height" constant="40" id="z5Q-wH-reY"/>
@@ -2692,7 +2694,7 @@ printing and typesetting industry.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Profile" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U3Z-Kt-NFb">
-                                <rect key="frame" x="45" y="59" width="93.5" height="25.5"/>
+                                <rect key="frame" x="45" y="61" width="87" height="21"/>
                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -2716,7 +2718,7 @@ printing and typesetting industry.</string>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1W4-zq-WQ7">
-                                <rect key="frame" x="0.0" y="114.5" width="414" height="781.5"/>
+                                <rect key="frame" x="0.0" y="112" width="414" height="784"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="SiA-Ow-ng0">
                                         <rect key="frame" x="172" y="50" width="70" height="70"/>
@@ -2861,7 +2863,7 @@ printing and typesetting industry.</string>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chat with your friends" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDv-Jn-dLe">
-                                <rect key="frame" x="120" y="54" width="164.5" height="16"/>
+                                <rect key="frame" x="123.5" y="54" width="157.5" height="19"/>
                                 <fontDescription key="fontDescription" name="AcuminPro-Bold" family="Acumin Pro" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -2896,7 +2898,7 @@ printing and typesetting industry.</string>
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_mood" translatesAutoresizingMaskIntoConstraints="NO" id="uMa-l6-Gym">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_Standard" translatesAutoresizingMaskIntoConstraints="NO" id="uMa-l6-Gym">
                                 <rect key="frame" x="127" y="74" width="160" height="130"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="CfZ-mr-xzN"/>
@@ -3501,7 +3503,7 @@ printing and typesetting industry.</string>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPh-OW-x9U">
-                                <rect key="frame" x="84.5" y="54" width="9.5" height="25.5"/>
+                                <rect key="frame" x="84.5" y="56" width="10.5" height="21"/>
                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -3626,7 +3628,7 @@ printing and typesetting industry.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nQj-fx-ypq">
-                                <rect key="frame" x="0.0" y="119" width="414" height="743"/>
+                                <rect key="frame" x="0.0" y="119" width="414" height="663"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ChatsCell" rowHeight="80" id="t2w-m8-gSM" customClass="ChatsCell" customModule="Le_Mood" customModuleProvider="target">
@@ -3709,14 +3711,41 @@ printing and typesetting industry.</string>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nxu-Rd-r7f">
+                                <rect key="frame" x="30" y="802" width="354" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tgS-bc-GwO">
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="40"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
+                                        <state key="normal" title="Random Chat">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="btnRandomChatTapped:" destination="GND-Aq-mRA" eventType="touchUpInside" id="J1g-c1-87M"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.072167657319999995" green="0.36573177579999999" blue="0.50982558730000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="6Dv-8j-8L9"/>
+                                    <constraint firstItem="tgS-bc-GwO" firstAttribute="top" secondItem="nxu-Rd-r7f" secondAttribute="top" id="7ob-kG-D1P"/>
+                                    <constraint firstItem="tgS-bc-GwO" firstAttribute="leading" secondItem="nxu-Rd-r7f" secondAttribute="leading" id="Ggg-x6-7WX"/>
+                                    <constraint firstAttribute="trailing" secondItem="tgS-bc-GwO" secondAttribute="trailing" id="HTH-oh-9Xn"/>
+                                    <constraint firstAttribute="bottom" secondItem="tgS-bc-GwO" secondAttribute="bottom" id="zRY-sm-UhM"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kLL-BN-Q98"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="nxu-Rd-r7f" firstAttribute="top" secondItem="nQj-fx-ypq" secondAttribute="bottom" constant="20" id="3oT-SN-z9X"/>
+                            <constraint firstItem="kLL-BN-Q98" firstAttribute="trailing" secondItem="nxu-Rd-r7f" secondAttribute="trailing" constant="30" id="8U6-Br-Ubt"/>
                             <constraint firstAttribute="trailing" secondItem="nQj-fx-ypq" secondAttribute="trailing" id="DfI-aP-jjg"/>
-                            <constraint firstItem="kLL-BN-Q98" firstAttribute="bottom" secondItem="nQj-fx-ypq" secondAttribute="bottom" id="Ibu-Ly-F8p"/>
+                            <constraint firstItem="kLL-BN-Q98" firstAttribute="bottom" secondItem="nQj-fx-ypq" secondAttribute="bottom" constant="80" id="Ibu-Ly-F8p"/>
                             <constraint firstItem="nQj-fx-ypq" firstAttribute="leading" secondItem="kLL-BN-Q98" secondAttribute="leading" id="McG-sL-d7U"/>
+                            <constraint firstItem="nxu-Rd-r7f" firstAttribute="leading" secondItem="kLL-BN-Q98" secondAttribute="leading" constant="30" id="MiR-rl-ljn"/>
                             <constraint firstItem="2lO-Lk-vhU" firstAttribute="leading" secondItem="kLL-BN-Q98" secondAttribute="leading" constant="20" id="SFH-zU-7rb"/>
+                            <constraint firstItem="kLL-BN-Q98" firstAttribute="bottom" secondItem="nxu-Rd-r7f" secondAttribute="bottom" constant="20" id="eXo-me-Jel"/>
                             <constraint firstItem="2lO-Lk-vhU" firstAttribute="top" secondItem="kLL-BN-Q98" secondAttribute="top" constant="20" id="hMC-xW-z6E"/>
                             <constraint firstItem="nQj-fx-ypq" firstAttribute="top" secondItem="2lO-Lk-vhU" secondAttribute="bottom" constant="20" id="huV-E4-2Ec"/>
                         </constraints>
@@ -3726,6 +3755,7 @@ printing and typesetting industry.</string>
                         <barButtonItem key="backBarButtonItem" title="Back" id="Ryd-Jf-Axq"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="randomChatBtnView" destination="nxu-Rd-r7f" id="mMC-SG-UOF"/>
                         <outlet property="tableView" destination="nQj-fx-ypq" id="Xbn-IF-1Ju"/>
                     </connections>
                 </viewController>
@@ -3743,8 +3773,9 @@ printing and typesetting industry.</string>
         </designable>
     </designables>
     <resources>
-        <image name="5" width="512" height="512"/>
+        <image name="Emoji_5" width="4500" height="4500"/>
         <image name="Image Placeholder" width="3000" height="3000"/>
+        <image name="Logo_Standard" width="2386" height="1159"/>
         <image name="Logo_mood" width="135" height="40.5"/>
         <image name="ME" width="50" height="50"/>
         <image name="arrow.left" catalog="system" width="128" height="98"/>

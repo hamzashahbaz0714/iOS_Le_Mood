@@ -16,17 +16,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Splash" translatesAutoresizingMaskIntoConstraints="NO" id="8Fx-g3-nfS">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_Standard" translatesAutoresizingMaskIntoConstraints="NO" id="aaR-Tm-M9v">
+                                <rect key="frame" x="82" y="323" width="250" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="VM8-5B-vfz"/>
+                                    <constraint firstAttribute="width" constant="250" id="XeD-gw-4jN"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="8Fx-g3-nfS" secondAttribute="bottom" id="cWY-Ji-MKq"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8Fx-g3-nfS" secondAttribute="trailing" id="cze-CS-AmY"/>
-                            <constraint firstItem="8Fx-g3-nfS" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="pRy-Ac-dLX"/>
-                            <constraint firstItem="8Fx-g3-nfS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="sfb-Ae-i77"/>
+                            <constraint firstItem="aaR-Tm-M9v" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="0Aj-F2-Ptc"/>
+                            <constraint firstItem="aaR-Tm-M9v" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="3aH-Ts-K3J"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -36,7 +38,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Splash" width="143" height="309"/>
+        <image name="Logo_Standard" width="2386" height="1159"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

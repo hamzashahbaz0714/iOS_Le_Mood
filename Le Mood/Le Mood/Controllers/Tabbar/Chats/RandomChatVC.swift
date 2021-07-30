@@ -12,6 +12,7 @@ class RandomChatVC: UIViewController {
 
     
     @IBOutlet weak var tableView:UITableView!
+    @IBOutlet weak var randomChatBtnView: UIView!
     var chats = [Chat]()
     
     //MARK:- Controller Life Cycle
@@ -37,6 +38,11 @@ class RandomChatVC: UIViewController {
         //            print("sdljcnvsa")
         //        }
         UIApplication.shared.applicationIconBadgeNumber = 0
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        randomChatBtnView.roundCorners(corners: [.topLeft, .bottomRight], radius: 18)
     }
     
     //MARK:- Supporting Functions
@@ -65,6 +71,10 @@ class RandomChatVC: UIViewController {
         }
     }
     
+    @IBAction func btnRandomChatTapped(_ sender: Any){
+        let controller: RandomChatSelectVC = RandomChatSelectVC.initiateFrom(Storybaord: .Main)
+        self.pushController(contorller: controller, animated: true)
+    }
     
 }
 extension RandomChatVC:UITableViewDataSource,UITableViewDelegate,ChatsCellDelegate{

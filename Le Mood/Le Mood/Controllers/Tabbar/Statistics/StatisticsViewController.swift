@@ -35,7 +35,8 @@ class StatisticsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        let tapgesture = UITapGestureRecognizer(target: self, action: #selector(handleMoodSubmitView(sender:)))
+        statisticsViews[0].addGestureRecognizer(tapgesture)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,6 +47,7 @@ class StatisticsViewController: UIViewController {
         lblName.text = user?.name
         lblEmail.text = user?.email
         //        getStatistics(country: DataService.instance.currentUser.country, state: DataService.instance.currentUser.region)
+        
         getStatistics()
         
     }
@@ -77,6 +79,30 @@ class StatisticsViewController: UIViewController {
     }
     
     
+    @objc func handleMoodSubmitView(sender: UITapGestureRecognizer){
+        
+        let user = DataService.instance.currentUser
+        if user?.lastMoodDate != "" && user?.lastMoodDate == getCurrentDate() && user?.lastMoodDate != "Not found"{
+            Alert.showWithTwoActions(title: "Your Mood is already submitted", msg: "Would you like to update your mood?", okBtnTitle: "Yes", okBtnAction: {
+                let popUp = PopUpMood()
+                popUp.modalPresentationStyle = .overFullScreen
+                popUp.modalTransitionStyle = .crossDissolve
+                popUp.isEditOrUpdate = true
+                popUp.delegateRefresh = self
+                self.present(popUp, animated: true, completion: nil)
+            }, cancelBtnTitle: "Cancel") {
+                
+            }
+        }
+        else
+        {
+            let popUp = PopUpMood()
+            popUp.modalPresentationStyle = .overFullScreen
+            popUp.modalTransitionStyle = .crossDissolve
+            popUp.delegateRefresh = self
+            self.present(popUp, animated: true, completion: nil)
+        }
+    }
     
     func getStatistics(){
         ProgressHUD.show()
@@ -107,15 +133,15 @@ class StatisticsViewController: UIViewController {
                 self.lblMoodValue.font = UIFont(name: "Poppins-Medium", size: 32)
                 switch user?.moodType {
                 case "Angry":
-                    self.moodImage.image = #imageLiteral(resourceName: "emoji1")
+                    self.moodImage.image = UIImage(named: "Emoji_1")
                 case "Sad":
-                    self.moodImage.image = #imageLiteral(resourceName: "emoji2")
+                    self.moodImage.image = UIImage(named: "Emoji_2")
                 case "Happy":
-                    self.moodImage.image = #imageLiteral(resourceName: "emoji4")
+                    self.moodImage.image = UIImage(named: "Emoji_3")
                 case "Blush":
-                    self.moodImage.image = #imageLiteral(resourceName: "emoji3")
+                    self.moodImage.image = UIImage(named: "Emoji_4")
                 default:
-                    self.moodImage.image = #imageLiteral(resourceName: "emoji_think")
+                    self.moodImage.image = UIImage(named: "Emoji_5")
                 }
             }
         }
@@ -160,15 +186,15 @@ extension StatisticsViewController: UITableViewDelegate, UITableViewDataSource {
         cell.lblMoodValue.text = "\(avg)%"
         
         if (avg <= 100 && avg > 80) {
-            cell.moodImgView.image = UIImage(named: "5")
+            cell.moodImgView.image = UIImage(named: "Emoji_5")
         } else if (avg <= 80 && avg > 60) {
-            cell.moodImgView.image = UIImage(named: "4")
+            cell.moodImgView.image = UIImage(named: "Emoji_4")
         } else if (avg <= 60 && avg > 40) {
-            cell.moodImgView.image = UIImage(named: "3")
+            cell.moodImgView.image = UIImage(named: "Emoji_3")
         } else if (avg <= 40 && avg > 20) {
-            cell.moodImgView.image = UIImage(named: "2")
+            cell.moodImgView.image = UIImage(named: "Emoji_2")
         } else {
-            cell.moodImgView.image = UIImage(named: "1")
+            cell.moodImgView.image = UIImage(named: "Emoji_1")
         }
         
         return cell
@@ -177,4 +203,14 @@ extension StatisticsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
+}
+
+extension StatisticsViewController: refresh {
+    func moodRefresh(success: Bool) {
+        if true {
+            getTodayMood()
+        }
+    }
+    
+    
 }

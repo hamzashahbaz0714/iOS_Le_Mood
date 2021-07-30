@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		04600D16268B591C00DB8947 /* ChatsTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04600D15268B591C00DB8947 /* ChatsTextCell.swift */; };
+		04EA3A5026B41C31004F5A6E /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EA3A4F26B41C31004F5A6E /* DataService.swift */; };
+		04EA3A5326B41CD5004F5A6E /* CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EA3A5226B41CD5004F5A6E /* CornerRadius.swift */; };
 		9D62F002C714FAEE4886DB5C /* Pods_Le_Mood.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF09B5E5C9A7471C522B93C /* Pods_Le_Mood.framework */; };
 		FA0AA2AE265D2014004545A3 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0AA2AD265D2014004545A3 /* StatisticsViewController.swift */; };
-		FA0AA2BE265D365F004545A3 /* CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0AA2BD265D365F004545A3 /* CornerRadius.swift */; };
 		FA0AA2C1265D36A0004545A3 /* NumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0AA2C0265D36A0004545A3 /* NumberViewController.swift */; };
 		FA13A175266782840058ED40 /* LanguagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13A174266782840058ED40 /* LanguagesViewController.swift */; };
 		FA13A17B2667AC180058ED40 /* LanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13A17A2667AC180058ED40 /* LanguageCell.swift */; };
@@ -31,7 +32,6 @@
 		FA37ED7526651F64007872AA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA37ED7426651F64007872AA /* GoogleService-Info.plist */; };
 		FA3AA6F5265CDFC900D48BC2 /* MoodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3AA6F4265CDFC900D48BC2 /* MoodModel.swift */; };
 		FA43C93E265B7CEA00A57EA6 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43C93C265B7CE900A57EA6 /* AuthService.swift */; };
-		FA43C93F265B7CEA00A57EA6 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43C93D265B7CE900A57EA6 /* DataService.swift */; };
 		FA43C95A265B7E1400A57EA6 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43C959265B7E1400A57EA6 /* UserModel.swift */; };
 		FA43C976265BC04F00A57EA6 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43C975265BC04F00A57EA6 /* EditProfileViewController.swift */; };
 		FA4CEA8F2660CD1D005C9044 /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4CEA8D2660CD1D005C9044 /* PushNotificationManager.swift */; };
@@ -100,10 +100,11 @@
 
 /* Begin PBXFileReference section */
 		04600D15268B591C00DB8947 /* ChatsTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsTextCell.swift; sourceTree = "<group>"; };
+		04EA3A4F26B41C31004F5A6E /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		04EA3A5226B41CD5004F5A6E /* CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadius.swift; sourceTree = "<group>"; };
 		C2CAB410993297DDFFF3DFCF /* Pods-Le Mood.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Le Mood.debug.xcconfig"; path = "Target Support Files/Pods-Le Mood/Pods-Le Mood.debug.xcconfig"; sourceTree = "<group>"; };
 		CFE8B30F3C0CD2920545C271 /* Pods-Le Mood.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Le Mood.release.xcconfig"; path = "Target Support Files/Pods-Le Mood/Pods-Le Mood.release.xcconfig"; sourceTree = "<group>"; };
 		FA0AA2AD265D2014004545A3 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
-		FA0AA2BD265D365F004545A3 /* CornerRadius.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CornerRadius.swift; sourceTree = "<group>"; };
 		FA0AA2C0265D36A0004545A3 /* NumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberViewController.swift; sourceTree = "<group>"; };
 		FA13A174266782840058ED40 /* LanguagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagesViewController.swift; sourceTree = "<group>"; };
 		FA13A17A2667AC180058ED40 /* LanguageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCell.swift; sourceTree = "<group>"; };
@@ -127,7 +128,6 @@
 		FA37ED7426651F64007872AA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FA3AA6F4265CDFC900D48BC2 /* MoodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodModel.swift; sourceTree = "<group>"; };
 		FA43C93C265B7CE900A57EA6 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
-		FA43C93D265B7CE900A57EA6 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		FA43C959265B7E1400A57EA6 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		FA43C975265BC04F00A57EA6 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		FA4CEA8D2660CD1D005C9044 /* PushNotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationManager.swift; sourceTree = "<group>"; };
@@ -310,9 +310,9 @@
 			isa = PBXGroup;
 			children = (
 				FADF51DA265FC6FA0051F6FB /* CircleImage.swift */,
-				FA0AA2BD265D365F004545A3 /* CornerRadius.swift */,
 				FA6E32E026578F8E008C5013 /* PopUpMood.swift */,
 				FA6E32E126578F8E008C5013 /* PopUpMood.xib */,
+				04EA3A5226B41CD5004F5A6E /* CornerRadius.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -333,9 +333,9 @@
 			isa = PBXGroup;
 			children = (
 				FA43C93C265B7CE900A57EA6 /* AuthService.swift */,
-				FA43C93D265B7CE900A57EA6 /* DataService.swift */,
 				FA4CEA8D2660CD1D005C9044 /* PushNotificationManager.swift */,
 				FA4CEA8E2660CD1D005C9044 /* PushNotificationSender.swift */,
+				04EA3A4F26B41C31004F5A6E /* DataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -711,7 +711,7 @@
 				FA1B155F263FD6E0008CD9A3 /* Storyboard.swift in Sources */,
 				FA1B1560263FD6E0008CD9A3 /* Defaults.swift in Sources */,
 				FA1B1568263FD6EC008CD9A3 /* Extension.swift in Sources */,
-				FA43C93F265B7CEA00A57EA6 /* DataService.swift in Sources */,
+				04EA3A5026B41C31004F5A6E /* DataService.swift in Sources */,
 				FADF51D1265FC4DB0051F6FB /* Message.swift in Sources */,
 				FA43C93E265B7CEA00A57EA6 /* AuthService.swift in Sources */,
 				FA1B1532263FD027008CD9A3 /* AppDelegate.swift in Sources */,
@@ -747,7 +747,6 @@
 				FA70CE3026663B1E008106DB /* CustomTextView.swift in Sources */,
 				FA13A17B2667AC180058ED40 /* LanguageCell.swift in Sources */,
 				FA3AA6F5265CDFC900D48BC2 /* MoodModel.swift in Sources */,
-				FA0AA2BE265D365F004545A3 /* CornerRadius.swift in Sources */,
 				FA13A175266782840058ED40 /* LanguagesViewController.swift in Sources */,
 				FADF51CD265FC4920051F6FB /* ChatsCell.swift in Sources */,
 				FAC09332265E34F0004B53F7 /* FriendsViewController.swift in Sources */,
@@ -762,6 +761,7 @@
 				FADF51D4265FC4F50051F6FB /* MessagesVC.swift in Sources */,
 				FA43C976265BC04F00A57EA6 /* EditProfileViewController.swift in Sources */,
 				FA9C913F26564BD0003CCBAD /* Onboard1VC.swift in Sources */,
+				04EA3A5326B41CD5004F5A6E /* CornerRadius.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

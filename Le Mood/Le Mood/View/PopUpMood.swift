@@ -93,24 +93,24 @@ class PopUpMood: UIViewController {
         selectedMoodValue.text = "\(Int(moodeSlider.value))"
         
         if moodeSlider.value <= 100  && moodeSlider.value >= 80{
-            selectMoodImg.image = UIImage(named: "5")
+            selectMoodImg.image = UIImage(named: "Emoji_5")
             selectedMoodName.text = "Excited"
         }
         else if moodeSlider.value <= 80  && moodeSlider.value >= 60 {
-            selectMoodImg.image = UIImage(named: "4")
+            selectMoodImg.image = UIImage(named: "Emoji_4")
             selectedMoodName.text = "Blush"
         }
         else if moodeSlider.value <= 60  && moodeSlider.value >= 40 {
-            selectMoodImg.image = UIImage(named: "3")
+            selectMoodImg.image = UIImage(named: "Emoji_3")
             selectedMoodName.text = "Happy"
         }
         else if moodeSlider.value <= 40  && moodeSlider.value >= 20  {
-            selectMoodImg.image = UIImage(named: "2")
+            selectMoodImg.image = UIImage(named: "Emoji_2")
             selectedMoodName.text = "Sad"
         }
         else
         {
-            selectMoodImg.image = UIImage(named: "1")
+            selectMoodImg.image = UIImage(named: "Emoji_1")
             selectedMoodName.text = "Angry"
         }
     }

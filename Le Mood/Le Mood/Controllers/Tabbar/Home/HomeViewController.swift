@@ -36,7 +36,6 @@ class HomeViewController: UIViewController {
             view.addGestureRecognizer(tapgesture)
             view.roundCorners(corners: [.topRight, .bottomLeft], radius: 18)
         }
-        getMood()
         
     }
     
@@ -48,6 +47,8 @@ class HomeViewController: UIViewController {
         profileImgView.sd_setImage(with: URL(string: user?.image ?? "" ), placeholderImage: placeHolderImage, options: .forceTransition)
         lblName.text = user?.name
         lblEmail.text = user?.email
+        getMood()
+
     }
     
     //MARK:- Supporting Functions
@@ -62,15 +63,15 @@ class HomeViewController: UIViewController {
             self.lblMoodValue.font = UIFont(name: "Poppins-Medium", size: 32)
             switch user?.moodType {
             case "Angry":
-                self.moodImage.image = #imageLiteral(resourceName: "emoji1")
+                self.moodImage.image = UIImage(named: "Emoji_1")
             case "Sad":
-                self.moodImage.image = #imageLiteral(resourceName: "emoji2")
+                self.moodImage.image = UIImage(named: "Emoji_2")
             case "Happy":
-                self.moodImage.image = #imageLiteral(resourceName: "emoji4")
+                self.moodImage.image = UIImage(named: "Emoji_3")
             case "Blush":
-                self.moodImage.image = #imageLiteral(resourceName: "emoji3")
+                self.moodImage.image = UIImage(named: "Emoji_4")
             default:
-                self.moodImage.image = #imageLiteral(resourceName: "emoji_think")
+                self.moodImage.image = UIImage(named: "Emoji_5")
             }
         }
         else
@@ -96,10 +97,8 @@ class HomeViewController: UIViewController {
         case 4:
             print("4")
         default:
-            ProgressHUD.show()
             let user = DataService.instance.currentUser
             if user?.lastMoodDate != "" && user?.lastMoodDate == getCurrentDate() && user?.lastMoodDate != "Not found"{
-                ProgressHUD.dismiss()
                 Alert.showWithTwoActions(title: "Your Mood is already submitted", msg: "Would you like to update your mood?", okBtnTitle: "Yes", okBtnAction: {
                     let popUp = PopUpMood()
                     popUp.modalPresentationStyle = .overFullScreen
@@ -113,7 +112,6 @@ class HomeViewController: UIViewController {
             }
             else
             {
-                ProgressHUD.dismiss()
                 let popUp = PopUpMood()
                 popUp.modalPresentationStyle = .overFullScreen
                 popUp.modalTransitionStyle = .crossDissolve
