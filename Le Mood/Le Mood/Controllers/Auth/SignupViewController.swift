@@ -16,6 +16,7 @@ class SignupViewController: UIViewController {
     
     @IBOutlet weak var txtName: UITextField!
     @IBOutlet weak var txtEmail: UITextField!
+    @IBOutlet weak var txtNickName: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var txtCPassword: UITextField!
     @IBOutlet weak var txtCountry: DropDown!
@@ -101,11 +102,11 @@ class SignupViewController: UIViewController {
     
     func handleSignUp(){
         
-        if txtName.text != ""  && txtEmail.text != "" && txtCountry.text != "" && txtReigion.text != ""{
+        if txtName.text != ""  && txtEmail.text != "" && txtCountry.text != "" && txtReigion.text != "" && txtNickName.text != ""{
             if gender != nil {
                 if txtPassword.text!.count >= 6 && txtCPassword.text!.count >= 6 && txtPassword.text == txtCPassword.text {
                     let controller: NumberViewController = NumberViewController.initiateFrom(Storybaord: .Main)
-                    let user = UserModel(id: Auth.auth().currentUser?.uid ?? "" , name: txtName.text!, email: txtEmail.text!, phoneNumber: "", image: "", gender: gender ?? "male", country: txtCountry.text!, region: txtReigion.text!,moodId: "",moodType: "",moodValue: 0,lastMoodDate: "",fcmToken: "", language: "")
+                    let user = UserModel(id: Auth.auth().currentUser?.uid ?? "" , name: txtName.text!, nikName: txtNickName.text ?? "", email: txtEmail.text!, phoneNumber: "", image: "", gender: gender ?? "male", country: txtCountry.text!, region: txtReigion.text!,moodId: "",moodType: "",moodValue: 0,lastMoodDate: "",fcmToken: "", language: "")
                     controller.passUser = user
                     controller.password = txtPassword.text!
                     self.pushController(contorller: controller, animated: true)

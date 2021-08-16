@@ -55,9 +55,9 @@ class StatisticsViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         mainView.roundCorners(corners: [.topLeft, .topRight], radius: 40)
-        statisticsViews.forEach { (view) in
-            view.roundCorners(corners: [.topRight, .bottomLeft], radius: 18)
-        }
+//        statisticsViews.forEach { (view) in
+//            view.roundCorners(corners: [.topRight, .bottomLeft], radius: 18)
+//        }
         
     }
     

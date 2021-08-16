@@ -39,7 +39,7 @@ class NumberViewController: UIViewController {
                 if error == nil {
                     ProgressHUD.dismiss()
                     UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
-                    let user = UserModel(id: Auth.auth().currentUser?.uid ?? "", name: passUser?.name ?? "", email: passUser?.email ?? "", phoneNumber: "\(txtNumber.text!)", image: passUser?.image ?? "", gender: passUser?.gender ?? "", country: passUser?.country ?? "", region: passUser?.region ?? "",moodId: "",moodType: "",moodValue: 0,lastMoodDate: "",fcmToken: "", language: "")
+                    let user = UserModel(id: Auth.auth().currentUser?.uid ?? "", name: passUser?.name ?? "", nikName: passUser?.nikName ?? "", email: passUser?.email ?? "", phoneNumber: "\(txtNumber.text!)", image: passUser?.image ?? "", gender: passUser?.gender ?? "", country: passUser?.country ?? "", region: passUser?.region ?? "",moodId: "",moodType: "",moodValue: 0,lastMoodDate: "",fcmToken: "", language: "")
                     let controller:VerificationViewController = VerificationViewController.initiateFrom(Storybaord: .Main)
                     controller.passUser = user
                     controller.password = password

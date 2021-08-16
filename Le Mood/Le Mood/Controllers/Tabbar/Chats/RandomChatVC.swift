@@ -6,7 +6,8 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseFirestore
+import FirebaseAuth
 import ProgressHUD
 class RandomChatVC: UIViewController {
 
@@ -94,7 +95,7 @@ extension RandomChatVC:UITableViewDataSource,UITableViewDelegate,ChatsCellDelega
         cell.initCell()
         DataService.instance.getUserOfID(userID: chats[indexPath.row].otherUser) { (success, returnedUser) in
             if success{
-                cell.nameLbl.text = returnedUser!.name
+                cell.nameLbl.text = returnedUser!.nikName
                 cell.profileImg.sd_setImage(with: URL(string: returnedUser!.image), placeholderImage: placeHolderImage)
             }
         }

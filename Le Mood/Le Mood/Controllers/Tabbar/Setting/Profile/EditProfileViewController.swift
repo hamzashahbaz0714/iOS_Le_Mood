@@ -50,7 +50,7 @@ class EditProfileViewController: UIViewController {
         DataService.instance.uploadProfilePicture(image: image) { [self](success, url) in
             if success {
                 ProgressHUD.dismiss()
-                let updateUser = UserModel(id: user?.id ?? "", name: user?.name ?? "", email: user?.email ?? "", phoneNumber: user?.phoneNumber ?? "", image: url, gender: user?.gender ?? "", country: user?.country ?? "", region: user?.region ?? "",moodId: user?.moodId ?? "",moodType: user?.moodType ?? "",moodValue: user?.moodValue ?? 0,lastMoodDate: "",fcmToken: "", language: user?.language ?? "")
+                let updateUser = UserModel(id: user?.id ?? "", name: user?.name ?? "", nikName: user?.nikName ?? "", email: user?.email ?? "", phoneNumber: user?.phoneNumber ?? "", image: url, gender: user?.gender ?? "", country: user?.country ?? "", region: user?.region ?? "",moodId: user?.moodId ?? "",moodType: user?.moodType ?? "",moodValue: user?.moodValue ?? 0,lastMoodDate: "",fcmToken: "", language: user?.language ?? "")
                 DataService.instance.updateUser(user: updateUser)
                 DataService.instance.setCurrentUser(user: updateUser)
             }
@@ -65,7 +65,7 @@ class EditProfileViewController: UIViewController {
     func updateUserProfile(){
         if txtName.text != "" {
             ProgressHUD.show()
-            let updateUser = UserModel(id: user?.id ?? "", name: txtName.text!, email: user?.email ?? "", phoneNumber: user?.phoneNumber ?? "", image: user?.image ?? "", gender: user?.gender ?? "", country: user?.country ?? "", region: user?.region ?? "",moodId: user?.moodId ?? "",moodType: user?.moodType ?? "",moodValue: user?.moodValue ?? 0,lastMoodDate: "",fcmToken: "", language: user?.language ?? "")
+            let updateUser = UserModel(id: user?.id ?? "", name: txtName.text!, nikName: user?.nikName ?? "", email: user?.email ?? "", phoneNumber: user?.phoneNumber ?? "", image: user?.image ?? "", gender: user?.gender ?? "", country: user?.country ?? "", region: user?.region ?? "",moodId: user?.moodId ?? "",moodType: user?.moodType ?? "",moodValue: user?.moodValue ?? 0,lastMoodDate: "",fcmToken: "", language: user?.language ?? "")
             DataService.instance.updateUser(user: updateUser)
             DataService.instance.setCurrentUser(user: updateUser)
             txtName.text = ""

@@ -40,7 +40,8 @@ class DataService{
             "country":user.country,
             "region": user.region,
             "createdAt": FieldValue.serverTimestamp(),
-            "language": user.language
+            "language": user.language,
+            "nickName": user.nikName
         ], merge: true) { (err) in
             if let err = err {
                 debugPrint("Error adding document: \(err)")
@@ -69,8 +70,9 @@ class DataService{
                 let moodValue = data["moodValue"] as? Int ?? 0
                 let lastMoodDate = data["lastMoodDate"] as? String ?? ""
                 let language = data["language"] as? String ?? "Not Found"
+                let nikName = data["nickName"] as? String ?? "Not Found"
                 
-                let user = UserModel(id: id, name: name, email: email, phoneNumber: phoneNumber, image: image, gender: gender, country: country, region: region,moodId: moodId,moodType: moodType,moodValue: moodValue,lastMoodDate: lastMoodDate,fcmToken: fcmToken, language: language)
+                let user = UserModel(id: id, name: name, nikName: nikName, email: email, phoneNumber: phoneNumber, image: image, gender: gender, country: country, region: region,moodId: moodId,moodType: moodType,moodValue: moodValue,lastMoodDate: lastMoodDate,fcmToken: fcmToken, language: language)
                 handler(true,user)
                 
             } else {
@@ -145,11 +147,12 @@ class DataService{
                 let moodValue = data["moodValue"] as? Int ?? 0
                 let lastMoodDate = data["moodType"] as? String ?? "Not Found"
                 let language = data["language"] as? String ?? "Not Found"
+                let nikName = data["nickName"] as? String ?? "Not Found"
                 
                 
                 
                 if id != Auth.auth().currentUser?.uid {
-                    let user = UserModel(id: id, name: name, email: email, phoneNumber: phoneNumber, image: image, gender: gender, country: country, region: region,moodId: moodId,moodType: moodType,moodValue: moodValue,lastMoodDate: lastMoodDate,fcmToken: fcmToken, language: language)
+                    let user = UserModel(id: id, name: name, nikName: nikName, email: email, phoneNumber: phoneNumber, image: image, gender: gender, country: country, region: region,moodId: moodId,moodType: moodType,moodValue: moodValue,lastMoodDate: lastMoodDate,fcmToken: fcmToken, language: language)
                     user.fcmToken = fcmToken
                     userArray.append(user)
                 }
@@ -178,11 +181,13 @@ class DataService{
                 let moodValue = data["moodValue"] as? Int ?? 0
                 let lastMoodDate = data["moodType"] as? String ?? "Not Found"
                 let language = data["language"] as? String ?? "Not Found"
+                let nikName = data["nickName"] as? String ?? "Not Found"
+
                 
                 
                 
                 if id != Auth.auth().currentUser?.uid {
-                    let user = UserModel(id: id, name: name, email: email, phoneNumber: phoneNumber, image: image, gender: gender, country: country, region: region,moodId: moodId,moodType: moodType,moodValue: moodValue,lastMoodDate: lastMoodDate,fcmToken: fcmToken, language: language)
+                    let user = UserModel(id: id, name: name, nikName: nikName, email: email, phoneNumber: phoneNumber, image: image, gender: gender, country: country, region: region,moodId: moodId,moodType: moodType,moodValue: moodValue,lastMoodDate: lastMoodDate,fcmToken: fcmToken, language: language)
                     user.fcmToken = fcmToken
                     userArray.append(user)
                 }

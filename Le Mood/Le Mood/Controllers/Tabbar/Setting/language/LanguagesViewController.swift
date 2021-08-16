@@ -117,7 +117,7 @@ extension LanguagesViewController: UITableViewDelegate,UITableViewDataSource{
         else
         {
             let user = DataService.instance.currentUser
-            let updateUser = UserModel(id: user?.id ?? "", name: user?.name ?? "", email: user?.email ?? "", phoneNumber: user?.phoneNumber ?? "", image: user?.image ?? "", gender: user?.gender ?? "", country: user?.country ?? "", region: user?.region ?? "",moodId: user?.moodId ?? "",moodType: user?.moodType ?? "",moodValue: user?.moodValue ?? 0,lastMoodDate: "",fcmToken: "", language: languageArr[indexPath.row]["name"] ?? "")
+            let updateUser = UserModel(id: user?.id ?? "", name: user?.name ?? "", nikName: user?.nikName ?? "", email: user?.email ?? "", phoneNumber: user?.phoneNumber ?? "", image: user?.image ?? "", gender: user?.gender ?? "", country: user?.country ?? "", region: user?.region ?? "",moodId: user?.moodId ?? "",moodType: user?.moodType ?? "",moodValue: user?.moodValue ?? 0,lastMoodDate: "",fcmToken: "", language: languageArr[indexPath.row]["name"] ?? "")
             DataService.instance.updateUser(user: updateUser)
             DataService.instance.setCurrentUser(user: updateUser)
             Alert.showMsg(msg: "Your Language Updated")

@@ -91,7 +91,7 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         }
         else
         {
-            lblChatRecieverName.text = passRecieverUser?.name
+            lblChatRecieverName.text = passRecieverUser?.nikName
             imgView.sd_setImage(with: URL(string: passRecieverUser?.image ?? ""), placeholderImage: placeHolderImage, options: SDWebImageOptions.forceTransition)
         }
         //view.bindKeyboard()

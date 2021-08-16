@@ -34,7 +34,7 @@ class HomeViewController: UIViewController {
         dashboardViews.forEach { (view) in
             let tapgesture = UITapGestureRecognizer(target: self, action: #selector(handleDashobardView(sender:)))
             view.addGestureRecognizer(tapgesture)
-            view.roundCorners(corners: [.topRight, .bottomLeft], radius: 18)
+//            view.roundCorners(corners: [.topRight, .bottomLeft], radius: 18)
         }
         
     }

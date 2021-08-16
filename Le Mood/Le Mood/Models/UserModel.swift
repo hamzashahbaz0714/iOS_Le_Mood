@@ -11,6 +11,7 @@ class UserModel {
     
     var id: String
     var name: String
+    var nikName: String
     var email: String
     var phoneNumber: String
     var image: String
@@ -23,22 +24,23 @@ class UserModel {
     var lastMoodDate: String
     var fcmToken : String
     var language: String
-    init(id:String ,name: String, email: String, phoneNumber: String ,image: String ,gender: String ,country: String, region: String, moodId: String,moodType: String, moodValue: Int,lastMoodDate: String,fcmToken: String,language: String) {
-        self.id = id
-        self.name = name
-        self.email = email
-        self.phoneNumber = phoneNumber
-        self.image = image
-        self.gender = gender
-        self.country = country
-        self.region = region
-        self.moodId = moodId
-        self.moodType = moodType
-        self.moodValue = moodValue
-        self.lastMoodDate = lastMoodDate
-        self.fcmToken = fcmToken
-        self.language = language
-    }
+    init(id: String, name: String, nikName: String, email: String, phoneNumber: String, image: String, gender: String, country: String, region: String, moodId: String, moodType: String, moodValue: Int, lastMoodDate: String, fcmToken: String, language: String) {
+       self.id = id
+       self.name = name
+       self.nikName = nikName
+       self.email = email
+       self.phoneNumber = phoneNumber
+       self.image = image
+       self.gender = gender
+       self.country = country
+       self.region = region
+       self.moodId = moodId
+       self.moodType = moodType
+       self.moodValue = moodValue
+       self.lastMoodDate = lastMoodDate
+       self.fcmToken = fcmToken
+       self.language = language
+   }
 }
 
 
