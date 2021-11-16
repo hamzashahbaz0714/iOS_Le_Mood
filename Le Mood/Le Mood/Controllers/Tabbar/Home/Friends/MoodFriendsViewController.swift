@@ -125,36 +125,43 @@ extension MoodFriendsViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath) as! ContactCell
         let data = moodFriends[indexPath.row]
+        if data.isMoodVisible == true {
+            cell.moodImageView.isHidden = false
+            cell.moodValue.isHidden = false
+            if data.moodType == "Angry" {
+                cell.moodValue.text = "\(data.moodValue)"
+                cell.moodImageView.image = UIImage(named: "emoji1")
+            }
+            else if data.moodType == "Sad"
+            {
+                cell.moodValue.text = "\(data.moodValue)"
+                cell.moodImageView.image = UIImage(named: "emoji2")
+            }
+            else if data.moodType == "Happy" {
+                cell.moodValue.text = "\(data.moodValue)"
+                cell.moodImageView.image = UIImage(named: "emoji3")
+            }
+            else if data.moodType == "Blush" {
+                cell.moodValue.text = "\(data.moodValue)"
+                cell.moodImageView.image = UIImage(named: "emoji4")
+            }
+            else if data.moodType == "Excited"{
+                cell.moodValue.text = "\(data.moodValue)"
+                cell.moodImageView.image = UIImage(named: "emoji_think")
+            }
+            else
+            {
+                
+                cell.moodValue.text = "--"
+            }
+        }
+        else{
+            cell.moodImageView.isHidden = true
+            cell.moodValue.isHidden = true
+        }
         cell.lblContactName.text = data.name
-        cell.lblContactNo.text = data.phoneNumber
-        //        cell.MessageView.isHidden = true
-        if data.moodType == "Angry" {
-            cell.moodValue.text = "\(data.moodValue)"
-            cell.moodImageView.image = UIImage(named: "emoji1")
-        }
-        else if data.moodType == "Sad"
-        {
-            cell.moodValue.text = "\(data.moodValue)"
-            cell.moodImageView.image = UIImage(named: "emoji2")
-        }
-        else if data.moodType == "Happy" {
-            cell.moodValue.text = "\(data.moodValue)"
-            cell.moodImageView.image = UIImage(named: "emoji3")
-        }
-        else if data.moodType == "Blush" {
-            cell.moodValue.text = "\(data.moodValue)"
-            cell.moodImageView.image = UIImage(named: "emoji4")
-        }
-        else if data.moodType == "Excited"{
-            cell.moodValue.text = "\(data.moodValue)"
-            cell.moodImageView.image = UIImage(named: "emoji_think")
-        }
-        else
-        {
-            
-            cell.moodValue.text = "---"
-        }
-        cell.userImgView.sd_setImage(with: URL(string: data.image), placeholderImage: placeHolderImage, options: .forceTransition)
+        cell.lblContactNo.text = data.country
+        cell.userImgView.sd_setImage(with: URL(string: data.image ), placeholderImage: placeHolderImage, options: .forceTransition)
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

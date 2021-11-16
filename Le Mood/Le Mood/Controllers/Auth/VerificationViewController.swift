@@ -74,7 +74,7 @@ class VerificationViewController: UIViewController {
             if success {
                 AuthService.instance.loginUserWithEmail(email: passUser?.email ?? "", password: password ?? "") { (succes, error) in
                     if success {
-                        let user = UserModel(id: Auth.auth().currentUser!.uid, name: passUser?.name ?? "", nikName: passUser?.nikName ?? "", email: passUser?.email ?? "", phoneNumber: passUser?.phoneNumber ?? "", image: passUser?.image ?? "", gender: passUser?.gender ?? "", country: passUser?.country ?? "", region: passUser?.region ?? "",moodId: "",moodType: "",moodValue: 0,lastMoodDate: "",fcmToken: "", language: "")
+                        let user = UserModel(id: Auth.auth().currentUser!.uid, name: passUser?.name ?? "", nikName: passUser?.nikName ?? "", email: passUser?.email ?? "", phoneNumber: passUser?.phoneNumber ?? "", image: passUser?.image ?? "", gender: passUser?.gender ?? "", country: passUser?.country ?? "", region: passUser?.region ?? "",moodId: "",moodType: "",moodValue: 0,lastMoodDate: "",fcmToken: "", language: "", isMoodVisible: true)
                         DataService.instance.updateUser(user: user)
                         DataService.instance.setCurrentUser(user: user)
                         ProgressHUD.dismiss()
