@@ -22,25 +22,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var isMoodFetched : Bool?
     var mood: MoodModel?
     var countries: CountriesStatesModel?
+    var defaults = UserDefaults.standard
+    let center = UNUserNotificationCenter.current()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+//        let replyAction = UNNotificationAction(
+//            identifier: "reply.action",
+//            title: "Reply to this message",
+//            options: [])
+        let replyAction = UNTextInputNotificationAction(identifier: "reply.action", title: "message", options: [], textInputButtonTitle: "Send", textInputPlaceholder: "type something …")
         
-        UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
-        if #available(iOS 10.0, *) {
-          // For iOS 10 display notification (sent via APNS)
-          UNUserNotificationCenter.current().delegate = self
-
-          let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-          UNUserNotificationCenter.current().requestAuthorization(
-            options: authOptions,
-            completionHandler: {_, _ in })
-        } else {
-          let settings: UIUserNotificationSettings =
-          UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-          application.registerUserNotificationSettings(settings)
-        }
-
-        application.registerForRemoteNotifications()
+        let pushNotificationButtons = UNNotificationCategory(
+            identifier: "new_podcast_available",
+            actions: [replyAction],
+            intentIdentifiers: [],
+            options: [])
+        
+        UNUserNotificationCenter.current().setNotificationCategories([pushNotificationButtons])
+        
+        
         Messaging.messaging().delegate = self
         
         ProgressHUD.colorAnimation = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
@@ -55,6 +55,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             {
                 print("Not fetched")
             }
+        }
+        
+        if defaults.bool(forKey: "WatchWalkThrough") == true {
+            setupNotification()
         }
         
         return true
@@ -74,68 +78,68 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
     
+    func setupNotification(){
+        let content = UNMutableNotificationContent()
+        let calendar = Calendar.current
+        content.title = "Confirm that"
+        content.body = "Have you submitted your mood today?"
+        content.sound = UNNotificationSound.default
+        var dateComponents = DateComponents()
+        let date = calendar.date(from: dateComponents)
+        let comp2 = calendar.dateComponents([.year,.month,.day,.hour,.minute], from: date!)
+        dateComponents.hour = 14
+        dateComponents.minute = 52
+        let ri = UNCalendarNotificationTrigger(dateMatching: comp2, repeats: true)
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: ri)
+        center.add(request)
+    }
     
 }
 
 
 @available(iOS 10, *)
 extension AppDelegate : UNUserNotificationCenterDelegate {
-
     
     
-  // Receive displayed notifications for iOS 10 devices.
-  func userNotificationCenter(_ center: UNUserNotificationCenter,
-                              willPresent notification: UNNotification,
-    withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-    let userInfo = notification.request.content.userInfo
-
-    // With swizzling disabled you must let Messaging know about the message, for Analytics
-    // Messaging.messaging().appDidReceiveMessage(userInfo)
-
-    // ...
-
-    print("askbfsklbvsbdfolsvbod")
-    // Print full message.
-    print(userInfo)
-
-    // Change this to your preferred presentation option
-    completionHandler([.sound,.badge,.list,.banner])
-    completionHandler([[.banner, .sound]])
-  }
-
-  func userNotificationCenter(_ center: UNUserNotificationCenter,
-                              didReceive response: UNNotificationResponse,
-                              withCompletionHandler completionHandler: @escaping () -> Void) {
-    let userInfo = response.notification.request.content.userInfo
-
-    // ...
-
-    // With swizzling disabled you must let Messaging know about the message, for Analytics
-    // Messaging.messaging().appDidReceiveMessage(userInfo)
-
-    // Print full message.
-    print(userInfo)
-
-    completionHandler()
-  }
+    
+    // Receive displayed notifications for iOS 10 devices.
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        let userInfo = notification.request.content.userInfo
+        
+        // With swizzling disabled you must let Messaging know about the message, for Analytics
+        // Messaging.messaging().appDidReceiveMessage(userInfo)
+        
+        // ...
+        
+        print("askbfsklbvsbdfolsvbod")
+        // Print full message.
+        print(userInfo)
+        
+        // Change this to your preferred presentation option
+        completionHandler([.sound,.badge,.list,.banner])
+        completionHandler([[.banner, .sound]])
+    }
+    
+ 
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        if let textResponse =  response as? UNTextInputNotificationResponse {
+            let sendText =  textResponse.userText
+            print("Received text message: \(sendText)")
+        }
+    }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-      // If you are receiving a notification message while your app is in the background,
-      // this callback will not be fired till the user taps on the notification launching the application.
-      // TODO: Handle data of notification
-
-      // With swizzling disabled you must let Messaging know about the message, for Analytics
-      // Messaging.messaging().appDidReceiveMessage(userInfo)
-
-      // Print message ID.
-      if let messageID = userInfo[gcmMessageIDKey] {
-        print("Message ID: \(messageID)")
-      }
-
-      // Print full message.
-      print(userInfo)
-
+        if let messageID = userInfo[gcmMessageIDKey] {
+            print("Message ID: \(messageID)")
+        }
+        
+        // Print full message.
+        print(userInfo)
+        
         switch UIApplication.shared.applicationState {
         case .active:
             print("coming here...")
@@ -152,17 +156,17 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         default:
             break
         }
-      completionHandler(UIBackgroundFetchResult.newData)
+        completionHandler(UIBackgroundFetchResult.newData)
     }
 }
 
 extension AppDelegate:MessagingDelegate{
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-      print("Firebase registration token: \(String(describing: fcmToken))")
-
-      let dataDict:[String: String] = ["token": fcmToken ?? ""]
-      NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
-      // TODO: If necessary send token to application server.
-      // Note: This callback is fired at each app startup and whenever a new token is generated.
+        print("Firebase registration token: \(String(describing: fcmToken))")
+        
+        let dataDict:[String: String] = ["token": fcmToken ?? ""]
+        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+        // TODO: If necessary send token to application server.
+        // Note: This callback is fired at each app startup and whenever a new token is generated.
     }
 }

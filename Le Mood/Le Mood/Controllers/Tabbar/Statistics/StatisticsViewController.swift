@@ -21,6 +21,7 @@ class StatisticsViewController: UIViewController {
     @IBOutlet weak var lblMoodValue: UILabel!
     @IBOutlet weak var moodImage: UIImageView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var moodOnOffSwitch: UISwitch!
     
     
     var countryArr = [Any]()
@@ -44,6 +45,12 @@ class StatisticsViewController: UIViewController {
         getTodayMood()
         let user = DataService.instance.currentUser
         profileImgView.sd_setImage(with: URL(string: user?.image ?? "" ), placeholderImage: placeHolderImage, options: .forceTransition)
+        if user?.isMoodVisible == true {
+            moodOnOffSwitch.isOn = true
+        }
+        else{
+            moodOnOffSwitch.isOn = false
+        }
         lblName.text = user?.name
         lblEmail.text = user?.email
         //        getStatistics(country: DataService.instance.currentUser.country, state: DataService.instance.currentUser.region)
@@ -61,7 +68,7 @@ class StatisticsViewController: UIViewController {
         
     }
     
-    //MARK:- Supporting Functions
+    //MARK: - Supporting Functions
     
     private func generateRandomEntries() -> [PointEntry] {
         var result: [PointEntry] = []
@@ -154,9 +161,23 @@ class StatisticsViewController: UIViewController {
     
     
     
-    //MARK:- Actions
+    //MARK: - Actions
     
     
+    @IBAction func moodOnOffTapped(_ sender: Any) {
+        let user = DataService.instance.currentUser
+        if user?.isMoodVisible == false {
+            user?.isMoodVisible = true
+            DataService.instance.setCurrentUser(user: user!)
+            DataService.instance.updateUser(user: user!)
+        }
+        else{
+            user?.isMoodVisible = false
+            DataService.instance.setCurrentUser(user: user!)
+            DataService.instance.updateUser(user: user!)
+        }
+    
+    }
 }
 
 extension StatisticsViewController: UITableViewDelegate, UITableViewDataSource {

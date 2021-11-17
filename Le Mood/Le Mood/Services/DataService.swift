@@ -41,8 +41,8 @@ class DataService{
             "region": user.region,
             "createdAt": FieldValue.serverTimestamp(),
             "language": user.language,
-            "nickName": user.nikName
-          //  "isMoodVisible": user.isMoodVisible
+            "nickName": user.nikName,
+            "isMoodVisible": user.isMoodVisible
         ], merge: true) { (err) in
             if let err = err {
                 debugPrint("Error adding document: \(err)")
