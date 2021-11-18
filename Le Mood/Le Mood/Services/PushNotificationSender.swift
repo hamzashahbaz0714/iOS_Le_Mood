@@ -10,12 +10,12 @@ import Foundation
 import UIKit
 import FirebaseAuth
 class PushNotificationSender {
-    func sendPushNotification(to token: String, title: String, body: String,unread:Int) {
+    func sendPushNotification(senderToken:String,chatId:String,isComefromRandomORMyCHat:Bool,receiver: String,to token: String, title: String, body: String,unread:Int) {
         let urlString = "https://fcm.googleapis.com/fcm/send"
         let url = NSURL(string: urlString)!
         let paramString: [String : Any] = ["to" : token,
                                            "notification" : ["title" : title, "body" : body, "badge" : unread, "sound":1,"click_action":"new_podcast_available"],
-                                           "data" : ["user" : Auth.auth().currentUser!.uid]
+                                           "data" : ["sender" : Auth.auth().currentUser!.uid,"receiver":receiver,"isComefromRandomORMyCHat":isComefromRandomORMyCHat,"chatId":chatId,"token":senderToken]
         ]
         let request = NSMutableURLRequest(url: url as URL)
         request.httpMethod = "POST"
