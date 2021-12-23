@@ -42,7 +42,8 @@ class DataService{
             "createdAt": FieldValue.serverTimestamp(),
             "language": user.language,
             "nickName": user.nikName,
-            "isMoodVisible": user.isMoodVisible
+            "isMoodVisible": user.isMoodVisible,
+            "fcmToken": user.fcmToken
         ], merge: true) { (err) in
             if let err = err {
                 debugPrint("Error adding document: \(err)")
@@ -435,8 +436,8 @@ class DataService{
     }
     
     func addChatMessage(isComefromRandomORMyCHat: Bool?,chatID:String,message:Message,notReadBy:[String],senderName: String,senderImage: String){
-        if isComefromRandomORMyCHat == false {
-            chatReference.document(chatID).collection("messages").document(message.messageId).setData([
+        if isComefromRandomORMyCHat == true {
+            randomchatReference.document(chatID).collection("messages").document(message.messageId).setData([
                 "isIncoming":message.isIncoming,
                 "message":message.messageBody,
                 "messageDate":message.messageDate,
@@ -450,7 +451,7 @@ class DataService{
                 if let err = err {
                     debugPrint("Error adding document: \(err)")
                 } else {
-                    self.chatReference.document(chatID).setData([
+                    self.randomchatReference.document(chatID).setData([
                         "chatId":chatID,
                         "senderId":message.senderId,
                         "receiverId":message.reciverId,
@@ -474,7 +475,7 @@ class DataService{
         }
         else
         {
-            Firestore.firestore().collection("randomChats").document(chatID).collection("messages").document(message.messageId).setData([
+            chatReference.document(chatID).collection("messages").document(message.messageId).setData([
                 "isIncoming":message.isIncoming,
                 "message":message.messageBody,
                 "messageDate":message.messageDate,
@@ -488,7 +489,7 @@ class DataService{
                 if let err = err {
                     debugPrint("Error adding document: \(err)")
                 } else {
-                    self.randomchatReference.document(chatID).setData([
+                    self.chatReference.document(chatID).setData([
                         "chatId":chatID,
                         "senderId":message.senderId,
                         "receiverId":message.reciverId,

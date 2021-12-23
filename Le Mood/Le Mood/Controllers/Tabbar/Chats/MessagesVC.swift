@@ -423,6 +423,9 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             self.messageTxtView.text = ""
             let sender = PushNotificationSender()
             sender.sendPushNotification(senderToken: DataService.instance.currentUser.fcmToken,chatId:chatID!,isComefromRandomORMyCHat: isComefromRandomORMyCHat, receiver: passRecieverUser?.id ?? "", to: "\(self.passRecieverUser!.fcmToken)", title: "\(DataService.instance.currentUser!.name)", body: m!,unread: 1)
+            let sizeToFitIn = CGSize(width: self.messageTxtView.bounds.size.width, height: 150)
+            let newSize = self.messageTxtView.sizeThatFits(sizeToFitIn)
+            self.txtMessageHeight.constant = newSize.height
             print(sender)
             //
             //                        DataService.instance.getUnreadCountOfUser(string: self.user.userID) { success, unread in

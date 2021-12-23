@@ -29,10 +29,10 @@ class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCe
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
             UNUserNotificationCenter.current().delegate = self
-            let replyAction = UNTextInputNotificationAction(identifier: "reply.action", title: "message", options: [], textInputButtonTitle: "Send", textInputPlaceholder: "type something …")
+            let replyAction = UNTextInputNotificationAction(identifier: "click_action", title: "message", options: [], textInputButtonTitle: "Send", textInputPlaceholder: "type something …")
             
             let pushNotificationButtons = UNNotificationCategory(
-                identifier: "new_podcast_available",
+                identifier: "mood_click_action_chat",
                 actions: [replyAction],
                 intentIdentifiers: [],
                 options: [])
@@ -111,19 +111,22 @@ class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCe
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         print("Coming hereeee/÷÷÷÷÷//")
+//        if UIApplication.shared.applicationState == .inactive {
+//            UIApplication.shared.applicationState = .background
+//        }
         if let userInfo = response.notification.request.content.userInfo as? [String:Any]{
             let senderID = userInfo["sender"] as? String ?? ""
             let receiverID = userInfo["receiver"] as? String ?? ""
-            let chatId = userInfo["chatId"] as? String ?? ""
+            let chatId = userInfo["combineId"] as? String ?? ""
             let isComefromRandomORMyCHat = userInfo["isComefromRandomORMyCHat"] as? Bool ?? false
-            let token = userInfo["token"] as? String ?? ""
+            let token = userInfo["fcmToken"] as? String ?? ""
 
             print(senderID,receiverID,chatId,isComefromRandomORMyCHat,token)
             print(userInfo)
             if let textResponse =  response as? UNTextInputNotificationResponse {
                 let sendText =  textResponse.userText
                 print("Received text message: \(sendText)")
-                let message = Message(messageId: getUniqueId(), reciverId: receiverID, senderId: senderID, messageBody:sendText, messageType: "text", messageTime: getCurrentTime(), messageDate: getCurrentDateWithTime(), isIncoming: false)
+                let message = Message(messageId: getUniqueId(), reciverId: senderID, senderId: receiverID, messageBody:sendText, messageType: "text", messageTime: getCurrentTime(), messageDate: getCurrentDateWithTime(), isIncoming: false)
                 DataService.instance.addChatMessage(isComefromRandomORMyCHat: isComefromRandomORMyCHat, chatID: chatId, message: message,notReadBy: [receiverID],senderName: DataService.instance.currentUser.name,senderImage: DataService.instance.currentUser.image)
                 let sender = PushNotificationSender()
                 sender.sendPushNotification(senderToken: token, chatId:chatId,isComefromRandomORMyCHat: isComefromRandomORMyCHat, receiver: receiverID, to:  token, title: "\(DataService.instance.currentUser!.name)", body: sendText,unread: 1)
@@ -134,4 +137,5 @@ class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCe
         NotificationCenter.default.post(name: TO_NOTIF_NTOFICATION_RECIEVED, object: nil, userInfo: nil)
         print(response)
     }
+    
 }

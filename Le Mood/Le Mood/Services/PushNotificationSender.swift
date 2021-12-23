@@ -14,8 +14,9 @@ class PushNotificationSender {
         let urlString = "https://fcm.googleapis.com/fcm/send"
         let url = NSURL(string: urlString)!
         let paramString: [String : Any] = ["to" : token,
-                                           "notification" : ["title" : title, "body" : body, "badge" : unread, "sound":1,"click_action":"new_podcast_available"],
-                                           "data" : ["sender" : Auth.auth().currentUser!.uid,"receiver":receiver,"isComefromRandomORMyCHat":isComefromRandomORMyCHat,"chatId":chatId,"token":senderToken]
+                                           "notification" : ["title" : title, "body" : body, "badge" : unread, "sound":1,"click_action":"mood_click_action_chat","priority" : "high","content_available" : true  ],
+                                           "data" : ["sender" : Auth.auth().currentUser!.uid,"receiver":receiver,"isComefromRandomORMyCHat":isComefromRandomORMyCHat,"combineId":chatId,"fcmToken":senderToken,"click_action":"mood_click_action_chat","notiType": "message"
+                                                    ]
         ]
         let request = NSMutableURLRequest(url: url as URL)
         request.httpMethod = "POST"

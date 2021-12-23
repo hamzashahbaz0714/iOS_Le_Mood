@@ -96,7 +96,9 @@ extension RandomChatVC:UITableViewDataSource,UITableViewDelegate,ChatsCellDelega
         DataService.instance.getUserOfID(userID: chats[indexPath.row].otherUser) { (success, returnedUser) in
             if success{
                 cell.nameLbl.text = returnedUser!.nikName
+                cell.returnedUser = returnedUser
                 cell.profileImg.sd_setImage(with: URL(string: returnedUser!.image), placeholderImage: placeHolderImage)
+                cell.setEmoji()
             }
         }
         if cell.chat.notReadBy.contains(DataService.instance.currentUser!.id){

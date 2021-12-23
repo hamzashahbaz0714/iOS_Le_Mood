@@ -130,28 +130,28 @@ extension MoodFriendsViewController: UITableViewDelegate,UITableViewDataSource{
             cell.moodValue.isHidden = false
             if data.moodType == "Angry" {
                 cell.moodValue.text = "\(data.moodValue)"
-                cell.moodImageView.image = UIImage(named: "emoji1")
+                cell.moodImageView.image = UIImage(named: "Emoji_1")
             }
             else if data.moodType == "Sad"
             {
                 cell.moodValue.text = "\(data.moodValue)"
-                cell.moodImageView.image = UIImage(named: "emoji2")
+                cell.moodImageView.image = UIImage(named: "Emoji_2")
             }
             else if data.moodType == "Happy" {
                 cell.moodValue.text = "\(data.moodValue)"
-                cell.moodImageView.image = UIImage(named: "emoji3")
+                cell.moodImageView.image = UIImage(named: "Emoji_3")
             }
             else if data.moodType == "Blush" {
                 cell.moodValue.text = "\(data.moodValue)"
-                cell.moodImageView.image = UIImage(named: "emoji4")
+                cell.moodImageView.image = UIImage(named: "Emoji_4")
             }
             else if data.moodType == "Excited"{
                 cell.moodValue.text = "\(data.moodValue)"
-                cell.moodImageView.image = UIImage(named: "emoji_think")
+                cell.moodImageView.image = UIImage(named: "Emoji_5")
             }
             else
             {
-                
+                cell.moodImageView.image = UIImage(systemName: "face.dashed.fill")
                 cell.moodValue.text = "--"
             }
         }

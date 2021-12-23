@@ -53,7 +53,7 @@ class MyChatsVC: UIViewController {
         tableView.dataSource = self
         if Auth.auth().currentUser?.uid != nil{
             ProgressHUD.show("Loading chats")
-            let chatReference = Firestore.firestore().collection("randomChats")
+            let chatReference = Firestore.firestore().collection("chats")
             chatReference.addSnapshotListener({ (snapShot, error) in
                 DataService.instance.getAllChats { (returnedArray) in
                     ProgressHUD.dismiss()
@@ -87,13 +87,16 @@ extension MyChatsVC:UITableViewDataSource,UITableViewDelegate,ChatsCellDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChatsCell", for: indexPath) as! ChatsCell
         cell.chat = chats[indexPath.row]
-        cell.initCell()
         DataService.instance.getUserOfID(userID: chats[indexPath.row].otherUser) { (success, returnedUser) in
             if success{
                 cell.nameLbl.text = returnedUser!.name
                 cell.profileImg.sd_setImage(with: URL(string: returnedUser!.image), placeholderImage: placeHolderImage)
+                cell.returnedUser = returnedUser
+                cell.setEmoji()
             }
         }
+        cell.initCell()
+
         if cell.chat.notReadBy.contains(DataService.instance.currentUser!.id){
             cell.dotImg.isHidden = false
         }else{

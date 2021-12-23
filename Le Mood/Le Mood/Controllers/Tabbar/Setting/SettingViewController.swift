@@ -21,7 +21,7 @@ class SettingViewController: UIViewController {
     
     
     
-    //MARK:- Controller Life Cycle
+    //MARK: - Controller Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +47,7 @@ class SettingViewController: UIViewController {
         
     }
     
-    //MARK:- Supporting Functions
+    //MARK: - Supporting Functions
     
     @objc func handleSettingViews(sender: UITapGestureRecognizer){
         switch sender.view?.tag {
@@ -68,16 +68,20 @@ class SettingViewController: UIViewController {
             print("Logout")
             Alert.showWithTwoActions(title: "Confirm", msg: "Are you sure want to Logout?", okBtnTitle: "Yes", okBtnAction: {
                 ProgressHUD.show()
+                let user =  DataService.instance.currentUser
+                 user?.fcmToken = ""
+                 DataService.instance.updateUser(user: user!)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     ProgressHUD.dismiss()
                     do {
+                        
                         try Auth.auth().signOut()
                         self.navigationController?.popToRootViewController(animated: true)
                     } catch (let error) {
                         print((error as NSError).code)
                     }
                 }
-            }, cancelBtnTitle: "Cancel") {
+            }, cancelBtnTitle: "No") {
                 
             }
         }

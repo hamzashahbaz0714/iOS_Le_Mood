@@ -48,9 +48,11 @@ class LoginViewController: UIViewController {
             ProgressHUD.show()
             AuthService.instance.loginUserWithEmail(email: txtEmail.text!, password: txtPassword.text!) { (success, error) in
                 if success {
-                    DataService.instance.getUserOfID(userID: Auth.auth().currentUser!.uid) { (success, user) in
+                    DataService.instance.getUserOfID(userID: Auth.auth().currentUser!.uid) { [self] (success, user) in
                         DataService.instance.setCurrentUser(user: user!)
                         ProgressHUD.dismiss()
+                        txtEmail.text = ""
+                        txtPassword.text = ""
                         let controller: TabbarViewController = TabbarViewController.initiateFrom(Storybaord: .Main)
                         self.pushController(contorller: controller, animated: true)
                     }

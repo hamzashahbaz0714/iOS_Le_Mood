@@ -20,7 +20,7 @@ class ChatsCell: UITableViewCell {
     @IBOutlet weak var profileImg:CircleImage! 
     @IBOutlet weak var timeLbl:UILabel!
     @IBOutlet weak var dotImg:UIImageView!
-    
+    @IBOutlet weak var moodImage: UIImageView!
     
     var chat: Chat!
     var delegate:ChatsCellDelegate?
@@ -41,7 +41,8 @@ class ChatsCell: UITableViewCell {
 //            self.dotImg.isHidden = true
 //        }
 //        
-        getTimeDifference()
+        //getTimeDifference()
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction))
         nameLbl.addGestureRecognizer(tap)
         if chat.messageType == "text"{
@@ -56,6 +57,35 @@ class ChatsCell: UITableViewCell {
         else
         {
             self.lastMessageLbl.text = "image"
+        }
+    }
+    
+    func setEmoji(){
+        if returnedUser.isMoodVisible == true {
+            if returnedUser.moodType == "Angry" {
+               // moodValue.text = "\(data.moodValue)"
+                moodImage.image = UIImage(named: "Emoji_1")
+            }
+            else if returnedUser.moodType == "Sad"
+            {
+               // cell.returnedUser.text = "\(data.moodValue)"
+                moodImage.image = UIImage(named: "Emoji_2")
+            }
+            else if returnedUser.moodType == "Happy" {
+                //cell.moodValue.text = "\(data.moodValue)"
+                moodImage.image = UIImage(named: "Emoji_3")
+            }
+            else if returnedUser.moodType == "Blush" {
+               // cell.moodValue.text = "\(data.moodValue)"
+                moodImage.image = UIImage(named: "Emoji_4")
+            }
+            else
+            {
+                moodImage.image = UIImage(named: "Emoji_5")
+            }
+        }else{
+            moodImage.image = UIImage(systemName: "face.dashed.fill")
+
         }
     }
     
@@ -86,7 +116,7 @@ class ChatsCell: UITableViewCell {
     }
     
     @objc func tapFunction(sender:UITapGestureRecognizer) {
-        self.delegate?.openProfile(uid: self.returnedUser)
+      //  self.delegate?.openProfile(uid: self.returnedUser)
     }
     
 }
