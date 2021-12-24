@@ -14,10 +14,25 @@ class PushNotificationSender {
         let urlString = "https://fcm.googleapis.com/fcm/send"
         let url = NSURL(string: urlString)!
         let paramString: [String : Any] = ["to" : token,
-                                           "notification" : ["title" : title, "body" : body, "badge" : unread, "sound":1,"click_action":"mood_click_action_chat","priority" : "high","content_available" : true  ],
-                                           "data" : ["sender" : Auth.auth().currentUser!.uid,"receiver":receiver,"isComefromRandomORMyCHat":isComefromRandomORMyCHat,"combineId":chatId,"fcmToken":senderToken,"click_action":"mood_click_action_chat","notiType": "message"
+                                           "notification":
+                                            ["title" : title,
+                                             "body" : body,
+                                             "badge" : unread,
+                                             "sound":1,
+                                             "click_action":"mood_click_action_chat",
+                                             "priority" : "high",
+                                             "content_available" : true
+                                            ],
+                                           "data" : ["sender" : Auth.auth().currentUser!.uid,
+                                                     "receiver":receiver,
+                                                     "isComefromRandomORMyCHat":isComefromRandomORMyCHat,
+                                                     "combineId":chatId,
+                                                     "fcmToken":senderToken,
+                                                     "click_action":"mood_click_action_chat",
+                                                     "notiType": "message"
                                                     ]
         ]
+        
         let request = NSMutableURLRequest(url: url as URL)
         request.httpMethod = "POST"
         request.httpBody = try? JSONSerialization.data(withJSONObject:paramString, options: [.prettyPrinted])
