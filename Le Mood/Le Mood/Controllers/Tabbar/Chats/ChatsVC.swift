@@ -38,6 +38,10 @@ class ChatsVC: UIViewController {
         viewPager.reload()
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        viewPager.roundCorners(corners: [.topLeft, .topRight], radius: 20)        
+    }
 }
 
 extension ChatsVC: LZViewPagerDelegate, LZViewPagerDataSource{

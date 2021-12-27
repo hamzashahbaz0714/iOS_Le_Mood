@@ -15,12 +15,12 @@ import FirebaseFirestore
 class MyChatsVC: UIViewController {
     
     
-    //MARK:- Propeties
+    //MARK: - Propeties
     
     @IBOutlet weak var tableView:UITableView!
     var chats = [Chat]()
     
-    //MARK:- Controller Life Cycle
+    //MARK: - Controller Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +45,9 @@ class MyChatsVC: UIViewController {
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
-    //MARK:- Supporting Functions
+    
+    
+    //MARK: - Supporting Functions
     
     func loadChatList(){
         
