@@ -120,7 +120,7 @@ class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCe
             let chatId = userInfo["combineId"] as? String ?? ""
             let isComefromRandomORMyCHat = userInfo["isComefromRandomORMyCHat"] as? Bool ?? false
             let token = userInfo["fcmToken"] as? String ?? ""
-
+            let deviceType = userInfo["deviceType"] as? String ?? ""
             print(senderID,receiverID,chatId,isComefromRandomORMyCHat,token)
             print(userInfo)
             if let textResponse =  response as? UNTextInputNotificationResponse {
@@ -129,7 +129,7 @@ class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCe
                 let message = Message(messageId: getUniqueId(), reciverId: senderID, senderId: receiverID, messageBody:sendText, messageType: "text", messageTime: getCurrentTime(), messageDate: getCurrentDateWithTime(), isIncoming: false)
                 DataService.instance.addChatMessage(isComefromRandomORMyCHat: isComefromRandomORMyCHat, chatID: chatId, message: message,notReadBy: [receiverID],senderName: DataService.instance.currentUser.name,senderImage: DataService.instance.currentUser.image)
                 let sender = PushNotificationSender()
-                sender.sendPushNotification(senderToken: token, chatId:chatId,isComefromRandomORMyCHat: isComefromRandomORMyCHat, receiver: receiverID, to:  token, title: "\(DataService.instance.currentUser!.name)", body: sendText,unread: 1)
+                sender.sendPushNotification(deviceType: deviceType, senderToken: token, chatId:chatId,isComefromRandomORMyCHat: isComefromRandomORMyCHat, receiver: receiverID, to:  token, title: "\(DataService.instance.currentUser!.name)", body: sendText,unread: 1)
             }
         }
         

@@ -179,7 +179,7 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
                 let message = Message(messageId: getUniqueId(), reciverId: rID, senderId: Auth.auth().currentUser!.uid, messageBody: url, messageType: "image", messageTime: getCurrentTime(), messageDate: getCurrentDateWithTime(), isIncoming: false)
                 DataService.instance.addChatMessage(isComefromRandomORMyCHat: self?.isComefromRandomORMyCHat,chatID: self?.chatID ?? "", message: message,notReadBy: [rID],senderName: DataService.instance.currentUser.name, senderImage: DataService.instance.currentUser.image)
                 let sender = PushNotificationSender()
-                sender.sendPushNotification(senderToken: DataService.instance.currentUser.fcmToken, chatId:self?.chatID ?? "",isComefromRandomORMyCHat: self?.isComefromRandomORMyCHat ?? false, receiver: self?.passRecieverUser?.id ?? "", to: "\(self?.passRecieverUser!.fcmToken ?? "")", title: "\(DataService.instance.currentUser!.name)", body: "image",unread: 1)
+                sender.sendPushNotification(deviceType: self?.passRecieverUser?.deviceType ?? "",senderToken: DataService.instance.currentUser.fcmToken, chatId:self?.chatID ?? "",isComefromRandomORMyCHat: self?.isComefromRandomORMyCHat ?? false, receiver: self?.passRecieverUser?.id ?? "", to: "\(self?.passRecieverUser!.fcmToken ?? "")", title: "\(DataService.instance.currentUser!.name)", body: "image",unread: 1)
             }
             else
             {
@@ -197,7 +197,7 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
                 let message = Message(messageId: getUniqueId(), reciverId: rID, senderId: Auth.auth().currentUser!.uid, messageBody: url, messageType: "video", messageTime: getCurrentTime(), messageDate: getCurrentDateWithTime(), isIncoming: false)
                 DataService.instance.addChatMessage(isComefromRandomORMyCHat: self?.isComefromRandomORMyCHat,chatID: self?.chatID ?? "", message: message,notReadBy: [rID],senderName: DataService.instance.currentUser.name,senderImage: DataService.instance.currentUser.image)
                 let sender = PushNotificationSender()
-                sender.sendPushNotification(senderToken: DataService.instance.currentUser.fcmToken,chatId:self?.chatID ?? "",isComefromRandomORMyCHat: self?.isComefromRandomORMyCHat ?? false, receiver: self?.passRecieverUser?.id ?? "", to: "\(self?.passRecieverUser!.fcmToken ?? "")", title: "\(DataService.instance.currentUser!.name)", body: "video",unread: 1)
+                sender.sendPushNotification(deviceType: self?.passRecieverUser?.deviceType ?? "",senderToken: DataService.instance.currentUser.fcmToken,chatId:self?.chatID ?? "",isComefromRandomORMyCHat: self?.isComefromRandomORMyCHat ?? false, receiver: self?.passRecieverUser?.id ?? "", to: "\(self?.passRecieverUser!.fcmToken ?? "")", title: "\(DataService.instance.currentUser!.name)", body: "video",unread: 1)
                 ProgressHUD.dismiss()
                 print("Uploaded")
             }
@@ -217,7 +217,7 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
                 let message = Message(messageId: getUniqueId(), reciverId: rID, senderId: Auth.auth().currentUser!.uid, messageBody: url, messageType: "gif", messageTime: getCurrentTime(), messageDate: getCurrentDateWithTime(), isIncoming: false)
                 DataService.instance.addChatMessage(isComefromRandomORMyCHat: self?.isComefromRandomORMyCHat,chatID: self?.chatID ?? "", message: message,notReadBy: [rID],senderName: DataService.instance.currentUser.name,senderImage: DataService.instance.currentUser.image)
                 let sender = PushNotificationSender()
-                sender.sendPushNotification(senderToken: DataService.instance.currentUser.fcmToken,chatId:self?.chatID ?? "",isComefromRandomORMyCHat: self?.isComefromRandomORMyCHat ?? false, receiver: self?.passRecieverUser?.id ?? "", to: "\(self?.passRecieverUser!.fcmToken ?? "")", title: "\(DataService.instance.currentUser!.name)", body: "video",unread: 1)
+                sender.sendPushNotification(deviceType: self?.passRecieverUser?.deviceType ?? "",senderToken: DataService.instance.currentUser.fcmToken,chatId:self?.chatID ?? "",isComefromRandomORMyCHat: self?.isComefromRandomORMyCHat ?? false, receiver: self?.passRecieverUser?.id ?? "", to: "\(self?.passRecieverUser!.fcmToken ?? "")", title: "\(DataService.instance.currentUser!.name)", body: "video",unread: 1)
                 ProgressHUD.dismiss()
                 print("Uploaded")
             }
@@ -422,7 +422,7 @@ class MessagesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             DataService.instance.addChatMessage(isComefromRandomORMyCHat: isComefromRandomORMyCHat, chatID: chatID!, message: message,notReadBy: [rID],senderName: DataService.instance.currentUser.name,senderImage: DataService.instance.currentUser.image)
             self.messageTxtView.text = ""
             let sender = PushNotificationSender()
-            sender.sendPushNotification(senderToken: DataService.instance.currentUser.fcmToken,chatId:chatID!,isComefromRandomORMyCHat: isComefromRandomORMyCHat, receiver: passRecieverUser?.id ?? "", to: "\(self.passRecieverUser!.fcmToken)", title: "\(DataService.instance.currentUser!.name)", body: m!,unread: 1)
+            sender.sendPushNotification(deviceType: passRecieverUser?.deviceType ?? "", senderToken: DataService.instance.currentUser.fcmToken,chatId:chatID!,isComefromRandomORMyCHat: isComefromRandomORMyCHat, receiver: passRecieverUser?.id ?? "", to: "\(self.passRecieverUser!.fcmToken)", title: "\(DataService.instance.currentUser!.name)", body: m!,unread: 1)
             let sizeToFitIn = CGSize(width: self.messageTxtView.bounds.size.width, height: 150)
             let newSize = self.messageTxtView.sizeThatFits(sizeToFitIn)
             self.txtMessageHeight.constant = newSize.height

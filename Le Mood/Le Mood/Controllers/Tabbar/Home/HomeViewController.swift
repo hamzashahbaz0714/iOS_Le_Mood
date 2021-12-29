@@ -36,7 +36,7 @@ class HomeViewController: UIViewController {
             view.addGestureRecognizer(tapgesture)
 //            view.roundCorners(corners: [.topRight, .bottomLeft], radius: 18)
         }
-        
+        print(UIDevice.current.name)
     }
     
     

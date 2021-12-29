@@ -8,7 +8,7 @@
 import UIKit
 
 class UserModel {
-    
+
     var id: String
     var name: String
     var nikName: String
@@ -16,6 +16,7 @@ class UserModel {
     var phoneNumber: String
     var image: String
     var gender: String
+    var deviceType: String
     var country: String
     var region: String
     var moodId: String
@@ -26,24 +27,25 @@ class UserModel {
     var language: String
     var isMoodVisible: Bool
     
-    init(id: String, name: String, nikName: String, email: String, phoneNumber: String, image: String, gender: String, country: String, region: String, moodId: String, moodType: String, moodValue: Int, lastMoodDate: String, fcmToken: String, language: String,isMoodVisible:Bool) {
-        self.id = id
-        self.name = name
-        self.nikName = nikName
-        self.email = email
-        self.phoneNumber = phoneNumber
-        self.image = image
-        self.gender = gender
-        self.country = country
-        self.region = region
-        self.moodId = moodId
-        self.moodType = moodType
-        self.moodValue = moodValue
-        self.lastMoodDate = lastMoodDate
-        self.fcmToken = fcmToken
-        self.language = language
-        self.isMoodVisible = isMoodVisible
-    }
+    init(id: String, name: String, nikName: String, email: String, phoneNumber: String, image: String, gender: String, deviceType: String, country: String, region: String, moodId: String, moodType: String, moodValue: Int, lastMoodDate: String, fcmToken: String, language: String, isMoodVisible: Bool) {
+       self.id = id
+       self.name = name
+       self.nikName = nikName
+       self.email = email
+       self.phoneNumber = phoneNumber
+       self.image = image
+       self.gender = gender
+       self.deviceType = deviceType
+       self.country = country
+       self.region = region
+       self.moodId = moodId
+       self.moodType = moodType
+       self.moodValue = moodValue
+       self.lastMoodDate = lastMoodDate
+       self.fcmToken = fcmToken
+       self.language = language
+       self.isMoodVisible = isMoodVisible
+   }
 }
 
 

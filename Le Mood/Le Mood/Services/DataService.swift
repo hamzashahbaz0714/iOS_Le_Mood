@@ -43,7 +43,8 @@ class DataService{
             "language": user.language,
             "nickName": user.nikName,
             "isMoodVisible": user.isMoodVisible,
-            "fcmToken": user.fcmToken
+            "fcmToken": user.fcmToken,
+            "deviceType": user.deviceType
         ], merge: true) { (err) in
             if let err = err {
                 debugPrint("Error adding document: \(err)")
@@ -72,10 +73,11 @@ class DataService{
                 let moodValue = data["moodValue"] as? Int ?? 0
                 let lastMoodDate = data["lastMoodDate"] as? String ?? ""
                 let language = data["language"] as? String ?? "Not Found"
+                let deviceType = data["deviceType"] as? String ?? "Not Found"
                 let nikName = data["nickName"] as? String ?? "Not Found"
                 let isMoodVisible = data["isMoodVisible"] as? Bool ?? true
                 
-                let user = UserModel(id: id, name: name, nikName: nikName, email: email, phoneNumber: phoneNumber, image: image, gender: gender, country: country, region: region,moodId: moodId,moodType: moodType,moodValue: moodValue,lastMoodDate: lastMoodDate,fcmToken: fcmToken, language: language, isMoodVisible: isMoodVisible)
+                let user = UserModel(id: id, name: name, nikName: nikName, email: email, phoneNumber: phoneNumber, image: image, gender: gender, deviceType: deviceType, country: country, region: region,moodId: moodId,moodType: moodType,moodValue: moodValue,lastMoodDate: lastMoodDate,fcmToken: fcmToken, language: language, isMoodVisible: isMoodVisible)
                 handler(true,user)
                 
             } else {
@@ -151,12 +153,13 @@ class DataService{
                 let lastMoodDate = data["moodType"] as? String ?? "Not Found"
                 let language = data["language"] as? String ?? "Not Found"
                 let nikName = data["nickName"] as? String ?? "Not Found"
+                let deviceType = data["deviceType"] as? String ?? "Not Found"
                 let isMoodVisible = data["isMoodVisible"] as? Bool ?? true
 
                 
                 
                 if id != Auth.auth().currentUser?.uid {
-                    let user = UserModel(id: id, name: name, nikName: nikName, email: email, phoneNumber: phoneNumber, image: image, gender: gender, country: country, region: region,moodId: moodId,moodType: moodType,moodValue: moodValue,lastMoodDate: lastMoodDate,fcmToken: fcmToken, language: language, isMoodVisible: isMoodVisible)
+                    let user = UserModel(id: id, name: name, nikName: nikName, email: email, phoneNumber: phoneNumber, image: image, gender: gender,deviceType:deviceType, country: country, region: region,moodId: moodId,moodType: moodType,moodValue: moodValue,lastMoodDate: lastMoodDate,fcmToken: fcmToken, language: language, isMoodVisible: isMoodVisible)
                     user.fcmToken = fcmToken
                     userArray.append(user)
                 }
@@ -186,12 +189,13 @@ class DataService{
                 let lastMoodDate = data["moodType"] as? String ?? "Not Found"
                 let language = data["language"] as? String ?? "Not Found"
                 let nikName = data["nickName"] as? String ?? "Not Found"
+                let deviceType = data["deviceType"] as? String ?? "Not Found"
                 let isMoodVisible = data["isMoodVisible"] as? Bool ?? true
 
                 
                 
                 if id != Auth.auth().currentUser?.uid {
-                    let user = UserModel(id: id, name: name, nikName: nikName, email: email, phoneNumber: phoneNumber, image: image, gender: gender, country: country, region: region,moodId: moodId,moodType: moodType,moodValue: moodValue,lastMoodDate: lastMoodDate,fcmToken: fcmToken, language: language, isMoodVisible: isMoodVisible)
+                    let user = UserModel(id: id, name: name, nikName: nikName, email: email, phoneNumber: phoneNumber, image: image, gender: gender,deviceType: deviceType ,country: country, region: region,moodId: moodId,moodType: moodType,moodValue: moodValue,lastMoodDate: lastMoodDate,fcmToken: fcmToken, language: language, isMoodVisible: isMoodVisible)
                     user.fcmToken = fcmToken
                     userArray.append(user)
                 }
