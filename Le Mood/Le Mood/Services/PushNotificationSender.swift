@@ -32,8 +32,8 @@ class PushNotificationSender {
                                                          "combineId":chatId,
                                                          "fcmToken":senderToken,
                                                          "click_action":"mood_click_action_chat",
-                                                         "notiType": "message",
-                                                         "deviceType":deviceType
+                                                         "notiType": "text",
+                                                         "deviceType":"ios"
                                                         ]
             ]
             param = paramString
@@ -46,17 +46,18 @@ class PushNotificationSender {
                                                          "combineId":chatId,
                                                          "fcmToken":senderToken,
                                                          "click_action":"mood_click_action_chat",
-                                                         "notiType": "message",
+                                                         "notiType": "text",
                                                          "title" : title,
                                                          "body" : body,
                                                          "badge" : unread,
                                                          "sound":1,
                                                          "priority" : "high",
                                                          "content_available" : true,
-                                                         "deviceType":deviceType
+                                                         "deviceType":"ios"
                                                         ]
             ]
             param = paramString
+            print(paramString)
         }
         let request = NSMutableURLRequest(url: url as URL)
         request.httpMethod = "POST"
@@ -64,16 +65,24 @@ class PushNotificationSender {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("key=AAAAc1XHMcQ:APA91bEule6sotrkvT9-ISNTHKwM-QAkvbSQ3F52FgZX6F0yscoUkYFp2nWVmYGAoHxfWOwtf_7Sl7gguaObEeBNmztetgcTvY56sNVEgTTA-dgddcZ94KhN2jETVGoegACFmnEtw3Xz", forHTTPHeaderField: "Authorization")
         let task =  URLSession.shared.dataTask(with: request as URLRequest)  { (data, response, error) in
-            do {
-                if let jsonData = data {
-                    if let jsonDataDict  = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.allowFragments) as? [String: AnyObject] {
-                        NSLog("Received data:\n\(jsonDataDict))")
-                        param.removeAll()
-                        print(jsonDataDict)
+            if error == nil {
+                do {
+                    if let jsonData = data {
+                        if let jsonDataDict  = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.allowFragments) as? [String: AnyObject] {
+                           NSLog("Received data:\n\(jsonDataDict))")
+                            param.removeAll()
+                            print(jsonDataDict)
+                        }
                     }
+                    else{
+                        print(error?.localizedDescription ?? "")
+                    }
+                } catch let err as NSError {
+                    print(err.debugDescription)
                 }
-            } catch let err as NSError {
-                print(err.debugDescription)
+            }
+            else{
+                print(error?.localizedDescription ?? "")
             }
         }
         task.resume()

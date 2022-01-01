@@ -26,9 +26,9 @@ class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCe
     
     
     func registerForPushNotifications() {
+        UNUserNotificationCenter.current().delegate = self
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
-            UNUserNotificationCenter.current().delegate = self
             let replyAction = UNTextInputNotificationAction(identifier: "click_action", title: "message", options: [], textInputButtonTitle: "Send", textInputPlaceholder: "type something …")
             
             let pushNotificationButtons = UNNotificationCategory(
@@ -121,15 +121,16 @@ class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCe
             let isComefromRandomORMyCHat = userInfo["isComefromRandomORMyCHat"] as? Bool ?? false
             let token = userInfo["fcmToken"] as? String ?? ""
             let deviceType = userInfo["deviceType"] as? String ?? ""
-            print(senderID,receiverID,chatId,isComefromRandomORMyCHat,token)
+            print(senderID,receiverID,chatId,isComefromRandomORMyCHat,token,deviceType)
             print(userInfo)
             if let textResponse =  response as? UNTextInputNotificationResponse {
                 let sendText =  textResponse.userText
                 print("Received text message: \(sendText)")
+                let sender = PushNotificationSender()
+                sender.sendPushNotification(deviceType: deviceType, senderToken: DataService.instance.currentUser.fcmToken, chatId:chatId,isComefromRandomORMyCHat: isComefromRandomORMyCHat, receiver: senderID, to:  token, title: "\(DataService.instance.currentUser!.name)", body: sendText,unread: 1)
                 let message = Message(messageId: getUniqueId(), reciverId: senderID, senderId: receiverID, messageBody:sendText, messageType: "text", messageTime: getCurrentTime(), messageDate: getCurrentDateWithTime(), isIncoming: false)
                 DataService.instance.addChatMessage(isComefromRandomORMyCHat: isComefromRandomORMyCHat, chatID: chatId, message: message,notReadBy: [receiverID],senderName: DataService.instance.currentUser.name,senderImage: DataService.instance.currentUser.image)
-                let sender = PushNotificationSender()
-                sender.sendPushNotification(deviceType: deviceType, senderToken: token, chatId:chatId,isComefromRandomORMyCHat: isComefromRandomORMyCHat, receiver: receiverID, to:  token, title: "\(DataService.instance.currentUser!.name)", body: sendText,unread: 1)
+               
             }
         }
         
