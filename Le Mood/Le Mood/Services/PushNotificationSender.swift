@@ -30,7 +30,7 @@ class PushNotificationSender {
                                                          "receiver":receiver,
                                                          "isComefromRandomORMyCHat":isComefromRandomORMyCHat,
                                                          "combineId":chatId,
-                                                         "fcmToken":senderToken,
+                                                         "fcmToken":DataService.instance.currentUser.fcmToken,
                                                          "click_action":"mood_click_action_chat",
                                                          "notiType": "text",
                                                          "deviceType":"ios"
@@ -44,7 +44,7 @@ class PushNotificationSender {
                                                          "receiver":receiver,
                                                          "isComefromRandomORMyCHat":isComefromRandomORMyCHat,
                                                          "combineId":chatId,
-                                                         "fcmToken":senderToken,
+                                                         "fcmToken":DataService.instance.currentUser.fcmToken,
                                                          "click_action":"mood_click_action_chat",
                                                          "notiType": "text",
                                                          "title" : title,

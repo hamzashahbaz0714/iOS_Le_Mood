@@ -49,10 +49,6 @@ class LoginViewController: UIViewController {
             AuthService.instance.loginUserWithEmail(email: txtEmail.text!, password: txtPassword.text!) { (success, error) in
                 if success {
                     DataService.instance.getUserOfID(userID: Auth.auth().currentUser!.uid) { [self] (success, user) in
-                        if user?.deviceType != "ios" {
-                            DataService.instance.currentUser.deviceType = "android"
-                            DataService.instance.setCurrentUser(user: user!)
-                        }
                         DataService.instance.setCurrentUser(user: user!)
                         ProgressHUD.dismiss()
                         txtEmail.text = ""
